@@ -86,113 +86,122 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         {/* Input Form Pill */}
         <form 
           onSubmit={handleSubmit}
-          className={`
-            w-full max-w-[1100px] xl:max-w-[1200px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-20 gap-2 md:gap-0
+          className="w-full flex flex-col gap-4 items-center relative z-20"
+        >
+          {/* Row 1: Name & Email */}
+          <div className="
+            w-full max-w-[800px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-20 gap-2 md:gap-0
             transition-all duration-300 ease-out border backdrop-blur-md
             border-zinc-200 dark:border-[#00e5ff]/80 shadow-xl dark:shadow-[0_0_20px_rgba(0,229,255,0.2)] bg-white/90 dark:bg-[#050810]/90
             hover:border-zinc-300 dark:hover:border-[#00e5ff] hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:bg-white dark:hover:bg-[#03060c]
             focus-within:border-cyan-400 dark:focus-within:border-[#00e5ff] focus-within:shadow-2xl dark:focus-within:shadow-[0_0_50px_rgba(0,229,255,0.5)] focus-within:bg-white dark:focus-within:bg-[#03060c]
             md:h-[64px]
-          `}
-        >
-          {/* Name Input Area */}
-          <div className="flex-[1.2] flex items-center px-4 md:px-6 relative group h-[52px] md:h-auto">
-            <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">NAME</span>
-            <input 
-              type="text" 
-              placeholder="Enter your name" 
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full bg-transparent border-none outline-none text-[14px] md:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
-              required
-            />
-          </div>
-          
-          {/* Vertical Divider (Hidden on mobile) */}
-          <div className="hidden md:block w-px h-6 md:h-8 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
+          ">
+            {/* Name Input Area */}
+            <div className="flex-1 flex items-center px-6 md:px-8 relative group h-[52px] md:h-auto">
+              <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">NAME</span>
+              <input 
+                type="text" 
+                placeholder="Enter your name" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full bg-transparent border-none outline-none text-[14px] md:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
+                required
+              />
+            </div>
+            
+            {/* Vertical Divider */}
+            <div className="hidden md:block w-px h-6 md:h-8 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
 
-
-          {/* Email Input Area */}
-          <div className="flex-1 flex items-center px-4 md:px-5 relative group h-[52px] md:h-auto">
-            <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">EMAIL</span>
-            <input 
-              type="email" 
-              placeholder="Your email..." 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-transparent border-none outline-none text-[14px] md:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
-              required
-            />
-          </div>
-
-          {/* Vertical Divider (Hidden on mobile) */}
-          <div className="hidden md:block w-px h-6 md:h-8 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
-
-          {/* Org Input Area */}
-          <div className="flex-1 flex items-center px-4 md:px-5 relative group h-[52px] md:h-auto">
-            <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">ORG</span>
-            <input 
-              type="text" 
-              placeholder="Company name..." 
-              value={company}
-              onChange={(e) => setCompany(e.target.value)}
-              className="w-full bg-transparent border-none outline-none text-[14px] md:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
-              required
-            />
+            {/* Email Input Area */}
+            <div className="flex-1 flex items-center px-6 md:px-8 relative group h-[52px] md:h-auto">
+              <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">EMAIL</span>
+              <input 
+                type="email" 
+                placeholder="Your email..." 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full bg-transparent border-none outline-none text-[14px] md:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
+                required
+              />
+            </div>
           </div>
 
-          {/* Vertical Divider (Hidden on mobile) */}
-          <div className="hidden md:block w-px h-6 md:h-8 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
-
-          {/* Role Input Area (Custom Dropdown) */}
-          <div ref={dropdownRef} className="flex-[1.2] flex items-center px-4 md:px-5 relative group h-[52px] md:h-auto cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-            <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">ROLE</span>
-            <div className="relative w-full flex items-center justify-between md:pr-[140px]">
-              <span className={`text-[14px] md:text-[16px] font-black ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-400 dark:text-[#2f3542]'} truncate pr-4`}>
-                {role || "Select Role..."}
-              </span>
-              <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }}>
-                <ChevronDown size={16} className="text-[#00e5ff] shrink-0" />
-              </motion.div>
+          {/* Row 2: Org, Role & Scan */}
+          <div className="
+            w-full max-w-[950px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-10 gap-2 md:gap-0
+            transition-all duration-300 ease-out border backdrop-blur-md
+            border-zinc-200 dark:border-[#00e5ff]/80 shadow-xl dark:shadow-[0_0_20px_rgba(0,229,255,0.2)] bg-white/90 dark:bg-[#050810]/90
+            hover:border-zinc-300 dark:hover:border-[#00e5ff] hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:bg-white dark:hover:bg-[#03060c]
+            focus-within:border-cyan-400 dark:focus-within:border-[#00e5ff] focus-within:shadow-2xl dark:focus-within:shadow-[0_0_50px_rgba(0,229,255,0.5)] focus-within:bg-white dark:focus-within:bg-[#03060c]
+            md:h-[64px]
+          ">
+            {/* Org Input Area */}
+            <div className="flex-1 flex items-center px-6 md:px-8 relative group h-[52px] md:h-auto">
+              <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">ORG</span>
+              <input 
+                type="text" 
+                placeholder="Company name..." 
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                className="w-full bg-transparent border-none outline-none text-[14px] md:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
+                required
+              />
             </div>
 
-            {/* Dropdown Menu */}
-            {isDropdownOpen && (
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.2 }}
-                className="absolute top-[110%] left-0 w-full bg-white/95 dark:bg-[#0b1426]/95 backdrop-blur-2xl border border-zinc-200 dark:border-[#00e5ff]/20 rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.8)] z-50 max-h-[220px] overflow-y-auto"
-              >
-                {roles.map((r) => (
-                  <div 
-                    key={r}
-                    onClick={() => setRole(r)}
-                    className="px-6 py-3 text-[14px] md:text-[15px] font-bold text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-[#00e5ff]/15 transition-colors duration-200 cursor-pointer border-b border-black/5 dark:border-white/5 last:border-b-0"
-                  >
-                    {r}
-                  </div>
-                ))}
-              </motion.div>
-            )}
-          </div>
+            {/* Vertical Divider */}
+            <div className="hidden md:block w-px h-6 md:h-8 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
 
-          {/* Scan Now Button (Inner Pill) */}
-          <button 
-            type="submit"
-            disabled={!isFormValid}
-            className={`
-              md:absolute md:right-2 md:top-1/2 md:transform md:-translate-y-1/2
-              px-6 h-[46px] md:h-[50px] rounded-full font-bold text-[13px] flex items-center justify-center gap-2 transition-all duration-300 shrink-0
-              border border-black/10 dark:border-white/5 mx-2 md:mx-0 mb-2 md:mb-0
-              ${isFormValid 
-                ? 'bg-zinc-900 dark:bg-[#18181b] text-white hover:bg-black dark:hover:bg-[#27272a] hover:border-black/30 dark:hover:border-white/30 shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(255,255,255,0.1)]' 
-                : 'bg-zinc-200 dark:bg-[#141414] text-zinc-400 dark:text-[#e5e7eb] cursor-not-allowed'}
-            `}
-          >
-            Scan Now <ArrowRight size={14} className={isFormValid ? "text-white" : "text-[#e5e7eb]"} />
-          </button>
+            {/* Role Input Area (Custom Dropdown) */}
+            <div ref={dropdownRef} className="flex-[1.2] flex items-center px-6 md:px-6 relative group h-[52px] md:h-auto cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+              <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">ROLE</span>
+              <div className="relative w-full flex items-center justify-between md:pr-[140px]">
+                <span className={`text-[14px] md:text-[16px] font-black ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-400 dark:text-[#2f3542]'} truncate pr-4`}>
+                  {role || "Select Role..."}
+                </span>
+                <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }}>
+                  <ChevronDown size={16} className="text-[#00e5ff] shrink-0" />
+                </motion.div>
+              </div>
+
+              {/* Dropdown Menu */}
+              {isDropdownOpen && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-[110%] left-0 w-full bg-white/95 dark:bg-[#0b1426]/95 backdrop-blur-2xl border border-zinc-200 dark:border-[#00e5ff]/20 rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.8)] z-50 max-h-[220px] overflow-y-auto"
+                >
+                  {roles.map((r) => (
+                    <div 
+                      key={r}
+                      onClick={() => setRole(r)}
+                      className="px-6 py-3 text-[14px] md:text-[15px] font-bold text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-[#00e5ff]/15 transition-colors duration-200 cursor-pointer border-b border-black/5 dark:border-white/5 last:border-b-0"
+                    >
+                      {r}
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+            </div>
+
+            {/* Scan Now Button (Inner Pill) */}
+            <button 
+              type="submit"
+              disabled={!isFormValid}
+              className={`
+                md:absolute md:right-2 md:top-1/2 md:transform md:-translate-y-1/2
+                px-6 h-[46px] md:h-[50px] rounded-full font-bold text-[13px] flex items-center justify-center gap-2 transition-all duration-300 shrink-0
+                border border-black/10 dark:border-white/5 mx-2 md:mx-0 mb-2 md:mb-0
+                ${isFormValid 
+                  ? 'bg-zinc-900 dark:bg-[#18181b] text-white hover:bg-black dark:hover:bg-[#27272a] hover:border-black/30 dark:hover:border-white/30 shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(255,255,255,0.1)]' 
+                  : 'bg-zinc-200 dark:bg-[#141414] text-zinc-400 dark:text-[#e5e7eb] cursor-not-allowed'}
+              `}
+            >
+              Scan Now <ArrowRight size={14} className={isFormValid ? "text-white" : "text-[#e5e7eb]"} />
+            </button>
+          </div>
         </form>
       </motion.div>
     </div>
