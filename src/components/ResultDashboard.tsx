@@ -4,6 +4,7 @@ import { RefreshCw, TrendingUp, AlertTriangle } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import type { UserInfo } from '../App';
 import { getResultTier, resultDetails, assessmentData } from '../data/assessmentData';
+import mfecLogo from '../assets/mfec-logo.png';
 
 interface ResultDashboardProps {
   userInfo: UserInfo;
@@ -93,7 +94,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         {/* Header - Executive Profile */}
         <motion.header variants={itemVariants} className="flex justify-between items-start w-full mb-12">
           <div className="flex flex-col gap-6">
-            <img src="/New-Logo-MFEC-More_Black-2.png" alt="MFEC Logo" className="h-10 md:h-12 w-[140px] object-contain filter brightness-0 invert opacity-95 drop-shadow-lg self-start" />
+            <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-[140px] object-contain filter brightness-0 invert opacity-95 drop-shadow-lg self-start" />
             
             <div className="bg-[#0b1426]/60 border border-[#00e5ff]/20 backdrop-blur-xl px-6 py-4 rounded-2xl flex items-center gap-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
               <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-black text-xl shadow-[0_0_15px_rgba(0,229,255,0.4)] relative" style={{ background: `linear-gradient(135deg, var(--color-${details.color}), #0055ff)` }}>

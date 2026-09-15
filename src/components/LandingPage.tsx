@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, UserCircle2 } from 'lucide-react';
 import MeshGraphBackground from './MeshGraphBackground';
 import type { UserInfo } from '../App';
+import mfecLogo from '../assets/mfec-logo.png';
 
 interface LandingPageProps {
   onStart: (data: UserInfo) => void;
@@ -40,7 +41,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
       >
         {/* Logo and faint glow underneath */}
         <div className="mb-10 flex flex-col items-center relative">
-          <img src="/New-Logo-MFEC-More_Black-2.png" alt="MFEC Logo" className="h-10 md:h-12 object-contain filter brightness-0 invert opacity-100 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
+          <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 object-contain filter brightness-0 invert opacity-100 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
           <div className="absolute -bottom-4 w-32 h-[20px] bg-[#00e5ff]/30 blur-[12px] pointer-events-none"></div>
         </div>
 
