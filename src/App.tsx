@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import LandingPage from './components/LandingPage';
 import AssessmentStepper from './components/AssessmentStepper';
 import ResultDashboard from './components/ResultDashboard';
+import { ThemeToggle } from './components/ThemeToggle';
 import { getResultTier, type AssessmentCategory } from './data/assessmentData';
 
 export type ViewState = 'landing' | 'assessment' | 'result';
@@ -89,7 +90,8 @@ function App() {
   };
 
   return (
-    <div className="w-full min-h-screen text-white font-sans bg-[#020611] selection:bg-[#00e5ff]/30">
+    <div className="w-full min-h-screen font-sans selection:bg-[#00e5ff]/30">
+      <ThemeToggle />
       <AnimatePresence mode="wait">
         {view === 'landing' && <LandingPage key="landing" onStart={handleStart} />}
         {view === 'assessment' && <AssessmentStepper key="assessment" onComplete={handleAssessmentComplete} />}

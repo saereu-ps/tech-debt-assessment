@@ -14,7 +14,7 @@ const DataBackground: React.FC = () => {
   }));
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#03050a]">
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-transparent">
       
       {/* Deep Background Glows */}
       <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-[#00e5ff]/5 blur-[120px] rounded-full mix-blend-screen" />

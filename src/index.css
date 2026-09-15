@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 @theme {
   --font-sans: 'Plus Jakarta Sans', 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Plus Jakarta Sans', 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -8,8 +10,22 @@
 
 @layer base {
   :root {
+    --color-bg-deep: #F8F7F4; /* Ivory */
+    --color-bg-light: #ffffff;
+    --color-text-main: #0f172a;
+    --color-neon-blue: #0ea5e9;
+    --color-neon-cyan: #00b8d4; /* Darker cyan for light mode contrast */
+    --color-neon-magenta: #9333ea;
+    --color-neon-red: #dc2626;
+    --color-neon-orange: #ea580c;
+    --color-neon-yellow: #ca8a04;
+    --color-neon-green: #16a34a;
+  }
+
+  .dark {
     --color-bg-deep: #050810;
     --color-bg-light: #061124;
+    --color-text-main: #ffffff;
     --color-neon-blue: #0ea5e9;
     --color-neon-cyan: #00e5ff;
     --color-neon-magenta: #a855f7;
@@ -21,7 +37,7 @@
 
   body {
     background-color: var(--color-bg-deep);
-    color: #ffffff;
+    color: var(--color-text-main);
     min-height: 100vh;
     font-family: var(--font-sans);
     overflow-x: hidden;

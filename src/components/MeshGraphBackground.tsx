@@ -119,7 +119,7 @@ const MeshGraphBackground: React.FC = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#03050a]">
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-transparent">
       {/* Background ambient corner glows to match the mesh colors */}
       <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-[#00e5ff]/5 blur-[120px] rounded-full mix-blend-screen" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-[#a855f7]/5 blur-[120px] rounded-full mix-blend-screen" />

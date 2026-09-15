@@ -65,7 +65,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center py-10 px-5 md:px-12 relative overflow-hidden bg-[#060a0f]">
+    <div className="w-full min-h-screen flex flex-col items-center py-10 px-5 md:px-12 relative overflow-hidden bg-transparent">
       
       {/* Sci-Fi Background Glows */}
       <motion.div 
@@ -98,8 +98,8 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           <div className="flex flex-col gap-6">
             <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-[140px] object-contain filter brightness-0 invert opacity-95 drop-shadow-lg self-start" />
             
-            <div className="bg-[#0b1426]/60 border border-[#00e5ff]/20 backdrop-blur-xl px-6 py-4 rounded-2xl flex items-center gap-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-black text-xl shadow-[0_0_15px_rgba(0,229,255,0.4)] relative" style={{ background: `linear-gradient(135deg, var(--color-${details.color}), #0055ff)` }}>
+            <div className="bg-white/60 dark:bg-[#0b1426]/60 border border-black/5 dark:border-[#00e5ff]/20 backdrop-blur-xl px-6 py-4 rounded-2xl flex items-center gap-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center text-zinc-900 dark:text-white font-black text-xl shadow-[0_0_15px_rgba(0,229,255,0.4)] relative" style={{ background: `linear-gradient(135deg, var(--color-${details.color}), #0055ff)` }}>
                 {userInfo.name.charAt(0).toUpperCase()}
                 <div className="absolute inset-0 rounded-full border-2 border-white/20"></div>
               </div>
@@ -109,13 +109,13 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   {userInfo.role && (
                     <>
                       <span className="w-1 h-1 rounded-full bg-zinc-600" />
-                      <span className="text-[10px] text-white/70 font-bold tracking-[0.1em] uppercase">{userInfo.role}</span>
+                      <span className="text-[10px] text-zinc-900 dark:text-white/70 font-bold tracking-[0.1em] uppercase">{userInfo.role}</span>
                     </>
                   )}
                   <span className="w-1 h-1 rounded-full bg-zinc-600" />
-                  <span className="text-[9px] text-zinc-500 font-bold tracking-widest uppercase">Executive Report</span>
+                  <span className="text-[9px] text-zinc-400 dark:text-zinc-500 font-bold tracking-widest uppercase">Executive Report</span>
                 </div>
-                <h3 className="text-[18px] text-white font-black tracking-wide leading-none">{userInfo.name}</h3>
+                <h3 className="text-[18px] text-zinc-900 dark:text-white font-black tracking-wide leading-none">{userInfo.name}</h3>
               </div>
             </div>
           </div>
@@ -127,17 +127,17 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           {/* Left Column: Diagnostics & Data */}
           <div className="flex flex-col w-full h-full">
             <motion.div variants={itemVariants} className="flex flex-col">
-              <h4 className="text-[11px] text-white/50 font-bold tracking-[0.2em] uppercase mb-2">Diagnostic Score</h4>
+              <h4 className="text-[11px] text-zinc-900 dark:text-white/50 font-bold tracking-[0.2em] uppercase mb-2">Diagnostic Score</h4>
               <div className="flex items-baseline leading-[0.8] tracking-tighter relative">
                 <motion.span 
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
-                  className="text-[120px] md:text-[140px] font-bold text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] font-[var(--font-display)]"
+                  className="text-[120px] md:text-[140px] font-bold text-zinc-900 dark:text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] font-[var(--font-display)]"
                 >
                   {totalScore}
                 </motion.span>
-                <span className="text-[32px] md:text-[36px] font-bold text-white/30 ml-2 -mb-2 font-[var(--font-display)]">/25</span>
+                <span className="text-[32px] md:text-[36px] font-bold text-zinc-900 dark:text-white/30 ml-2 -mb-2 font-[var(--font-display)]">/25</span>
               </div>
             </motion.div>
 
@@ -149,7 +149,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="h-[3px] bg-zinc-600" 
                 />
-                <h4 className="text-[12px] text-white/50 font-bold tracking-[0.2em] uppercase">Current Status</h4>
+                <h4 className="text-[12px] text-zinc-900 dark:text-white/50 font-bold tracking-[0.2em] uppercase">Current Status</h4>
               </div>
               <p className="text-[20px] md:text-[24px] text-zinc-300 font-medium leading-[1.6] tracking-wide">
                 {details.status.split('\n\n')[0]}
@@ -157,8 +157,8 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             </motion.div>
 
             {/* 5-Dimension Tech Breakdown */}
-            <motion.div variants={itemVariants} className="w-full max-w-[650px] bg-[#090e15]/50 backdrop-blur-md border border-white/5 p-10 rounded-3xl mt-auto shadow-2xl">
-              <h4 className="text-[11px] text-white font-bold tracking-[0.2em] uppercase mb-8 flex items-center gap-3">
+            <motion.div variants={itemVariants} className="w-full max-w-[650px] bg-white/50 dark:bg-[#090e15]/50 backdrop-blur-md border border-black/5 dark:border-white/5 p-10 rounded-3xl mt-auto shadow-2xl">
+              <h4 className="text-[11px] text-zinc-900 dark:text-white font-bold tracking-[0.2em] uppercase mb-8 flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: `var(--color-${details.color})`, boxShadow: `0 0 10px var(--color-${details.color})` }} />
                 Dimension Breakdown
               </h4>
@@ -170,7 +170,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   
                   return (
                     <div key={metric.id} className="flex items-center gap-5">
-                      <div className="w-[120px] text-[11px] font-bold tracking-[0.15em] text-zinc-400 uppercase">
+                      <div className="w-[120px] text-[11px] font-bold tracking-[0.15em] text-zinc-400 dark:text-zinc-500 dark:text-zinc-400 uppercase">
                         {metric.shortTitle}
                       </div>
                       <div className="flex-1 flex gap-2">
@@ -189,7 +189,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                           />
                         ))}
                       </div>
-                      <div className="w-[30px] text-right text-[12px] font-bold text-white font-[var(--font-display)]">
+                      <div className="w-[30px] text-right text-[12px] font-bold text-zinc-900 dark:text-white font-[var(--font-display)]">
                         {displayScore}/5
                       </div>
                     </div>
@@ -204,7 +204,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             
             {/* Title */}
             <motion.div variants={itemVariants} className="pt-2">
-              <h3 className="text-zinc-500 text-[11px] font-bold tracking-[0.2em] uppercase mb-3 flex items-center gap-3">
+              <h3 className="text-zinc-400 dark:text-zinc-500 text-[11px] font-bold tracking-[0.2em] uppercase mb-3 flex items-center gap-3">
                 <motion.div 
                   animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
                   transition={{ repeat: Infinity, duration: 2 }}
@@ -224,24 +224,24 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             {/* NEW: Computed Insights Panel (Balancing the Right Column) */}
             <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-12 w-full max-w-[700px]">
               {/* Key Strength */}
-              <div className="bg-white/[0.02] border border-white/5 p-5 rounded-2xl flex flex-col gap-2">
+              <div className="bg-white/40 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 p-5 rounded-2xl flex flex-col gap-2">
                 <div className="flex items-center gap-2 text-[#00e5ff]">
                   <TrendingUp size={14} strokeWidth={2.5} />
                   <span className="text-[9px] font-bold tracking-[0.2em] uppercase opacity-90">Key Strength</span>
                 </div>
-                <div className="text-white text-[14px] font-semibold leading-tight">
+                <div className="text-zinc-900 dark:text-white text-[14px] font-semibold leading-tight">
                   {keyStrength ? keyStrength.shortTitle : "N/A"}
                 </div>
               </div>
               
               {/* Critical Focus */}
-              <div className="bg-white/[0.02] border border-white/5 p-5 rounded-2xl flex flex-col gap-2 relative overflow-hidden group">
+              <div className="bg-white/40 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 p-5 rounded-2xl flex flex-col gap-2 relative overflow-hidden group">
                 <div className="absolute inset-0 bg-[#ff4d4d]/[0.02] pointer-events-none" />
                 <div className="flex items-center gap-2 text-[#ff4d4d]">
                   <AlertTriangle size={14} strokeWidth={2.5} />
                   <span className="text-[9px] font-bold tracking-[0.2em] uppercase opacity-90">Critical Focus</span>
                 </div>
-                <div className="text-white text-[14px] font-semibold leading-tight">
+                <div className="text-zinc-900 dark:text-white text-[14px] font-semibold leading-tight">
                   {criticalFocus ? criticalFocus.shortTitle : "N/A"}
                 </div>
               </div>
@@ -251,7 +251,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             <motion.div variants={itemVariants} className="mt-12 w-full max-w-[700px]">
               <motion.div 
                 whileHover={{ scale: 1.02, y: -5 }}
-                className="bg-[#0b1426]/40 backdrop-blur-xl border border-white/10 p-12 md:p-14 rounded-3xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] group cursor-default"
+                className="bg-white/70 dark:bg-[#0b1426]/40 backdrop-blur-xl border border-black/10 dark:border-white/10 p-12 md:p-14 rounded-3xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] group cursor-default"
               >
                 {/* Glowing edge indicator */}
                 <div 
@@ -263,11 +263,11 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   <h4 className="text-[12px] font-bold tracking-[0.25em] uppercase opacity-70" style={{ color: `var(--color-${details.color})` }}>
                     Executive Action
                   </h4>
-                  <p className="text-[24px] md:text-[28px] font-semibold text-white leading-[1.6] tracking-wide">
+                  <p className="text-[24px] md:text-[28px] font-semibold text-zinc-900 dark:text-white leading-[1.6] tracking-wide">
                     {details.action.split('\n\n')[0]}
                   </p>
                   {details.action.split('\n\n')[1] && (
-                    <p className="text-[16px] md:text-[18px] font-medium leading-relaxed tracking-wide text-zinc-400">
+                    <p className="text-[16px] md:text-[18px] font-medium leading-relaxed tracking-wide text-zinc-400 dark:text-zinc-500 dark:text-zinc-400">
                       {details.action.split('\n\n')[1]}
                     </p>
                   )}
@@ -287,7 +287,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00e5ff]/10 blur-[100px] rounded-full pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
           
           <div className="flex flex-col gap-4 relative z-10 max-w-[600px] text-center lg:text-left">
-            <h3 className="text-[32px] md:text-[40px] font-bold text-white leading-[1.1] font-[var(--font-display)]">
+            <h3 className="text-[32px] md:text-[40px] font-bold text-zinc-900 dark:text-white leading-[1.1] font-[var(--font-display)]">
               Ready to eliminate your <span className="text-[#00e5ff]">Tech Debt?</span>
             </h3>
             <p className="text-[#8b93a5] text-[16px] md:text-[18px] font-medium leading-relaxed">
@@ -298,27 +298,27 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 relative z-10 shrink-0 w-full lg:w-auto">
             <a 
               href="tel:028217979" 
-              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#0b1426] hover:bg-[#111e38] border border-white/10 hover:border-[#00e5ff]/40 px-6 py-4 rounded-2xl transition-all duration-300 group"
+              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white dark:bg-[#0b1426] hover:bg-zinc-50 dark:hover:bg-[#111e38] border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-[#00e5ff]/40 px-6 py-4 rounded-2xl transition-all duration-300 group"
             >
               <div className="w-10 h-10 rounded-full bg-[#00e5ff]/10 flex items-center justify-center group-hover:bg-[#00e5ff]/20 transition-colors">
                 <Phone size={18} className="text-[#00e5ff]" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[10px] text-zinc-400 font-bold tracking-widest uppercase">Helpdesk 24x7</span>
-                <span className="text-[15px] text-white font-bold tracking-wide">02-821-7979</span>
+                <span className="text-[10px] text-zinc-400 dark:text-zinc-500 dark:text-zinc-400 font-bold tracking-widest uppercase">Helpdesk 24x7</span>
+                <span className="text-[15px] text-zinc-900 dark:text-white font-bold tracking-wide">02-821-7979</span>
               </div>
             </a>
 
             <a 
               href="mailto:helpdesk@mfec.co.th" 
-              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#0b1426] hover:bg-[#111e38] border border-white/10 hover:border-[#00e5ff]/40 px-6 py-4 rounded-2xl transition-all duration-300 group"
+              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white dark:bg-[#0b1426] hover:bg-zinc-50 dark:hover:bg-[#111e38] border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-[#00e5ff]/40 px-6 py-4 rounded-2xl transition-all duration-300 group"
             >
               <div className="w-10 h-10 rounded-full bg-[#00e5ff]/10 flex items-center justify-center group-hover:bg-[#00e5ff]/20 transition-colors">
                 <Mail size={18} className="text-[#00e5ff]" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[10px] text-zinc-400 font-bold tracking-widest uppercase">Email Support</span>
-                <span className="text-[15px] text-white font-bold tracking-wide">helpdesk@mfec.co.th</span>
+                <span className="text-[10px] text-zinc-400 dark:text-zinc-500 dark:text-zinc-400 font-bold tracking-widest uppercase">Email Support</span>
+                <span className="text-[15px] text-zinc-900 dark:text-white font-bold tracking-wide">helpdesk@mfec.co.th</span>
               </div>
             </a>
           </div>
@@ -337,8 +337,8 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             </motion.div>
             
             <div className="space-y-2">
-              <h4 className="font-bold text-white text-[16px] tracking-wide">Export Full Report</h4>
-              <p className="text-[11px] text-zinc-500 tracking-[0.2em] uppercase font-bold flex items-center gap-2">
+              <h4 className="font-bold text-zinc-900 dark:text-white text-[16px] tracking-wide">Export Full Report</h4>
+              <p className="text-[11px] text-zinc-400 dark:text-zinc-500 tracking-[0.2em] uppercase font-bold flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-zinc-600 animate-pulse" />
                 Scan via Mobile
               </p>
@@ -351,7 +351,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={onRestart}
-              className="flex items-center gap-3 text-zinc-400 hover:text-white transition-all duration-300 bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 hover:border-white/10 px-8 py-4 rounded-2xl group shadow-lg"
+              className="flex items-center gap-3 text-zinc-400 dark:text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:text-white transition-all duration-300 bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 hover:border-white/10 px-8 py-4 rounded-2xl group shadow-lg"
             >
               <RefreshCw size={16} strokeWidth={2.5} className="group-hover:rotate-180 transition-transform duration-700" />
               <span className="text-[11px] font-bold tracking-[0.2em] uppercase">New Session</span>

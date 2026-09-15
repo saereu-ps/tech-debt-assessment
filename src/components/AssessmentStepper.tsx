@@ -68,7 +68,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
   });
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center relative overflow-hidden bg-[#060a0f]">
+    <div className="w-full min-h-screen flex items-center justify-center relative overflow-hidden bg-transparent">
       
       {/* Sci-Fi Background Glows - Using radial-gradient instead of heavy CSS blur for massive performance boost */}
       <div className="absolute top-[10%] left-[-10%] w-[800px] h-[800px] rounded-full pointer-events-none" 
@@ -202,7 +202,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                 <AnimatePresence>
                   {isActive && (
                     <motion.div 
-                      className="absolute flex flex-col items-center justify-center bg-[#0a0a0f]/90 backdrop-blur-xl border border-white/20 rounded-2xl p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] min-w-[120px] z-20"
+                      className="absolute flex flex-col items-center justify-center bg-white/90 dark:bg-[#0a0a0f]/90 backdrop-blur-xl border border-black/10 dark:border-white/20 rounded-2xl p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] min-w-[120px] z-20"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.5 }}
@@ -213,7 +213,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                       <div className="text-[36px] font-[var(--font-display)] font-black bg-gradient-to-br from-[#ff00cc] via-[#00e5ff] to-[#0055ff] bg-clip-text text-transparent leading-none mb-1 drop-shadow-[0_0_15px_rgba(0,229,255,0.4)]">
                         0{idx + 1}
                       </div>
-                      <div className="text-[12px] font-bold tracking-[0.2em] text-white uppercase text-center">
+                      <div className="text-[12px] font-bold tracking-[0.2em] text-zinc-900 dark:text-white uppercase text-center">
                         {metric.shortTitle}
                       </div>
                     </motion.div>
@@ -238,8 +238,8 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                   <div className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shadow-[0_0_10px_#00e5ff] animate-pulse" />
                   Metric 0{currentIndex + 1}
                 </span>
-                <h2 className="text-[44px] font-bold tracking-tight text-white leading-[1.15] drop-shadow-md">{currentMetric.title}</h2>
-                <p className="text-zinc-400 text-[16px] font-medium tracking-wide mt-3 leading-relaxed">{currentMetric.description}</p>
+                <h2 className="text-[44px] font-bold tracking-tight text-zinc-900 dark:text-white leading-[1.15] drop-shadow-md">{currentMetric.title}</h2>
+                <p className="text-zinc-500 dark:text-zinc-400 text-[16px] font-medium tracking-wide mt-3 leading-relaxed">{currentMetric.description}</p>
               </motion.div>
 
               {/* High-End Interactive Options */}
@@ -258,7 +258,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                         w-full text-left p-6 rounded-2xl transition-all duration-300 flex items-start gap-5 group border relative overflow-hidden backdrop-blur-md
                         ${isSelected 
                           ? 'bg-[#00e5ff]/[0.05] border-[#00e5ff]/40 shadow-[0_0_30px_rgba(0,229,255,0.08)]' 
-                          : 'bg-white/[0.01] border-white/5 hover:bg-white/[0.03] hover:border-white/10'}
+                          : 'bg-white/40 dark:bg-white/[0.01] border-black/5 dark:border-white/5 hover:bg-white/60 dark:hover:bg-white/[0.03] hover:border-black/10 dark:hover:border-white/10 shadow-sm dark:shadow-none'}
                       `}
                     >
                       {/* Animated Radio Circle */}
@@ -282,14 +282,14 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                       {/* Content */}
                       <div className="flex flex-col gap-1.5 pt-0.5 relative z-10">
                         <p className="text-[16px] leading-relaxed tracking-wide">
-                          <span className={`font-semibold transition-colors duration-300 ${isSelected ? 'text-white' : 'text-zinc-200 group-hover:text-white'}`}>
+                          <span className={`font-semibold transition-colors duration-300 ${isSelected ? 'text-zinc-900 dark:text-white' : 'text-zinc-700 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white'}`}>
                             {choice.label}
                           </span> 
-                          <span className={`font-medium ml-2 transition-colors duration-300 ${isSelected ? 'text-zinc-300' : 'text-zinc-500 group-hover:text-zinc-400'}`}>
+                          <span className={`font-medium ml-2 transition-colors duration-300 ${isSelected ? 'text-zinc-600 dark:text-zinc-300' : 'text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-500 dark:group-hover:text-zinc-400'}`}>
                             {choice.description}
                           </span>
                         </p>
-                        <p className={`text-[14px] font-medium tracking-wide transition-colors duration-300 ${isSelected ? 'text-[#00e5ff]/90' : 'text-zinc-600 group-hover:text-zinc-500'}`}>
+                        <p className={`text-[14px] font-medium tracking-wide transition-colors duration-300 ${isSelected ? 'text-[#00b8d4] dark:text-[#00e5ff]/90' : 'text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-500 dark:group-hover:text-zinc-500'}`}>
                           {choice.thaiDescription}
                         </p>
                       </div>
@@ -310,7 +310,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
           <div className="flex items-center justify-between mt-12 pt-6">
             <button 
               onClick={handlePrev}
-              className={`flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentIndex === 0 ? 'opacity-0 pointer-events-none' : 'text-zinc-500 hover:text-white'}`}
+              className={`flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentIndex === 0 ? 'opacity-0 pointer-events-none' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white'}`}
             >
               <ArrowLeft size={16} strokeWidth={2} /> PREVIOUS
             </button>
@@ -321,7 +321,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleSkip}
-                className="px-8 py-3.5 rounded-full text-[12px] font-bold flex items-center gap-2 tracking-[0.2em] transition-all duration-300 group bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/30 text-zinc-400 hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.02)]"
+                className="px-8 py-3.5 rounded-full text-[12px] font-bold flex items-center gap-2 tracking-[0.2em] transition-all duration-300 group bg-black/5 dark:bg-white/[0.03] hover:bg-black/10 dark:hover:bg-white/[0.08] border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/30 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.02)]"
               >
                 SKIP <FastForward size={14} strokeWidth={2} className="group-hover:translate-x-1 transition-transform" />
               </motion.button>
@@ -335,8 +335,8 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                 className={`
                   px-8 py-3.5 rounded-full text-[12px] font-bold flex items-center gap-3 tracking-[0.2em] transition-all duration-300 group backdrop-blur-md relative overflow-hidden
                   ${scores[currentIndex] !== 0 
-                    ? 'bg-[#00e5ff]/10 hover:bg-[#00e5ff]/20 border border-[#00e5ff]/50 hover:border-[#00e5ff] text-white shadow-[0_0_30px_rgba(0,229,255,0.2)]' 
-                    : 'bg-white/[0.02] border border-white/5 text-zinc-600 cursor-not-allowed'}
+                    ? 'bg-[#00e5ff]/10 hover:bg-[#00e5ff]/20 border border-[#00e5ff]/50 hover:border-[#00e5ff] text-[#00b8d4] dark:text-white shadow-[0_0_30px_rgba(0,229,255,0.2)]' 
+                    : 'bg-black/5 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 text-zinc-400 dark:text-zinc-600 cursor-not-allowed'}
                 `}
               >
                 {scores[currentIndex] !== 0 && (
