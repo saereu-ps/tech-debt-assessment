@@ -79,7 +79,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
       {/* Tech Grid overlay - Removed expensive mix-blend-screen */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-40 pointer-events-none" />
 
-      <div className="max-w-[1400px] w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[450px_1fr] xl:grid-cols-[500px_1fr] gap-2 lg:gap-6 xl:gap-24 relative z-10 px-4 sm:px-8 py-1 lg:py-2 xl:py-12 items-center origin-center">
+      <div className="max-w-[1400px] w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-[450px_1fr] xl:grid-cols-[500px_1fr] gap-2 md:gap-6 lg:gap-8 xl:gap-24 relative z-10 px-4 sm:px-8 py-1 md:py-6 lg:py-2 xl:py-12 items-center origin-center">
         
         {/* Left Column: Enlarged Sci-Fi Circular Stepper */}
         <div className="relative flex justify-center items-center w-full h-[200px] sm:h-[240px] md:h-[280px] lg:h-[300px] xl:h-[500px] flex-shrink-0 mx-auto">

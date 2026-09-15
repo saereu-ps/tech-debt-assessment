@@ -124,7 +124,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         </motion.header>
 
         {/* Main Content Grid - Perfectly Balanced Layout */}
-        <main className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-x-6 lg:gap-x-10 xl:gap-x-32 gap-y-4 lg:gap-y-6 items-start w-full">
+        <main className="flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-x-6 lg:gap-x-10 xl:gap-x-32 gap-y-4 md:gap-y-8 lg:gap-y-6 items-start w-full">
           
           {/* Left Column: Diagnostics & Data */}
           <div className="flex flex-col w-full h-full">
