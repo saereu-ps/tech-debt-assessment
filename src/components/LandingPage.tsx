@@ -86,7 +86,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         <form 
           onSubmit={handleSubmit}
           className={`
-            w-full max-w-[850px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-20 gap-2 md:gap-0
+            w-full max-w-[950px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-20 gap-2 md:gap-0
             transition-all duration-300 ease-out border backdrop-blur-md
             border-zinc-200 dark:border-[#00e5ff]/80 shadow-xl dark:shadow-[0_0_20px_rgba(0,229,255,0.2)] bg-white/90 dark:bg-[#050810]/90
             hover:border-zinc-300 dark:hover:border-[#00e5ff] hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:bg-white dark:hover:bg-[#03060c]
@@ -95,7 +95,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           `}
         >
           {/* Name Input Area */}
-          <div className="flex-[1.2] flex items-center px-6 md:px-8 relative group h-[52px] md:h-auto">
+          <div className="flex-[1.2] flex items-center px-4 md:px-6 relative group h-[52px] md:h-auto">
             <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">NAME</span>
             <input 
               type="text" 
@@ -111,7 +111,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           <div className="hidden md:block w-px h-6 md:h-8 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
 
           {/* Org Input Area */}
-          <div className="flex-1 flex items-center px-6 md:px-6 relative group h-[52px] md:h-auto">
+          <div className="flex-1 flex items-center px-4 md:px-5 relative group h-[52px] md:h-auto">
             <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">ORG</span>
             <input 
               type="text" 
@@ -127,10 +127,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           <div className="hidden md:block w-px h-6 md:h-8 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
 
           {/* Role Input Area (Custom Dropdown) */}
-          <div ref={dropdownRef} className="flex-[1.2] flex items-center px-6 md:px-6 relative group h-[52px] md:h-auto cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+          <div ref={dropdownRef} className="flex-[1.2] flex items-center px-4 md:px-5 relative group h-[52px] md:h-auto cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
             <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">ROLE</span>
             <div className="relative w-full flex items-center justify-between md:pr-[140px]">
-              <span className={`text-[14px] md:text-[16px] font-black ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-400 dark:text-[#2f3542]'} truncate pr-6`}>
+              <span className={`text-[14px] md:text-[16px] font-black ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-400 dark:text-[#2f3542]'} truncate pr-4`}>
                 {role || "Select Role..."}
               </span>
               <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }}>
@@ -145,7 +145,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.2 }}
-                className="absolute top-[110%] left-0 w-full bg-white/95 dark:bg-[#0b1426]/95 backdrop-blur-2xl border border-zinc-200 dark:border-[#00e5ff]/20 rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.8)] z-50 max-h-[300px] overflow-y-auto"
+                className="absolute top-[110%] left-0 w-full bg-white/95 dark:bg-[#0b1426]/95 backdrop-blur-2xl border border-zinc-200 dark:border-[#00e5ff]/20 rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.8)] z-50 max-h-[220px] overflow-y-auto"
               >
                 {roles.map((r) => (
                   <div 
