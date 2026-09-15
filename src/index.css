@@ -13,8 +13,10 @@
     --color-bg-deep: #F8F7F4; /* Ivory */
     --color-bg-light: #ffffff;
     --color-text-main: #0f172a;
+  --shine-highlight: #0097a7;
+  --title-drop-shadow: none;
     --color-neon-blue: #0ea5e9;
-    --color-neon-cyan: #00b8d4; /* Darker cyan for light mode contrast */
+    --color-neon-cyan: #008b9e; /* Darker cyan for light mode contrast */
     --color-neon-magenta: #9333ea;
     --color-neon-red: #dc2626;
     --color-neon-orange: #ea580c;
@@ -26,6 +28,8 @@
     --color-bg-deep: #050810;
     --color-bg-light: #061124;
     --color-text-main: #ffffff;
+    --shine-highlight: #ffffff;
+    --title-drop-shadow: drop-shadow(0 0 15px rgba(0,229,255,0.4));
     --color-neon-blue: #0ea5e9;
     --color-neon-cyan: #00e5ff;
     --color-neon-magenta: #a855f7;
@@ -60,9 +64,9 @@
     /* Mostly cyan, with a thin sharp white sweep */
     background: linear-gradient(
       110deg,
-      #00e5ff 40%,
-      #ffffff 50%,
-      #00e5ff 60%
+      var(--color-neon-cyan) 40%,
+      var(--shine-highlight) 50%,
+      var(--color-neon-cyan) 60%
     );
     background-size: 200% auto;
     -webkit-background-clip: text;

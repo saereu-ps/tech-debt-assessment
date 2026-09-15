@@ -74,7 +74,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           <h1 className="text-[64px] md:text-[96px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] drop-shadow-lg">
             What's your true
           </h1>
-          <h1 className="text-[72px] md:text-[104px] font-extrabold text-[#0097a7] dark:text-[var(--color-neon-cyan)] dark:animate-shine leading-[1.05] drop-shadow-none dark:drop-shadow-[0_0_15px_rgba(0,229,255,0.4)]">
+          <h1 className="text-[72px] md:text-[104px] font-extrabold animate-shine leading-[1.05]" style={{ filter: 'var(--title-drop-shadow)' }}>
             Tech Debt?
           </h1>
           <p className="text-zinc-500 dark:text-[#8b93a5] text-[15px] md:text-[16px] font-medium max-w-[650px] mx-auto mt-6 leading-relaxed tracking-wide backdrop-blur-sm bg-black/5 dark:bg-black/10 rounded-lg p-2">
