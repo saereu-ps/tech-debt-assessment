@@ -79,10 +79,10 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
       {/* Tech Grid overlay - Removed expensive mix-blend-screen */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-40 pointer-events-none" />
 
-      <div className="max-w-[1400px] w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[450px_1fr] xl:grid-cols-[500px_1fr] gap-4 lg:gap-10 xl:gap-24 relative z-10 px-4 sm:px-8 py-2 md:py-4 xl:py-12 items-center origin-center">
+      <div className="max-w-[1400px] w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[450px_1fr] xl:grid-cols-[500px_1fr] gap-2 lg:gap-6 xl:gap-24 relative z-10 px-4 sm:px-8 py-1 lg:py-2 xl:py-12 items-center origin-center">
         
         {/* Left Column: Enlarged Sci-Fi Circular Stepper */}
-        <div className="relative flex justify-center items-center w-full h-[320px] sm:h-[380px] md:h-[300px] lg:h-[350px] xl:h-[500px] flex-shrink-0 mx-auto">
+        <div className="relative flex justify-center items-center w-full h-[320px] sm:h-[380px] md:h-[280px] lg:h-[300px] xl:h-[500px] flex-shrink-0 mx-auto">
           <div className="absolute w-[500px] h-[500px] flex justify-center items-center scale-[0.65] sm:scale-[0.75] md:scale-[0.6] lg:scale-[0.7] xl:scale-[0.95] 2xl:scale-100 origin-center">
             <div className="relative w-full h-full">
           
@@ -238,7 +238,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
             animate="show"
             className="w-full"
           >
-              <motion.div variants={itemVariants} className="mb-4 md:mb-6 xl:mb-10">
+              <motion.div variants={itemVariants} className="mb-2 md:mb-3 xl:mb-10">
                 <span className="text-[11px] font-bold tracking-[0.3em] text-[#00e5ff] uppercase flex items-center gap-2 mb-4">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shadow-[0_0_10px_#00e5ff] animate-pulse" />
                   Metric 0{currentIndex + 1}
@@ -248,7 +248,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
               </motion.div>
 
               {/* High-End Interactive Options */}
-              <div className="flex flex-col gap-3 xl:gap-4">
+              <div className="flex flex-col gap-2 xl:gap-4">
                 {currentMetric.choices.map((choice) => {
                   const isSelected = scores[currentIndex] === choice.score;
                   
@@ -260,7 +260,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                       key={choice.score}
                       onClick={() => handleSelect(choice.score)}
                       className={`
-                        w-full text-left p-4 md:p-3 lg:p-4 xl:p-6 rounded-2xl transition-all duration-300 flex items-start gap-5 group border relative overflow-hidden backdrop-blur-md
+                        w-full text-left p-3 md:p-2 lg:p-2.5 xl:p-6 rounded-xl transition-all duration-300 flex items-start gap-5 group border relative overflow-hidden backdrop-blur-md
                         ${isSelected 
                           ? 'bg-cyan-50/50 dark:bg-[#00e5ff]/[0.05] border-cyan-400/50 dark:border-[#00e5ff]/40 shadow-sm dark:shadow-[0_0_30px_rgba(0,229,255,0.08)]' 
                           : 'bg-white/40 dark:bg-white/[0.01] border-black/5 dark:border-white/5 hover:bg-white/60 dark:hover:bg-white/[0.03] hover:border-black/10 dark:hover:border-white/10 shadow-sm dark:shadow-none'}
@@ -312,7 +312,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
             </motion.div>
 
           {/* Navigation - Sleek Modern Buttons */}
-          <div className="flex items-center justify-between mt-4 md:mt-6 xl:mt-12 pt-4 xl:pt-6">
+          <div className="flex items-center justify-between mt-3 md:mt-4 xl:mt-12 pt-2 xl:pt-6">
             <button 
               onClick={handlePrev}
               className={`flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentIndex === 0 ? 'opacity-0 pointer-events-none' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white'}`}

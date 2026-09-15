@@ -67,7 +67,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
   };
 
   return (
-    <div className="w-full min-h-[100dvh] flex flex-col items-center py-6 md:py-8 lg:py-10 px-4 md:px-8 lg:px-12 relative overflow-x-hidden overflow-y-auto bg-transparent">
+    <div className="w-full min-h-[100dvh] flex flex-col items-center py-4 lg:py-4 px-4 md:px-8 lg:px-12 relative overflow-x-hidden overflow-y-auto bg-transparent">
       
       {/* Sci-Fi Background Glows */}
       <motion.div 
@@ -96,7 +96,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
       >
         
         {/* Header - Executive Profile */}
-        <motion.header variants={itemVariants} className="flex justify-between items-start w-full mb-4 md:mb-6 lg:mb-8">
+        <motion.header variants={itemVariants} className="flex justify-between items-start w-full mb-3 lg:mb-4">
           <div className="flex flex-col gap-6">
             <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-[140px] object-contain filter brightness-0 invert opacity-95 drop-shadow-lg self-start" />
             
@@ -124,7 +124,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         </motion.header>
 
         {/* Main Content Grid - Perfectly Balanced Layout */}
-        <main className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-16 xl:gap-x-32 gap-y-8 lg:gap-y-16 items-start w-full">
+        <main className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-x-6 lg:gap-x-10 xl:gap-x-32 gap-y-4 lg:gap-y-6 items-start w-full">
           
           {/* Left Column: Diagnostics & Data */}
           <div className="flex flex-col w-full h-full">
@@ -135,7 +135,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
-                  className="text-[72px] md:text-[88px] lg:text-[100px] xl:text-[140px] font-bold text-zinc-900 dark:text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] font-[var(--font-display)]"
+                  className="text-[64px] md:text-[72px] lg:text-[80px] xl:text-[140px] font-bold text-zinc-900 dark:text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] font-[var(--font-display)]"
                 >
                   {totalScore}
                 </motion.span>
@@ -159,13 +159,13 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             </motion.div>
 
             {/* 5-Dimension Tech Breakdown */}
-            <motion.div variants={itemVariants} className="w-full max-w-[650px] bg-white/50 dark:bg-[#090e15]/50 backdrop-blur-md border border-black/5 dark:border-white/5 p-4 md:p-5 lg:p-8 rounded-3xl mt-6 lg:mt-auto shadow-2xl">
+            <motion.div variants={itemVariants} className="w-full max-w-[650px] bg-white/50 dark:bg-[#090e15]/50 backdrop-blur-md border border-black/5 dark:border-white/5 p-4 md:p-5 lg:p-6 rounded-2xl mt-4 lg:mt-auto shadow-2xl">
               <h4 className="text-[11px] text-zinc-900 dark:text-white font-bold tracking-[0.2em] uppercase mb-8 flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: `var(--color-${details.color})`, boxShadow: `0 0 10px var(--color-${details.color})` }} />
                 Dimension Breakdown
               </h4>
               
-              <div className="flex flex-col gap-3 md:gap-4 lg:gap-6">
+              <div className="flex flex-col gap-2 md:gap-3 lg:gap-3">
                 {assessmentData.map((metric, idx) => {
                   const rawScore = scores[idx];
                   const displayScore = rawScore > 0 ? rawScore : 0;
@@ -216,7 +216,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                 {details.subtitle}
               </h3>
               <h2 
-                className="text-[36px] md:text-[42px] lg:text-[52px] xl:text-[64px] font-semibold leading-[1.05] max-w-[550px] font-[var(--font-display)]"
+                className="text-[32px] md:text-[36px] lg:text-[42px] xl:text-[64px] font-semibold leading-[1.05] max-w-[550px] font-[var(--font-display)]"
                 style={{ color: `var(--color-${details.color})`, textShadow: theme === 'dark' ? `0 0 40px var(--color-${details.color})` : 'none' }}
               >
                 {details.title}
@@ -224,7 +224,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             </motion.div>
 
             {/* NEW: Computed Insights Panel (Balancing the Right Column) */}
-            <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-8 xl:mt-6 md:mt-8 xl:mt-12 w-full max-w-[700px]">
+            <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-8 xl:mt-4 md:mt-6 xl:mt-12 w-full max-w-[700px]">
               {/* Key Strength */}
               <div className="bg-white/40 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 p-3 md:p-4 lg:p-3 md:p-4 lg:p-5 rounded-2xl flex flex-col gap-2">
                 <div className="flex items-center gap-2 text-[#00e5ff]">
@@ -253,7 +253,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             <motion.div variants={itemVariants} className="mt-12 w-full max-w-[700px]">
               <motion.div 
                 whileHover={{ scale: 1.02, y: -5 }}
-                className="bg-white/70 dark:bg-[#0b1426]/40 backdrop-blur-xl border border-black/10 dark:border-white/10 p-6 md:p-8 lg:p-12 rounded-3xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] group cursor-default"
+                className="bg-white/70 dark:bg-[#0b1426]/40 backdrop-blur-xl border border-black/10 dark:border-white/10 p-5 md:p-6 lg:p-6 rounded-3xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] group cursor-default"
               >
                 {/* Glowing edge indicator */}
                 <div 
@@ -283,13 +283,13 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         {/* Call To Action - Contact MFEC */}
         <motion.div 
           variants={itemVariants} 
-          className="mt-6 md:mt-8 lg:mt-12 w-full max-w-[1500px] bg-gradient-to-r from-[#0055ff]/10 to-[#00e5ff]/5 border border-[#00e5ff]/20 p-4 md:p-6 lg:py-10 lg:px-10 rounded-[2.5rem] shadow-[0_0_40px_rgba(0,229,255,0.05)] relative overflow-hidden flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 lg:gap-20"
+          className="mt-4 md:mt-6 lg:mt-6 w-full max-w-[1500px] bg-gradient-to-r from-[#0055ff]/10 to-[#00e5ff]/5 border border-[#00e5ff]/20 p-4 md:p-5 lg:py-6 lg:px-8 rounded-[2.5rem] shadow-[0_0_40px_rgba(0,229,255,0.05)] relative overflow-hidden flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 lg:gap-20"
         >
           {/* Background Glow */}
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00e5ff]/10 blur-[100px] rounded-full pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
           
           <div className="flex flex-col gap-4 relative z-10 max-w-[600px] text-center lg:text-left">
-            <h3 className="text-[32px] md:text-[40px] font-bold text-zinc-900 dark:text-white leading-[1.1] font-[var(--font-display)]">
+            <h3 className="text-[24px] md:text-[28px] lg:text-[32px] font-bold text-zinc-900 dark:text-white leading-[1.1] font-[var(--font-display)]">
               Ready to eliminate your <span className="text-[#00e5ff]">Tech Debt?</span>
             </h3>
             <p className="text-[#8b93a5] text-[16px] md:text-[18px] font-medium leading-relaxed">
@@ -314,7 +314,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         </motion.div>
 
         {/* Footer Bar - Minimal QR & Action */}
-        <motion.footer variants={itemVariants} className="mt-auto pt-4 pb-4 md:pt-6 md:pb-6 flex flex-col md:flex-row justify-between items-center md:items-end w-full gap-10">
+        <motion.footer variants={itemVariants} className="mt-auto pt-4 pb-2 flex flex-col md:flex-row justify-between items-center md:items-end w-full gap-10">
           
           {/* Minimal QR Scanner */}
           <div className="flex items-center gap-6">
