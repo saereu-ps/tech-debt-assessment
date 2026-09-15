@@ -103,8 +103,14 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                 <div className="absolute inset-0 rounded-full border-2 border-white/20"></div>
               </div>
               <div className="flex flex-col">
-                <div className="flex items-center gap-2 mb-1">
+                <div className="flex items-center gap-2 mb-1 flex-wrap">
                   <h4 className="text-[10px] text-[#00e5ff] font-bold tracking-[0.2em] uppercase">{userInfo.company}</h4>
+                  {userInfo.role && (
+                    <>
+                      <span className="w-1 h-1 rounded-full bg-zinc-600" />
+                      <span className="text-[10px] text-white/70 font-bold tracking-[0.1em] uppercase">{userInfo.role}</span>
+                    </>
+                  )}
                   <span className="w-1 h-1 rounded-full bg-zinc-600" />
                   <span className="text-[9px] text-zinc-500 font-bold tracking-widest uppercase">Executive Report</span>
                 </div>
@@ -119,8 +125,8 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           
           {/* Left Column: Diagnostics & Data */}
           <div className="flex flex-col w-full h-full">
-            <motion.div variants={itemVariants}>
-              <h4 className="text-[11px] text-zinc-500 font-bold tracking-[0.2em] uppercase mb-2">Diagnostic Score</h4>
+            <motion.div variants={itemVariants} className="flex flex-col">
+              <h4 className="text-[11px] text-white/50 font-bold tracking-[0.2em] uppercase mb-2">Diagnostic Score</h4>
               <div className="flex items-baseline leading-[0.8] tracking-tighter relative">
                 <motion.span 
                   initial={{ opacity: 0, scale: 0.5 }}
@@ -130,7 +136,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                 >
                   {totalScore}
                 </motion.span>
-                <span className="text-[32px] md:text-[36px] font-bold text-zinc-700 ml-2 -mb-2 font-[var(--font-display)]">/25</span>
+                <span className="text-[32px] md:text-[36px] font-bold text-white/30 ml-2 -mb-2 font-[var(--font-display)]">/25</span>
               </div>
             </motion.div>
 
@@ -142,7 +148,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   transition={{ duration: 0.8, delay: 0.8 }}
                   className="h-[3px] bg-zinc-600" 
                 />
-                <h4 className="text-[12px] text-zinc-500 font-bold tracking-[0.2em] uppercase">Current Status</h4>
+                <h4 className="text-[12px] text-white/50 font-bold tracking-[0.2em] uppercase">Current Status</h4>
               </div>
               <p className="text-[20px] md:text-[24px] text-zinc-300 font-medium leading-[1.6] tracking-wide">
                 {details.status.split('\n\n')[0]}

@@ -9,6 +9,7 @@ export type ViewState = 'landing' | 'assessment' | 'result';
 export interface UserInfo {
   name: string;
   company: string;
+  role: string;
 }
 
 function App() {
@@ -25,9 +26,9 @@ function App() {
     if (encodedData) {
       try {
         const decoded = JSON.parse(decodeURIComponent(atob(encodedData)));
-        if (decoded.s && decoded.n !== undefined && decoded.c !== undefined) {
+        if (decoded.s && decoded.n !== undefined && decoded.c !== undefined && decoded.r !== undefined) {
           setScores(decoded.s);
-          setUserInfo({ name: decoded.n, company: decoded.c });
+          setUserInfo({ name: decoded.n, company: decoded.c, role: decoded.r });
           setIsSharedReport(true);
           setView('result');
         }
