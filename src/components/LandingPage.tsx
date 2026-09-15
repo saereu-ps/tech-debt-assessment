@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, UserCircle2 } from 'lucide-react';
+import { ArrowRight, UserCircle2, ChevronDown } from 'lucide-react';
 import MeshGraphBackground from './MeshGraphBackground';
 import type { UserInfo } from '../App';
 import mfecLogo from '../assets/mfec-logo.png';
@@ -103,17 +103,28 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           {/* Vertical Divider (Hidden on mobile) */}
           <div className="hidden md:block w-px h-8 md:h-10 bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
 
-          {/* Role Input Area */}
+          {/* Role Input Area (Dropdown) */}
           <div className="flex-[1.2] flex items-center px-6 md:px-6 relative group h-[52px] md:h-auto">
             <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">ROLE</span>
-            <input 
-              type="text" 
-              placeholder="Job Title/Dept..." 
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              className="w-full bg-transparent border-none outline-none text-[15px] md:text-[18px] font-black text-white placeholder-[#2f3542] focus:ring-0 md:pr-[140px]"
-              required
-            />
+            <div className="relative w-full md:pr-[140px] flex items-center">
+              <select 
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className={`w-full bg-transparent border-none outline-none text-[15px] md:text-[18px] font-black focus:ring-0 appearance-none cursor-pointer ${role ? 'text-white' : 'text-[#2f3542]'}`}
+                required
+              >
+                <option value="" disabled className="bg-[#050810] text-[#2f3542]">Select Role...</option>
+                <option value="Executive / C-Level" className="bg-[#050810] text-white">Executive / C-Level</option>
+                <option value="Manager / Director" className="bg-[#050810] text-white">Manager / Director</option>
+                <option value="Software Engineer" className="bg-[#050810] text-white">Software Engineer</option>
+                <option value="Cloud / DevOps" className="bg-[#050810] text-white">Cloud / DevOps</option>
+                <option value="Data / AI Professional" className="bg-[#050810] text-white">Data / AI Professional</option>
+                <option value="Security / QA" className="bg-[#050810] text-white">Security / QA</option>
+                <option value="Product / Project Mgr" className="bg-[#050810] text-white">Product / Project Mgr</option>
+                <option value="Other" className="bg-[#050810] text-white">Other</option>
+              </select>
+              <ChevronDown size={16} className="text-[#00e5ff] absolute right-0 md:right-[140px] pointer-events-none" />
+            </div>
           </div>
 
           {/* Scan Now Button (Inner Pill) */}
