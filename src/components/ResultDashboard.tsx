@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../hooks/useTheme';
-import { RefreshCw, TrendingUp, AlertTriangle, Phone, Mail, ArrowRight, User } from 'lucide-react';
+import { RefreshCw, TrendingUp, AlertTriangle, Phone, Mail, ArrowRight, User, CheckCircle2, Zap } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import type { UserInfo } from '../App';
 import { getResultTier, resultDetails, assessmentData } from '../data/assessmentData';
@@ -338,6 +338,52 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
               </motion.div>
             </motion.div>
           </div>
+          
+          {/* Strategic Action Plan & Solution Recommendation */}
+          <motion.div variants={itemVariants} className="mt-8 md:mt-12 w-full max-w-[1500px]">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+              
+              {/* 3-Step Roadmap (Option 1) */}
+              <div className="lg:col-span-2 bg-white/70 dark:bg-white/[0.02] backdrop-blur-2xl border border-black/10 dark:border-white/10 p-6 md:p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-2xl">
+                <h4 className="text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-500 mb-6">
+                  Personalized Roadmap
+                </h4>
+                <div className="space-y-4 md:space-y-5">
+                  {/* @ts-ignore - actionPlan added dynamically */}
+                  {details.actionPlan?.map((step: string, idx: number) => (
+                    <div key={idx} className="flex items-start gap-4">
+                      <div className="mt-1 shrink-0">
+                        <CheckCircle2 size={20} className="text-zinc-900 dark:text-white opacity-80" strokeWidth={2.5} />
+                      </div>
+                      <p className="text-zinc-800 dark:text-zinc-300 text-[15px] md:text-[17px] font-medium leading-relaxed">
+                        {step}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* MFEC Solution Matching (Option 3) */}
+              <div className="bg-gradient-to-br from-[#0055ff]/10 to-[#00e5ff]/5 dark:from-[#0055ff]/20 dark:to-[#00e5ff]/10 border border-[#0055ff]/20 dark:border-[#0055ff]/30 p-6 md:p-8 rounded-[2.5rem] relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[#00e5ff]/30 to-transparent pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+                
+                <h4 className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#0055ff] dark:text-[#00e5ff] mb-6 flex items-center gap-2">
+                  <Zap size={14} strokeWidth={3} />
+                  Recommended Solution
+                </h4>
+                
+                <div className="space-y-4 relative z-10 flex flex-col h-[calc(100%-40px)] justify-center">
+                  <h3 className="text-xl md:text-2xl font-black text-zinc-900 dark:text-white leading-tight font-[var(--font-display)]">
+                    {criticalFocus?.mfecSolution?.name || "MFEC Enterprise Consulting"}
+                  </h3>
+                  <p className="text-zinc-600 dark:text-zinc-400 text-sm md:text-base font-medium leading-relaxed">
+                    {criticalFocus?.mfecSolution?.description || "Consult with our experts to design a tailored transformation roadmap for your enterprise."}
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
           
         </main>
 

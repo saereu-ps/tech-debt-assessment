@@ -12,6 +12,10 @@ export interface AssessmentMetric {
     description: string;
     thaiDescription: string;
   }[];
+  mfecSolution?: {
+    name: string;
+    description: string;
+  };
 }
 
 export const assessmentData: AssessmentMetric[] = [
@@ -20,6 +24,10 @@ export const assessmentData: AssessmentMetric[] = [
     shortTitle: "Foundation",
     title: "Data Accessibility & Integration",
     description: "พนักงานในองค์กรของคุณสามารถเข้าถึงและนำข้อมูลไปใช้งานได้ราบรื่นแค่ไหน?",
+    mfecSolution: {
+      name: "Cloud & Infrastructure Modernization",
+      description: "Redesign your core architecture for infinite scalability and zero downtime."
+    },
     choices: [
       {
         score: 1,
@@ -46,84 +54,100 @@ export const assessmentData: AssessmentMetric[] = [
     shortTitle: "Data",
     title: "System Scalability & Cloud Adoption",
     description: "โครงสร้างระบบไอทีของคุณยืดหยุ่นและรองรับการขยายตัวได้ดีเพียงใดเมื่อธุรกิจเติบโต?",
+    mfecSolution: {
+      name: "Data Engineering & Analytics",
+      description: "Unlock the true value of your data with automated modern data pipelines."
+    },
     choices: [
       {
         score: 1,
-        label: "On-Premise Heavy:",
-        description: "Critical business systems run entirely on legacy local servers; high risk of downtime.",
-        thaiDescription: "ระบบธุรกิจที่สำคัญทำงานบนเซิร์ฟเวอร์แบบเดิมทั้งหมด มีความเสี่ยงสูงที่ระบบจะล่ม"
+        label: "Rigid On-Premise:",
+        description: "Heavy reliance on physical servers; scaling up takes weeks of procurement and setup.",
+        thaiDescription: "ใช้เซิร์ฟเวอร์แบบเดิมๆ การจะขยายระบบแต่ละครั้งต้องรอซื้อของและติดตั้งแต่หลักสัปดาห์"
       },
       {
         score: 3,
-        label: "Cloud Infrastructure:",
-        description: "Shipped some workloads to Public Cloud, but lack a clear Hybrid Cloud strategy for large volumes.",
-        thaiDescription: "ย้ายบางระบบขึ้น Cloud แล้ว แต่ยังจัดการทรัพยากรระบบเก่าและใหม่ร่วมกันได้ไม่ค่อยดี"
+        label: "Hybrid Foundation:",
+        description: "Some non-critical workloads are on the cloud, but core operations remain on fixed infrastructure.",
+        thaiDescription: "เริ่มใช้ Cloud บ้างในบางระบบ แต่ระบบหัวใจหลักยังคงอยู่บนเซิร์ฟเวอร์บริษัทที่ขยายยาก"
       },
       {
         score: 5,
-        label: "Modern Hybrid Cloud:",
-        description: "Scalable infrastructure capable of supporting 1,000+ users seamlessly with high availability.",
-        thaiDescription: "ระบบถูกออกแบบมาให้ขยายตัวได้ทันที รองรับผู้ใช้งานหลักพันคนได้อย่างราบรื่นและระบบไม่ล่ม"
+        label: "Cloud-Native Agility:",
+        description: "Fully modernized architecture using microservices and auto-scaling cloud infrastructure.",
+        thaiDescription: "ระบบทั้งหมดอยู่บน Cloud แบบ 100% สามารถขยายรับผู้ใช้งานหลักล้านได้ในไม่กี่นาทีแบบอัตโนมัติ"
       }
     ]
   },
   {
     id: 3,
-    shortTitle: "Security",
+    shortTitle: "Code",
     title: "Tech Obsolescence & Maintenance",
     description: "ระบบซอฟต์แวร์ที่ใช้อยู่มีความทันสมัยและง่ายต่อการดูแลรักษามากน้อยแค่ไหน?",
+    mfecSolution: {
+      name: "Application Modernization",
+      description: "Refactor legacy systems and elevate your software engineering practices."
+    },
     choices: [
       {
         score: 1,
-        label: "Legacy Trapped:",
-        description: "Systems are over 7-10 years old; high maintenance cost; vendors no longer support upgrades.",
-        thaiDescription: "ระบบเก่าเกิน 7 ปีขึ้นไป ต้องเสียค่าบำรุงรักษาแพงมาก และไม่สามารถอัปเกรดซอฟต์แวร์ได้แล้ว"
+        label: "Legacy Trap:",
+        description: "Core software is outdated, unsupported, and only a few senior staff know how to fix it.",
+        thaiDescription: "ซอฟต์แวร์เก่ามาก ไม่มีอัปเดตแล้ว และมีพนักงานแค่ไม่กี่คนที่รู้วิธีซ่อมเวลาพัง"
       },
       {
         score: 3,
-        label: "Fragmented Stack:",
-        description: "A mix of old software patched with new tools; requires constant IT troubleshooting.",
-        thaiDescription: "ระบบเก่าและใหม่ปะปนกัน ทำให้มักมีปัญหาจุกจิกและฝ่ายไอทีต้องคอยตามแก้ตลอดเวลา"
+        label: "Modernizing Effort:",
+        description: "Mix of modern SaaS tools and legacy systems; high maintenance cost to keep them running.",
+        thaiDescription: "มีซอฟต์แวร์ใหม่ผสมกับของเก่า แต่ต้องใช้เวลาและงบเยอะมากในการดูแลให้มันทำงานร่วมกันได้"
       },
       {
         score: 5,
-        label: "Future-Proof Stack:",
-        description: "Systems align with global tech standards (Gartner); easily upgradeable via APIs.",
-        thaiDescription: "ระบบทันสมัย ได้มาตรฐานสากล และสามารถเชื่อมต่อเทคโนโลยีใหม่ๆ เพิ่มเข้าไปได้ง่ายมาก"
+        label: "Continuous Evolution:",
+        description: "Modern tech stack with automated CI/CD pipelines, making updates safe and effortless.",
+        thaiDescription: "ใช้เทคโนโลยีรุ่นใหม่ทั้งหมด มีระบบอัปเดตซอฟต์แวร์อัตโนมัติที่รวดเร็วและปลอดภัย (CI/CD)"
       }
     ]
   },
   {
     id: 4,
-    shortTitle: "Agility",
+    shortTitle: "Ops",
     title: "Core Industry Connectivity",
     description: "ระบบงานส่วนหน้าและระบบหลังบ้านของคุณมีการเชื่อมต่อและแลกเปลี่ยนข้อมูลกันอย่างไร?",
+    mfecSolution: {
+      name: "DevSecOps Transformation",
+      description: "Automate your delivery pipelines and bake continuous integration into your DNA."
+    },
     choices: [
       {
         score: 1,
-        label: "Disconnected Operations:",
-        description: "Front-office (CRM/Sales) and Shop-floor (MES/Production) do not talk to each other.",
-        thaiDescription: "ระบบแต่ละแผนกทำงานแยกกัน เช่น ข้อมูลหน้าร้านกับข้อมูลหลังบ้านไม่เชื่อมต่อกัน"
+        label: "Disconnected Workflows:",
+        description: "Front-office and back-office operate in completely different, unconnected systems.",
+        thaiDescription: "ระบบหน้าร้านกับหลังบ้านแยกกันเด็ดขาด ต้องใช้คนคอยคีย์ข้อมูลข้ามระบบตลอดเวลา"
       },
       {
         score: 3,
-        label: "Batch Synced:",
-        description: "Systems sync via nightly batch updates; management cannot see real-time performance.",
-        thaiDescription: "ระบบเชื่อมต่อกันเป็นรอบๆ (เช่น อัปเดตตอนสิ้นวัน) ทำให้ผู้บริหารไม่เห็นข้อมูลที่อัปเดตแบบวินาทีต่อวินาที"
+        label: "Batch Synchronized:",
+        description: "Systems are connected via periodic batch jobs (e.g., syncing at midnight).",
+        thaiDescription: "ระบบเชื่อมต่อกันระดับหนึ่ง แต่ข้อมูลไม่ได้อัปเดตทันที (เช่น ต้องรอซิงก์ข้อมูลทุกๆ เที่ยงคืน)"
       },
       {
         score: 5,
-        label: "Real-Time Synergy:",
-        description: "Full end-to-end data pipeline connecting IoT, MES, and ERP for automated insights.",
-        thaiDescription: "ทุกระบบเชื่อมโยงข้อมูลถึงกันแบบอัตโนมัติ ทำให้ผู้บริหารเห็นภาพรวมของธุรกิจได้แบบเรียลไทม์"
+        label: "API-Driven Ecosystem:",
+        description: "Seamless real-time data flow across all touchpoints via robust API architecture.",
+        thaiDescription: "ทุกระบบเชื่อมต่อกันแบบ Real-time ผ่าน API ข้อมูลหน้าร้านและหลังบ้านอัปเดตตรงกันทันที"
       }
     ]
   },
   {
     id: 5,
-    shortTitle: "AI Readiness",
+    shortTitle: "Security",
     title: "Cyber Security & Governance",
     description: "องค์กรของคุณมีมาตรการรักษาความปลอดภัยของข้อมูลและแผนรับมือความเสี่ยงที่เข้มงวดระดับไหน?",
+    mfecSolution: {
+      name: "Enterprise Security Audit",
+      description: "Fortify your defenses with comprehensive risk assessments and zero-trust framework."
+    },
     choices: [
       {
         score: 1,
@@ -161,24 +185,39 @@ export const resultDetails = {
     action: "ยังไม่ควรลงทุนทำระบบ AI ขั้นสูงในตอนนี้ ควรเร่งจัดระเบียบข้อมูลใหม่ (Data Modernization) และอัปเกรดระบบหลักให้ทันสมัยก่อนเป็นอันดับแรก",
     color: "neon-red",
     glowClass: "glow-red",
-    titleGradient: "from-rose-400 via-red-500 to-red-600 dark:from-red-300 dark:via-rose-500 dark:to-red-700"
+    titleGradient: "from-rose-400 via-red-500 to-red-600 dark:from-red-300 dark:via-rose-500 dark:to-red-700",
+    actionPlan: [
+      "Conduct a comprehensive architectural audit to identify critical vulnerabilities.",
+      "Prioritize stabilizing core data infrastructure and security protocols.",
+      "Establish a clear Tech Debt reduction roadmap with key stakeholders."
+    ]
   },
   moderate: {
-    title: "Moderate Tech Debt",
-    subtitle: "THE TRANSITION ZONE",
-    status: "องค์กรมีความพร้อมในระดับกลาง มีการนำดิจิทัลมาใช้บ้างแล้ว แต่ระบบต่างๆ ยังไม่เชื่อมต่อกัน (Data Silos) และโครงสร้างยังไม่ยืดหยุ่นพอที่จะโตแบบก้าวกระโดด",
-    action: "ควรเน้นวางรากฐานรวมข้อมูลไว้ที่ศูนย์กลาง (Data Lakehouse) เพื่อให้ระบบเชื่อมโยงถึงกันแบบเรียลไทม์ และสามารถเริ่มทดลองนำ AI มาใช้ในงานสเกลเล็กๆ ได้แล้ว",
+    title: "Moderate Debt",
+    subtitle: "BOTTLENECK WARNING",
+    status: "องค์กรของคุณมีพื้นฐานไอทีระดับกลาง แต่เริ่มมีปัญหาคอขวด (Bottleneck) การประมวลผลข้อมูลยังช้า และยังมีบางส่วนที่ต้องทำด้วยมือ (Manual)",
+    action: "สามารถเริ่มทดลองใช้ AI ในบางแผนกได้ แต่ต้องควบคู่ไปกับการทำ Data Cleansing และปรับปรุงโครงสร้างพื้นฐานให้รองรับการสเกลในอนาคต",
     color: "neon-yellow",
     glowClass: "glow-yellow",
-    titleGradient: "from-yellow-400 via-amber-500 to-orange-500 dark:from-amber-200 dark:via-yellow-400 dark:to-orange-500"
+    titleGradient: "from-amber-400 via-yellow-500 to-orange-500 dark:from-yellow-300 dark:via-amber-500 dark:to-orange-600",
+    actionPlan: [
+      "Identify and refactor severe bottlenecks in your deployment pipelines.",
+      "Begin transitioning legacy monolith components to microservices.",
+      "Implement automated testing to prevent further tech debt accumulation."
+    ]
   },
   ready: {
-    title: "AI-Ready Infrastructure",
-    subtitle: "STRATEGIC ADVANTAGE",
-    status: "องค์กรมีรากฐานไอทีที่แข็งแกร่งมาก ระบบมีความยืดหยุ่น ปลอดภัยสูง และข้อมูลทั้งหมดพร้อมนำไปต่อยอดได้ทันที",
-    action: "พร้อมลุยเต็มที่สำหรับการทำ Enterprise AI Transformation องค์กรสามารถลงทุนพัฒนาระบบ AI เพื่อสร้างความได้เปรียบทางธุรกิจในระยะยาวได้เลย",
+    title: "AI Ready",
+    subtitle: "INNOVATION LEADER",
+    status: "ยินดีด้วย! องค์กรของคุณมีโครงสร้างพื้นฐานด้านข้อมูลที่แข็งแกร่งมาก ข้อมูลสะอาด รวมศูนย์ และระบบพร้อมต่อการขยายตัว (Scalable)",
+    action: "คุณพร้อมเต็มที่สำหรับการนำ GenAI ขั้นสูงมาใช้เพื่อสร้างความได้เปรียบทางธุรกิจ (Competitive Advantage) และสามารถสเกลเทคโนโลยีได้อย่างไร้รอยต่อ",
     color: "neon-cyan",
     glowClass: "glow-cyan",
-    titleGradient: "from-cyan-300 via-teal-400 to-blue-500 dark:from-cyan-200 dark:via-cyan-400 dark:to-blue-600"
+    titleGradient: "from-cyan-400 via-blue-500 to-indigo-500 dark:from-cyan-300 dark:via-blue-500 dark:to-indigo-500",
+    actionPlan: [
+      "Explore advanced AI/GenAI integrations to accelerate business workflows.",
+      "Optimize cloud resource allocation for maximum cost efficiency.",
+      "Focus on continuous innovation and scaling enterprise capabilities."
+    ]
   }
 };
