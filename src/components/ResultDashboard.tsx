@@ -62,7 +62,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center py-10 px-12 relative overflow-hidden bg-[#060a0f]">
+    <div className="w-full min-h-screen flex flex-col items-center py-10 px-5 md:px-12 relative overflow-hidden bg-[#060a0f]">
       
       {/* Sci-Fi Background Glows */}
       <motion.div 
@@ -213,7 +213,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             </motion.div>
 
             {/* NEW: Computed Insights Panel (Balancing the Right Column) */}
-            <motion.div variants={itemVariants} className="grid grid-cols-2 gap-6 mt-12 w-full max-w-[700px]">
+            <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-12 w-full max-w-[700px]">
               {/* Key Strength */}
               <div className="bg-white/[0.02] border border-white/5 p-5 rounded-2xl flex flex-col gap-2">
                 <div className="flex items-center gap-2 text-[#00e5ff]">
@@ -270,7 +270,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         </main>
 
         {/* Footer Bar - Minimal QR & Action */}
-        <motion.footer variants={itemVariants} className="mt-auto pt-16 flex justify-between items-end w-full">
+        <motion.footer variants={itemVariants} className="mt-auto pt-16 flex flex-col md:flex-row justify-between items-center md:items-end w-full gap-10">
           
           {/* Minimal QR Scanner */}
           <div className="flex items-center gap-6">
