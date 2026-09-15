@@ -246,25 +246,40 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             {/* NEW: Computed Insights Panel (Balancing the Right Column) */}
             <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-8 xl:mt-4 md:mt-6 xl:mt-12 w-full max-w-[700px]">
               {/* Key Strength */}
-              <div className="bg-white/40 dark:bg-white/[0.03] border border-black/5 dark:border-white/10 p-4 md:p-5 lg:p-6 rounded-2xl flex flex-col gap-2">
-                <div className="flex items-center gap-2 text-[#00e5ff]">
-                  <TrendingUp size={14} strokeWidth={2.5} />
-                  <span className="text-[9px] font-bold tracking-[0.2em] uppercase opacity-90">Key Strength</span>
+              <div className="bg-gradient-to-br from-[#00e5ff]/10 to-transparent dark:from-[#00e5ff]/[0.05] dark:to-transparent border border-[#00e5ff]/20 dark:border-[#00e5ff]/10 p-5 md:p-6 lg:p-8 rounded-[2rem] flex flex-col gap-3 relative overflow-hidden group hover:border-[#00e5ff]/40 transition-colors">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#00e5ff]/10 blur-[40px] rounded-full -mr-10 -mt-10 pointer-events-none group-hover:bg-[#00e5ff]/20 transition-colors duration-700"></div>
+                <div className="flex items-center gap-3 text-[#00e5ff]">
+                  <div className="p-2 bg-[#00e5ff]/10 rounded-full">
+                    <TrendingUp size={16} strokeWidth={2.5} />
+                  </div>
+                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-90">Highest Dimension</span>
                 </div>
-                <div className="text-zinc-900 dark:text-white text-[14px] font-semibold leading-tight">
-                  {keyStrength ? keyStrength.shortTitle : "N/A"}
+                <div className="mt-2">
+                  <div className="text-zinc-900 dark:text-white text-[22px] md:text-[28px] font-black leading-none tracking-tight font-[var(--font-display)]">
+                    {keyStrength ? keyStrength.shortTitle : "N/A"}
+                  </div>
+                  <div className="text-zinc-500 dark:text-zinc-400 text-[13px] mt-2 font-medium">
+                    Strongest foundation in your current setup.
+                  </div>
                 </div>
               </div>
               
               {/* Critical Focus */}
-              <div className="bg-white/40 dark:bg-white/[0.03] border border-black/5 dark:border-white/10 p-4 md:p-5 lg:p-6 rounded-2xl flex flex-col gap-2 relative overflow-hidden group">
-                <div className="absolute inset-0 bg-[#ff4d4d]/[0.02] pointer-events-none" />
-                <div className="flex items-center gap-2 text-[#ff4d4d]">
-                  <AlertTriangle size={14} strokeWidth={2.5} />
-                  <span className="text-[9px] font-bold tracking-[0.2em] uppercase opacity-90">Critical Focus</span>
+              <div className="bg-gradient-to-br from-[#ff4d4d]/10 to-transparent dark:from-[#ff4d4d]/[0.05] dark:to-transparent border border-[#ff4d4d]/20 dark:border-[#ff4d4d]/10 p-5 md:p-6 lg:p-8 rounded-[2rem] flex flex-col gap-3 relative overflow-hidden group hover:border-[#ff4d4d]/40 transition-colors">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#ff4d4d]/10 blur-[40px] rounded-full -mr-10 -mt-10 pointer-events-none group-hover:bg-[#ff4d4d]/20 transition-colors duration-700"></div>
+                <div className="flex items-center gap-3 text-[#ff4d4d]">
+                  <div className="p-2 bg-[#ff4d4d]/10 rounded-full">
+                    <AlertTriangle size={16} strokeWidth={2.5} />
+                  </div>
+                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-90">Immediate Attention</span>
                 </div>
-                <div className="text-zinc-900 dark:text-white text-[14px] font-semibold leading-tight">
-                  {criticalFocus ? criticalFocus.shortTitle : "N/A"}
+                <div className="mt-2">
+                  <div className="text-zinc-900 dark:text-white text-[22px] md:text-[28px] font-black leading-none tracking-tight font-[var(--font-display)]">
+                    {criticalFocus ? criticalFocus.shortTitle : "N/A"}
+                  </div>
+                  <div className="text-zinc-500 dark:text-zinc-400 text-[13px] mt-2 font-medium">
+                    Critical roadblock to your tech growth.
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -303,16 +318,16 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         {/* Call To Action - Contact MFEC */}
         <motion.div 
           variants={itemVariants} 
-          className="mt-4 md:mt-6 lg:mt-6 w-full max-w-[1500px] bg-gradient-to-r from-[#0055ff]/10 to-[#00e5ff]/5 border border-[#00e5ff]/20 p-4 md:p-5 lg:py-6 lg:px-8 rounded-[2.5rem] shadow-[0_0_40px_rgba(0,229,255,0.05)] relative overflow-hidden flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 lg:gap-20"
+          className="mt-4 md:mt-6 lg:mt-6 w-full max-w-[1500px] bg-white/70 dark:bg-white/[0.02] backdrop-blur-3xl border border-black/10 dark:border-white/10 p-6 md:p-8 lg:py-8 lg:px-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-2xl relative overflow-hidden flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 lg:gap-20 group hover:border-black/20 dark:hover:border-white/20 transition-colors duration-500"
         >
           {/* Background Glow */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00e5ff]/15 blur-[100px] rounded-full pointer-events-none transform-gpu translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] blur-[120px] rounded-full pointer-events-none transform-gpu translate-x-1/2 -translate-y-1/2 opacity-[0.15] dark:opacity-20 group-hover:opacity-[0.25] dark:group-hover:opacity-40 transition-opacity duration-700" style={{ backgroundColor: `var(--color-${details.color})` }}></div>
           
           <div className="flex flex-col gap-4 relative z-10 max-w-[600px] text-center lg:text-left">
-            <h3 className="text-[24px] md:text-[28px] lg:text-[32px] font-bold text-zinc-900 dark:text-white leading-[1.1] font-[var(--font-display)]">
-              Ready to eliminate your <span className="text-[#00e5ff]">Tech Debt?</span>
+            <h3 className="text-[26px] md:text-[32px] lg:text-[40px] font-black text-zinc-900 dark:text-white leading-[1.1] font-[var(--font-display)] tracking-tight">
+              Ready to eliminate your <span style={{ color: `var(--color-${details.color})`, textShadow: `0 0 30px rgba(var(--color-${details.color}), 0.3)` }}>Tech Debt?</span>
             </h3>
-            <p className="text-[#8b93a5] text-[16px] md:text-[18px] font-medium leading-relaxed">
+            <p className="text-zinc-500 dark:text-zinc-400 text-[16px] md:text-[18px] font-medium leading-relaxed">
               Consult with MFEC experts today to turn your tech debt into a competitive edge.
             </p>
           </div>
@@ -320,14 +335,12 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 relative z-10 shrink-0 w-full lg:w-auto">
             <a 
               href="mailto:datapresale@mfec.co.th" 
-              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white dark:bg-[#0b1426] hover:bg-zinc-50 dark:hover:bg-[#111e38] border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-[#00e5ff]/40 px-6 py-4 rounded-2xl transition-all duration-300 group"
+              className="w-full sm:w-auto flex items-center justify-center gap-4 bg-zinc-900 dark:bg-white text-white dark:text-black hover:scale-105 active:scale-95 px-8 py-5 rounded-2xl transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(255,255,255,0.2)]"
             >
-              <div className="w-10 h-10 rounded-full bg-[#00e5ff]/10 flex items-center justify-center group-hover:bg-[#00e5ff]/20 transition-colors">
-                <Mail size={18} className="text-[#00e5ff]" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-bold tracking-widest uppercase">Contact</span>
-                <span className="text-[15px] text-zinc-900 dark:text-white font-bold tracking-wide">datapresale@mfec.co.th</span>
+              <Mail size={20} strokeWidth={2.5} />
+              <div className="flex flex-col items-start text-left">
+                <span className="text-[11px] font-black tracking-[0.2em] uppercase opacity-70">Contact Experts</span>
+                <span className="text-[16px] font-bold tracking-wide">datapresale@mfec.co.th</span>
               </div>
             </a>
           </div>
