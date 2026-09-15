@@ -135,11 +135,11 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
-                  className="text-[48px] sm:text-[56px] md:text-[72px] lg:text-[80px] xl:text-[140px] font-bold text-zinc-900 dark:text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] font-[var(--font-display)]"
+                  className="text-[80px] sm:text-[96px] md:text-[120px] lg:text-[140px] xl:text-[160px] font-black text-transparent bg-clip-text bg-gradient-to-br from-zinc-800 via-zinc-900 to-zinc-600 dark:from-white dark:via-white dark:to-white/50 drop-shadow-xl font-[var(--font-display)] leading-none tracking-tighter"
                 >
                   {totalScore}
                 </motion.span>
-                <span className="text-[32px] md:text-[36px] font-bold text-zinc-900 dark:text-white/30 ml-2 -mb-2 font-[var(--font-display)]">/25</span>
+                <span className="text-[32px] md:text-[48px] lg:text-[64px] font-black text-transparent bg-clip-text bg-gradient-to-br from-zinc-500 to-zinc-300 dark:from-white/70 dark:to-white/20 ml-1 md:ml-2 font-[var(--font-display)] drop-shadow-md">/25</span>
               </div>
             </motion.div>
 
