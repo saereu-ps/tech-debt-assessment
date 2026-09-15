@@ -15,6 +15,7 @@ interface ResultDashboardProps {
 }
 
 const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onRestart, isSharedReport = false }) => {
+  const { theme } = useTheme();
   const totalScore = scores.filter(s => s > 0).reduce((a, b) => a + b, 0);
   const tier = getResultTier(totalScore);
   const details = resultDetails[tier];
