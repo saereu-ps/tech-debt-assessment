@@ -13,6 +13,29 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
   const [role, setRole] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const roles = [
+    "Executive / C-Level",
+    "Manager / Director",
+    "Software Engineer",
+    "Cloud / DevOps",
+    "Data / AI Professional",
+    "Security / QA",
+    "Product / Project Mgr",
+    "Other"
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,28 +126,38 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           {/* Vertical Divider (Hidden on mobile) */}
           <div className="hidden md:block w-px h-8 md:h-10 bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
 
-          {/* Role Input Area (Dropdown) */}
-          <div className="flex-[1.2] flex items-center px-6 md:px-6 relative group h-[52px] md:h-auto">
+          {/* Role Input Area (Custom Dropdown) */}
+          <div ref={dropdownRef} className="flex-[1.2] flex items-center px-6 md:px-6 relative group h-[52px] md:h-auto cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
             <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">ROLE</span>
-            <div className="relative w-full md:pr-[140px] flex items-center">
-              <select 
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                className={`w-full bg-transparent border-none outline-none text-[15px] md:text-[18px] font-black focus:ring-0 appearance-none cursor-pointer ${role ? 'text-white' : 'text-[#2f3542]'}`}
-                required
-              >
-                <option value="" disabled className="bg-[#050810] text-[#2f3542]">Select Role...</option>
-                <option value="Executive / C-Level" className="bg-[#050810] text-white">Executive / C-Level</option>
-                <option value="Manager / Director" className="bg-[#050810] text-white">Manager / Director</option>
-                <option value="Software Engineer" className="bg-[#050810] text-white">Software Engineer</option>
-                <option value="Cloud / DevOps" className="bg-[#050810] text-white">Cloud / DevOps</option>
-                <option value="Data / AI Professional" className="bg-[#050810] text-white">Data / AI Professional</option>
-                <option value="Security / QA" className="bg-[#050810] text-white">Security / QA</option>
-                <option value="Product / Project Mgr" className="bg-[#050810] text-white">Product / Project Mgr</option>
-                <option value="Other" className="bg-[#050810] text-white">Other</option>
-              </select>
-              <ChevronDown size={16} className="text-[#00e5ff] absolute right-0 md:right-[140px] pointer-events-none" />
+            <div className="relative w-full flex items-center justify-between md:pr-[140px]">
+              <span className={`text-[15px] md:text-[18px] font-black ${role ? 'text-white' : 'text-[#2f3542]'} truncate pr-6`}>
+                {role || "Select Role..."}
+              </span>
+              <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }}>
+                <ChevronDown size={16} className="text-[#00e5ff] shrink-0" />
+              </motion.div>
             </div>
+
+            {/* Dropdown Menu */}
+            {isDropdownOpen && (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-[110%] left-0 w-full bg-[#0b1426]/95 backdrop-blur-2xl border border-[#00e5ff]/20 rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.8)] z-50 max-h-[300px] overflow-y-auto"
+              >
+                {roles.map((r) => (
+                  <div 
+                    key={r}
+                    onClick={() => setRole(r)}
+                    className="px-6 py-3 text-[14px] md:text-[15px] font-bold text-zinc-300 hover:text-white hover:bg-[#00e5ff]/15 transition-colors duration-200 cursor-pointer border-b border-white/5 last:border-b-0"
+                  >
+                    {r}
+                  </div>
+                ))}
+              </motion.div>
+            )}
           </div>
 
           {/* Scan Now Button (Inner Pill) */}
