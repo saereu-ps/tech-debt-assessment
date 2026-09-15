@@ -40,6 +40,8 @@
   }
 
   body {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
     background-color: var(--color-bg-deep);
     color: var(--color-text-main);
     min-height: 100dvh;

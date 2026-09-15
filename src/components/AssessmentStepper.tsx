@@ -68,7 +68,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
   });
 
   return (
-    <div className="w-full min-h-[100dvh] flex items-start lg:items-center justify-center relative overflow-x-hidden overflow-y-auto py-4 md:py-6 lg:py-0 bg-transparent">
+    <div className="w-full min-h-[100dvh] flex items-start lg:items-center justify-center relative py-4 md:py-6 lg:py-0 bg-transparent">
       
       {/* Sci-Fi Background Glows - Using radial-gradient instead of heavy CSS blur for massive performance boost */}
       <div className="absolute top-[10%] left-[-10%] w-[800px] h-[800px] rounded-full pointer-events-none" 

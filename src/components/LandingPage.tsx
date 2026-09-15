@@ -48,7 +48,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const isFormValid = name.trim().length > 0 && company.trim().length > 0 && role.trim().length > 0;
 
   return (
-    <div className="relative w-full h-full min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden bg-transparent">
+    <div className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center bg-transparent overflow-hidden">
       
       {/* High-end Math Mesh Graph Background */}
       <MeshGraphBackground />
