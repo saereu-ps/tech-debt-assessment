@@ -92,7 +92,7 @@ function App() {
   };
 
   return (
-    <div className="w-full min-h-screen font-sans selection:bg-[#00e5ff]/30">
+    <div className="w-full min-h-[100dvh] font-sans selection:bg-[#00e5ff]/30">
       <ThemeToggle />
       <AnimatePresence mode="wait">
         {view === 'landing' && <LandingPage key="landing" onStart={handleStart} />}
