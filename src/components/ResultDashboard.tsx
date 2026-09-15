@@ -281,21 +281,21 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         {/* Call To Action - Contact MFEC */}
         <motion.div 
           variants={itemVariants} 
-          className="mt-16 w-full max-w-[1500px] bg-gradient-to-r from-[#0055ff]/10 to-[#00e5ff]/5 border border-[#00e5ff]/20 p-8 md:p-10 rounded-3xl shadow-[0_0_40px_rgba(0,229,255,0.05)] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-10"
+          className="mt-20 w-full max-w-[1500px] bg-gradient-to-r from-[#0055ff]/10 to-[#00e5ff]/5 border border-[#00e5ff]/20 p-8 md:py-14 md:px-12 rounded-[2.5rem] shadow-[0_0_40px_rgba(0,229,255,0.05)] relative overflow-hidden flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 lg:gap-20"
         >
           {/* Background Glow */}
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00e5ff]/10 blur-[100px] rounded-full pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
           
-          <div className="flex flex-col gap-3 relative z-10 max-w-[600px]">
-            <h3 className="text-[28px] md:text-[36px] font-bold text-white leading-tight font-[var(--font-display)]">
+          <div className="flex flex-col gap-4 relative z-10 max-w-[600px] text-center lg:text-left">
+            <h3 className="text-[32px] md:text-[40px] font-bold text-white leading-[1.1] font-[var(--font-display)]">
               Ready to eliminate your <span className="text-[#00e5ff]">Tech Debt?</span>
             </h3>
-            <p className="text-[#8b93a5] text-[15px] font-medium leading-relaxed">
-              Modernize your infrastructure and secure your digital future. Consult with MFEC experts today to turn your tech debt into a competitive tech edge.
+            <p className="text-[#8b93a5] text-[16px] md:text-[18px] font-medium leading-relaxed">
+              Consult with MFEC experts today to turn your tech debt into a competitive edge.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4 relative z-10 shrink-0 w-full md:w-auto">
+          <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 relative z-10 shrink-0 w-full lg:w-auto">
             <a 
               href="tel:028217979" 
               className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#0b1426] hover:bg-[#111e38] border border-white/10 hover:border-[#00e5ff]/40 px-6 py-4 rounded-2xl transition-all duration-300 group"
