@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../hooks/useTheme';
-import { RefreshCw, TrendingUp, AlertTriangle, Phone, Mail, ArrowRight } from 'lucide-react';
+import { RefreshCw, TrendingUp, AlertTriangle, Phone, Mail, ArrowRight, User } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import type { UserInfo } from '../App';
 import { getResultTier, resultDetails, assessmentData } from '../data/assessmentData';
@@ -100,21 +100,31 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           <div className="flex flex-col gap-6">
             <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-[140px] object-contain filter brightness-0 invert opacity-95 drop-shadow-lg self-start" />
             
-            <div className="flex flex-col gap-1 md:gap-2 mt-2 md:mt-4">
-              <div className="flex items-center gap-3 md:gap-4">
-                {userInfo.company && (
-                  <span className="text-[11px] md:text-[13px] text-[#00e5ff] font-bold tracking-[0.25em] uppercase">{userInfo.company}</span>
-                )}
-                {userInfo.company && <span className="w-8 md:w-12 h-[1px] bg-black/10 dark:bg-white/20"></span>}
-                <span className="text-[11px] md:text-[13px] text-zinc-500 dark:text-zinc-400 font-semibold tracking-[0.2em] uppercase">Executive Report</span>
+            <div className="bg-white/40 dark:bg-[#0b1426]/40 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-sm p-4 md:p-5 rounded-2xl flex items-center gap-4 transition-all w-full sm:w-auto mt-2 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00e5ff]/5 blur-2xl rounded-full -mr-10 -mt-10 pointer-events-none"></div>
+              <div className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-white shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(0,229,255,0.2)] relative shrink-0" style={{ background: `linear-gradient(135deg, var(--color-${details.color}), #0055ff)` }}>
+                <User size={22} strokeWidth={2.5} />
+                <div className="absolute inset-0 rounded-full border border-white/20"></div>
               </div>
-              
-              <div className="flex items-baseline gap-3 md:gap-4 mt-1 flex-wrap">
-                <h3 className="text-[28px] sm:text-[36px] md:text-[42px] font-black text-zinc-900 dark:text-white tracking-tight leading-none font-[var(--font-display)]">
+              <div className="flex flex-col w-full overflow-hidden z-10">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-[10px] text-zinc-500 dark:text-zinc-400 font-bold tracking-widest uppercase">
+                    Profile
+                  </span>
+                  {userInfo.company && (
+                    <>
+                      <span className="w-1 h-1 rounded-full bg-black/20 dark:bg-white/20 shrink-0" />
+                      <span className="text-[10px] text-[#00e5ff] font-bold tracking-[0.15em] uppercase truncate">
+                        {userInfo.company}
+                      </span>
+                    </>
+                  )}
+                </div>
+                <h3 className="text-[18px] md:text-[22px] text-zinc-900 dark:text-white font-black tracking-tight leading-none truncate mb-1.5 font-[var(--font-display)]">
                   {userInfo.name || "N/A"}
                 </h3>
                 {userInfo.role && (
-                  <span className="text-[14px] md:text-[16px] text-zinc-500 dark:text-zinc-400 font-medium tracking-wide">
+                  <span className="text-[13px] md:text-[14px] text-zinc-600 dark:text-zinc-400 font-medium truncate">
                     {userInfo.role}
                   </span>
                 )}
