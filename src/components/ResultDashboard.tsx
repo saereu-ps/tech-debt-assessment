@@ -100,24 +100,26 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           <div className="flex flex-col gap-6">
             <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-[140px] object-contain filter brightness-0 invert opacity-95 drop-shadow-lg self-start" />
             
-            <div className="bg-white/60 dark:bg-[#0b1426]/60 border border-black/5 dark:border-[#00e5ff]/20 bg-white/60 dark:bg-[#0b1426]/60 backdrop-blur-xl border border-black/5 dark:border-[#00e5ff]/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] px-6 py-4 rounded-2xl flex items-center gap-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center text-zinc-900 dark:text-white font-black text-xl shadow-[0_0_15px_rgba(0,229,255,0.4)] relative" style={{ background: `linear-gradient(135deg, var(--color-${details.color}), #0055ff)` }}>
+            <div className="bg-white/40 dark:bg-black/20 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-sm px-5 py-4 md:px-6 md:py-4 rounded-2xl flex items-center gap-4 transition-all hover:bg-white/50 dark:hover:bg-black/30 w-full sm:w-auto">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg relative shrink-0" style={{ background: `linear-gradient(135deg, var(--color-${details.color}), #0055ff)` }}>
                 {userInfo.name.charAt(0).toUpperCase()}
-                <div className="absolute inset-0 rounded-full border-2 border-white/20"></div>
+                <div className="absolute inset-0 rounded-full border border-white/20"></div>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col w-full overflow-hidden">
                 <div className="flex items-center gap-2 mb-1 flex-wrap">
-                  <h4 className="text-[10px] text-[#00e5ff] font-bold tracking-[0.2em] uppercase">{userInfo.company}</h4>
+                  {userInfo.company && (
+                    <span className="text-[10px] sm:text-[11px] text-[#00e5ff] font-bold tracking-[0.15em] uppercase truncate max-w-[120px] sm:max-w-none">{userInfo.company}</span>
+                  )}
                   {userInfo.role && (
                     <>
-                      <span className="w-1 h-1 rounded-full bg-zinc-600" />
-                      <span className="text-[10px] text-zinc-900 dark:text-white/70 font-bold tracking-[0.1em] uppercase">{userInfo.role}</span>
+                      <span className="w-1 h-1 rounded-full bg-black/20 dark:bg-white/20 shrink-0" />
+                      <span className="text-[10px] sm:text-[11px] text-zinc-600 dark:text-zinc-400 font-bold tracking-[0.1em] uppercase truncate max-w-[120px] sm:max-w-none">{userInfo.role}</span>
                     </>
                   )}
-                  <span className="w-1 h-1 rounded-full bg-zinc-600" />
-                  <span className="text-[9px] text-zinc-400 dark:text-zinc-500 font-bold tracking-widest uppercase">Executive Report</span>
+                  <span className="w-1 h-1 rounded-full bg-black/20 dark:bg-white/20 shrink-0 hidden sm:block" />
+                  <span className="text-[10px] sm:text-[11px] text-zinc-400 dark:text-zinc-500 font-bold tracking-widest uppercase hidden sm:block">Executive Report</span>
                 </div>
-                <h3 className="text-[18px] text-zinc-900 dark:text-white font-black tracking-wide leading-none">{userInfo.name}</h3>
+                <h3 className="text-[18px] sm:text-[20px] text-zinc-900 dark:text-white font-bold tracking-tight leading-none truncate">{userInfo.name}</h3>
               </div>
             </div>
           </div>
