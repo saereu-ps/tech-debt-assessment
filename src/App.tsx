@@ -54,6 +54,7 @@ function App() {
       
       saveAssessmentData({
         name: userInfo.name,
+        email: userInfo.email,
         company: userInfo.company,
         role: userInfo.role,
         scores: finalScores,
@@ -76,7 +77,7 @@ function App() {
 
   // Backend integration (Google Sheets Webhook)
   const saveAssessmentData = (data: any) => {
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzUzve9mB2E5rr44_kdRMOWmGFGrg-lN6nL4CQ1Aza8q1hrd6Q8xPj4QvsXjpM-9Hjh/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw7F7dd1zGWacLdJni9aKGdjoGHS2m6bGwySHAJHFLWEZ-igPmofWBnFOZp9egaOEEc/exec';
     
     fetch(SCRIPT_URL, {
       method: 'POST',
