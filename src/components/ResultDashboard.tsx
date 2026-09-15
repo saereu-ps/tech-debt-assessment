@@ -344,8 +344,8 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
               
               {/* 3-Step Roadmap (Option 1) */}
-              <div className="lg:col-span-2 bg-white/70 dark:bg-white/[0.02] backdrop-blur-2xl border border-black/10 dark:border-white/10 p-6 md:p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-2xl">
-                <h4 className="text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-500 mb-6">
+              <div className="lg:col-span-2 h-full bg-white/70 dark:bg-white/[0.02] backdrop-blur-2xl border border-black/10 dark:border-white/10 p-6 md:p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-2xl flex flex-col justify-center">
+                <h4 className="text-[11px] font-bold tracking-[0.25em] uppercase text-zinc-500 mb-6 shrink-0">
                   Personalized Roadmap
                 </h4>
                 <div className="space-y-4 md:space-y-5">
@@ -364,15 +364,15 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
               </div>
 
               {/* MFEC Solution Matching (Option 3) */}
-              <div className="bg-gradient-to-br from-[#0055ff]/10 to-[#00e5ff]/5 dark:from-[#0055ff]/20 dark:to-[#00e5ff]/10 border border-[#0055ff]/20 dark:border-[#0055ff]/30 p-6 md:p-8 rounded-[2.5rem] relative overflow-hidden group">
+              <div className="h-full bg-gradient-to-br from-[#0055ff]/10 to-[#00e5ff]/5 dark:from-[#0055ff]/20 dark:to-[#00e5ff]/10 border border-[#0055ff]/20 dark:border-[#0055ff]/30 p-6 md:p-8 rounded-[2.5rem] relative overflow-hidden group flex flex-col justify-center">
                 <div className="absolute top-0 right-0 w-48 h-48 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[#00e5ff]/30 to-transparent pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
                 
-                <h4 className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#0055ff] dark:text-[#00e5ff] mb-6 flex items-center gap-2">
+                <h4 className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#0055ff] dark:text-[#00e5ff] mb-6 flex items-center gap-2 shrink-0">
                   <Zap size={14} strokeWidth={3} />
                   Recommended Solution
                 </h4>
                 
-                <div className="space-y-4 relative z-10 flex flex-col h-[calc(100%-40px)] justify-center">
+                <div className="space-y-4 relative z-10">
                   <h3 className="text-xl md:text-2xl font-black text-zinc-900 dark:text-white leading-tight font-[var(--font-display)]">
                     {criticalFocus?.mfecSolution?.name || "MFEC Enterprise Consulting"}
                   </h3>

@@ -26,7 +26,7 @@ export const assessmentData: AssessmentMetric[] = [
     description: "พนักงานในองค์กรของคุณสามารถเข้าถึงและนำข้อมูลไปใช้งานได้ราบรื่นแค่ไหน?",
     mfecSolution: {
       name: "Cloud & Infrastructure Modernization",
-      description: "Redesign your core architecture for infinite scalability and zero downtime."
+      description: "วางโครงสร้างระบบใหม่ทั้งหมดให้ยืดหยุ่น ขยายตัวได้ไม่จำกัด (Infinite Scalability) และไม่มีวันล่ม"
     },
     choices: [
       {
@@ -56,7 +56,7 @@ export const assessmentData: AssessmentMetric[] = [
     description: "โครงสร้างระบบไอทีของคุณยืดหยุ่นและรองรับการขยายตัวได้ดีเพียงใดเมื่อธุรกิจเติบโต?",
     mfecSolution: {
       name: "Data Engineering & Analytics",
-      description: "Unlock the true value of your data with automated modern data pipelines."
+      description: "ปลดล็อกมูลค่าข้อมูลของคุณด้วยระบบ Data Pipeline ที่ทันสมัยและการวิเคราะห์เชิงลึกอัตโนมัติ"
     },
     choices: [
       {
@@ -86,7 +86,7 @@ export const assessmentData: AssessmentMetric[] = [
     description: "ระบบซอฟต์แวร์ที่ใช้อยู่มีความทันสมัยและง่ายต่อการดูแลรักษามากน้อยแค่ไหน?",
     mfecSolution: {
       name: "Application Modernization",
-      description: "Refactor legacy systems and elevate your software engineering practices."
+      description: "ยกระดับซอฟต์แวร์เก่า (Legacy) ให้เป็นระบบยุคใหม่ เพื่อสปีดการทำงานของทีมพัฒนา"
     },
     choices: [
       {
@@ -116,7 +116,7 @@ export const assessmentData: AssessmentMetric[] = [
     description: "ระบบงานส่วนหน้าและระบบหลังบ้านของคุณมีการเชื่อมต่อและแลกเปลี่ยนข้อมูลกันอย่างไร?",
     mfecSolution: {
       name: "DevSecOps Transformation",
-      description: "Automate your delivery pipelines and bake continuous integration into your DNA."
+      description: "วางระบบพัฒนาซอฟต์แวร์อัตโนมัติ (CI/CD) พร้อมปลูกฝังความปลอดภัยเข้าไปในทุกสายการผลิต"
     },
     choices: [
       {
@@ -146,7 +146,7 @@ export const assessmentData: AssessmentMetric[] = [
     description: "องค์กรของคุณมีมาตรการรักษาความปลอดภัยของข้อมูลและแผนรับมือความเสี่ยงที่เข้มงวดระดับไหน?",
     mfecSolution: {
       name: "Enterprise Security Audit",
-      description: "Fortify your defenses with comprehensive risk assessments and zero-trust framework."
+      description: "อุดรอยรั่วและปกป้องระบบองค์กรของคุณด้วยการประเมินความเสี่ยงและสถาปัตยกรรม Zero-Trust"
     },
     choices: [
       {
@@ -187,9 +187,9 @@ export const resultDetails = {
     glowClass: "glow-red",
     titleGradient: "from-rose-400 via-red-500 to-red-600 dark:from-red-300 dark:via-rose-500 dark:to-red-700",
     actionPlan: [
-      "Conduct a comprehensive architectural audit to identify critical vulnerabilities.",
-      "Prioritize stabilizing core data infrastructure and security protocols.",
-      "Establish a clear Tech Debt reduction roadmap with key stakeholders."
+      "ตรวจสอบโครงสร้างสถาปัตยกรรมระบบทั้งหมดอย่างละเอียด เพื่อหาช่องโหว่ระดับวิกฤต",
+      "เร่งแก้ไขความเสถียรของระบบฐานข้อมูลหลักและยกระดับมาตรฐานความปลอดภัย",
+      "วางแผนและกำหนด Roadmap ในการลด Tech Debt ร่วมกับผู้บริหารและผู้มีส่วนเกี่ยวข้อง"
     ]
   },
   moderate: {
@@ -201,9 +201,9 @@ export const resultDetails = {
     glowClass: "glow-yellow",
     titleGradient: "from-amber-400 via-yellow-500 to-orange-500 dark:from-yellow-300 dark:via-amber-500 dark:to-orange-600",
     actionPlan: [
-      "Identify and refactor severe bottlenecks in your deployment pipelines.",
-      "Begin transitioning legacy monolith components to microservices.",
-      "Implement automated testing to prevent further tech debt accumulation."
+      "ค้นหาและแก้ไขปัญหาคอขวด (Bottleneck) ที่ทำให้การทำงานหรือการส่งมอบระบบล่าช้า",
+      "เริ่มทยอยปรับปรุงระบบเก่า (Legacy) ให้มีความยืดหยุ่นและเป็นอิสระต่อกันมากขึ้น (Microservices)",
+      "นำระบบ Automated Testing มาใช้ เพื่อป้องกันไม่ให้เกิดหนี้ทางเทคนิคเพิ่มขึ้นในอนาคต"
     ]
   },
   ready: {
@@ -215,9 +215,9 @@ export const resultDetails = {
     glowClass: "glow-cyan",
     titleGradient: "from-cyan-400 via-blue-500 to-indigo-500 dark:from-cyan-300 dark:via-blue-500 dark:to-indigo-500",
     actionPlan: [
-      "Explore advanced AI/GenAI integrations to accelerate business workflows.",
-      "Optimize cloud resource allocation for maximum cost efficiency.",
-      "Focus on continuous innovation and scaling enterprise capabilities."
+      "เริ่มประยุกต์ใช้ AI และ GenAI ขั้นสูง เพื่อเร่งสปีดการทำงานของธุรกิจแบบก้าวกระโดด",
+      "ปรับแต่งการใช้ทรัพยากรบน Cloud (Cloud Optimization) เพื่อความคุ้มค่าสูงสุด",
+      "มุ่งเน้นไปที่การสร้างนวัตกรรมใหม่ๆ และการสเกลระบบเพื่อรองรับการเติบโตระดับองค์กร"
     ]
   }
 };
