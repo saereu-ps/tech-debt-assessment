@@ -86,7 +86,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
       />
       
       {/* Tech Grid overlay */}
-      <div className="hidden xl:block absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-70 pointer-events-none mix-blend-screen" />
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-30 pointer-events-none" />
 
       <motion.div 
         variants={containerVariants}
@@ -100,7 +100,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           <div className="flex flex-col gap-6">
             <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-[140px] object-contain filter brightness-0 invert opacity-95 drop-shadow-lg self-start" />
             
-            <div className="bg-white/60 dark:bg-[#0b1426]/60 border border-black/5 dark:border-[#00e5ff]/20 bg-white/80 dark:bg-[#0b1426]/90 shadow-xl px-6 py-4 rounded-2xl flex items-center gap-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+            <div className="bg-white/60 dark:bg-[#0b1426]/60 border border-black/5 dark:border-[#00e5ff]/20 bg-white/70 dark:bg-[#0b1426]/40 backdrop-blur-xl border border-black/10 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] px-6 py-4 rounded-2xl flex items-center gap-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
               <div className="w-12 h-12 rounded-full flex items-center justify-center text-zinc-900 dark:text-white font-black text-xl shadow-[0_0_15px_rgba(0,229,255,0.4)] relative" style={{ background: `linear-gradient(135deg, var(--color-${details.color}), #0055ff)` }}>
                 {userInfo.name.charAt(0).toUpperCase()}
                 <div className="absolute inset-0 rounded-full border-2 border-white/20"></div>
@@ -159,7 +159,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             </motion.div>
 
             {/* 5-Dimension Tech Breakdown */}
-            <motion.div variants={itemVariants} className="w-full max-w-[650px] bg-white/50 dark:bg-[#090e15]/50 bg-white/80 dark:bg-[#090e15]/90 shadow-xl border border-black/5 dark:border-white/5 p-4 md:p-5 lg:p-6 rounded-2xl mt-4 lg:mt-auto shadow-2xl">
+            <motion.div variants={itemVariants} className="w-full max-w-[650px] bg-white/50 dark:bg-[#090e15]/50 bg-white/50 dark:bg-[#090e15]/50 backdrop-blur-md border border-black/5 dark:border-white/5 shadow-2xl border border-black/5 dark:border-white/5 p-4 md:p-5 lg:p-6 rounded-2xl mt-4 lg:mt-auto shadow-2xl">
               <h4 className="text-[11px] text-zinc-900 dark:text-white font-bold tracking-[0.2em] uppercase mb-8 flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: `var(--color-${details.color})`, boxShadow: `0 0 10px var(--color-${details.color})` }} />
                 Dimension Breakdown
@@ -253,7 +253,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             <motion.div variants={itemVariants} className="mt-12 w-full max-w-[700px]">
               <motion.div 
                 whileHover={{ scale: 1.02, y: -5 }}
-                className="bg-white/70 dark:bg-[#0b1426]/40 bg-white/80 dark:bg-[#0b1426]/90 shadow-xl border border-black/10 dark:border-white/10 p-5 md:p-6 lg:p-6 rounded-3xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] group cursor-default"
+                className="bg-white/70 dark:bg-[#0b1426]/40 bg-white/70 dark:bg-[#0b1426]/40 backdrop-blur-xl border border-black/10 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-black/10 dark:border-white/10 p-5 md:p-6 lg:p-6 rounded-3xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] group cursor-default"
               >
                 {/* Glowing edge indicator */}
                 <div 
@@ -286,7 +286,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           className="mt-4 md:mt-6 lg:mt-6 w-full max-w-[1500px] bg-gradient-to-r from-[#0055ff]/10 to-[#00e5ff]/5 border border-[#00e5ff]/20 p-4 md:p-5 lg:py-6 lg:px-8 rounded-[2.5rem] shadow-[0_0_40px_rgba(0,229,255,0.05)] relative overflow-hidden flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 lg:gap-20"
         >
           {/* Background Glow */}
-          <div className="hidden xl:block absolute top-0 right-0 w-[500px] h-[500px] bg-[#00e5ff]/10 blur-[100px] rounded-full pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute top-0 right-0 w-[300px] lg:w-[500px] h-[300px] lg:h-[500px] bg-[radial-gradient(circle_at_center,_rgba(0,229,255,0.2)_0%,_transparent_70%)] rounded-full pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
           
           <div className="flex flex-col gap-4 relative z-10 max-w-[600px] text-center lg:text-left">
             <h3 className="text-[24px] md:text-[28px] lg:text-[32px] font-bold text-zinc-900 dark:text-white leading-[1.1] font-[var(--font-display)]">
