@@ -19,7 +19,7 @@ export const assessmentData: AssessmentMetric[] = [
     id: 1,
     shortTitle: "Foundation",
     title: "Data Accessibility & Integration",
-    description: "การเข้าถึงและการเชื่อมโยงข้อมูล",
+    description: "พนักงานในองค์กรของคุณสามารถเข้าถึงและนำข้อมูลไปใช้งานได้ราบรื่นแค่ไหน?",
     choices: [
       {
         score: 1,
@@ -45,7 +45,7 @@ export const assessmentData: AssessmentMetric[] = [
     id: 2,
     shortTitle: "Data",
     title: "System Scalability & Cloud Adoption",
-    description: "ความยืดหยุ่นและการใช้งาน Cloud",
+    description: "โครงสร้างระบบไอทีของคุณยืดหยุ่นและรองรับการขยายตัวได้ดีเพียงใดเมื่อธุรกิจเติบโต?",
     choices: [
       {
         score: 1,
@@ -71,7 +71,7 @@ export const assessmentData: AssessmentMetric[] = [
     id: 3,
     shortTitle: "Security",
     title: "Tech Obsolescence & Maintenance",
-    description: "ความล้าสมัยและค่าดูแลรักษาระบบ",
+    description: "ระบบซอฟต์แวร์ที่ใช้อยู่มีความทันสมัยและง่ายต่อการดูแลรักษามากน้อยแค่ไหน?",
     choices: [
       {
         score: 1,
@@ -97,7 +97,7 @@ export const assessmentData: AssessmentMetric[] = [
     id: 4,
     shortTitle: "Agility",
     title: "Core Industry Connectivity",
-    description: "การเชื่อมต่อระบบงานหลัก - Manufacturing Focus",
+    description: "ระบบงานส่วนหน้าและระบบหลังบ้านของคุณมีการเชื่อมต่อและแลกเปลี่ยนข้อมูลกันอย่างไร?",
     choices: [
       {
         score: 1,
@@ -123,7 +123,7 @@ export const assessmentData: AssessmentMetric[] = [
     id: 5,
     shortTitle: "AI Readiness",
     title: "Cyber Security & Governance",
-    description: "ความปลอดภัยทางไซเบอร์และการกำกับดูแล",
+    description: "องค์กรของคุณมีมาตรการรักษาความปลอดภัยของข้อมูลและแผนรับมือความเสี่ยงที่เข้มงวดระดับไหน?",
     choices: [
       {
         score: 1,
