@@ -100,26 +100,24 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           <div className="flex flex-col gap-6">
             <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-[140px] object-contain filter brightness-0 invert opacity-95 drop-shadow-lg self-start" />
             
-            <div className="bg-white/40 dark:bg-black/20 backdrop-blur-md border border-black/5 dark:border-white/10 shadow-sm px-5 py-4 md:px-6 md:py-4 rounded-2xl flex items-center gap-4 transition-all hover:bg-white/50 dark:hover:bg-black/30 w-full sm:w-auto">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg relative shrink-0" style={{ background: `linear-gradient(135deg, var(--color-${details.color}), #0055ff)` }}>
-                {userInfo.name.charAt(0).toUpperCase()}
-                <div className="absolute inset-0 rounded-full border border-white/20"></div>
+            <div className="flex flex-col gap-1 md:gap-2 mt-2 md:mt-4">
+              <div className="flex items-center gap-3 md:gap-4">
+                {userInfo.company && (
+                  <span className="text-[11px] md:text-[13px] text-[#00e5ff] font-bold tracking-[0.25em] uppercase">{userInfo.company}</span>
+                )}
+                {userInfo.company && <span className="w-8 md:w-12 h-[1px] bg-black/10 dark:bg-white/20"></span>}
+                <span className="text-[11px] md:text-[13px] text-zinc-500 dark:text-zinc-400 font-semibold tracking-[0.2em] uppercase">Executive Report</span>
               </div>
-              <div className="flex flex-col w-full overflow-hidden">
-                <div className="flex items-center gap-2 mb-1 flex-wrap">
-                  {userInfo.company && (
-                    <span className="text-[10px] sm:text-[11px] text-[#00e5ff] font-bold tracking-[0.15em] uppercase truncate max-w-[120px] sm:max-w-none">{userInfo.company}</span>
-                  )}
-                  {userInfo.role && (
-                    <>
-                      <span className="w-1 h-1 rounded-full bg-black/20 dark:bg-white/20 shrink-0" />
-                      <span className="text-[10px] sm:text-[11px] text-zinc-600 dark:text-zinc-400 font-bold tracking-[0.1em] uppercase truncate max-w-[120px] sm:max-w-none">{userInfo.role}</span>
-                    </>
-                  )}
-                  <span className="w-1 h-1 rounded-full bg-black/20 dark:bg-white/20 shrink-0 hidden sm:block" />
-                  <span className="text-[10px] sm:text-[11px] text-zinc-400 dark:text-zinc-500 font-bold tracking-widest uppercase hidden sm:block">Executive Report</span>
-                </div>
-                <h3 className="text-[18px] sm:text-[20px] text-zinc-900 dark:text-white font-bold tracking-tight leading-none truncate">{userInfo.name}</h3>
+              
+              <div className="flex items-baseline gap-3 md:gap-4 mt-1 flex-wrap">
+                <h3 className="text-[28px] sm:text-[36px] md:text-[42px] font-black text-zinc-900 dark:text-white tracking-tight leading-none font-[var(--font-display)]">
+                  {userInfo.name || "N/A"}
+                </h3>
+                {userInfo.role && (
+                  <span className="text-[14px] md:text-[16px] text-zinc-500 dark:text-zinc-400 font-medium tracking-wide">
+                    {userInfo.role}
+                  </span>
+                )}
               </div>
             </div>
           </div>
