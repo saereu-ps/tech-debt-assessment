@@ -145,7 +145,8 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
-                  className="text-[80px] sm:text-[96px] md:text-[120px] lg:text-[140px] xl:text-[160px] font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-zinc-800 via-zinc-900 to-zinc-600 dark:from-white dark:via-white dark:to-white/50 font-[var(--font-display)] leading-none tracking-tight"
+                  className="text-[120px] md:text-[160px] lg:text-[200px] font-black leading-none tracking-tighter text-zinc-900 dark:text-white font-[var(--font-display)]"
+                  style={{ textShadow: theme === 'dark' ? `0 0 60px var(--color-${details.color})` : 'none' }}
                 >
                   {totalScore}
                 </motion.span>
@@ -169,7 +170,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             </motion.div>
 
             {/* 5-Dimension Tech Breakdown */}
-            <motion.div variants={itemVariants} className="w-full max-w-[650px] bg-white/50 dark:bg-[#090e15]/50 bg-white/50 dark:bg-[#090e15]/50 backdrop-blur-md border border-black/5 dark:border-white/5 shadow-2xl border border-black/5 dark:border-white/5 p-4 md:p-5 lg:p-6 rounded-2xl mt-4 lg:mt-auto shadow-2xl">
+            <motion.div variants={itemVariants} className="w-full max-w-[650px] bg-white/50 dark:bg-[#090e15]/60 backdrop-blur-md border border-black/5 dark:border-white/10 p-4 md:p-5 lg:p-6 rounded-2xl mt-4 lg:mt-auto shadow-2xl relative z-10">
               <h4 className="text-[11px] text-zinc-900 dark:text-white font-bold tracking-[0.2em] uppercase mb-8 flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: `var(--color-${details.color})`, boxShadow: `0 0 10px var(--color-${details.color})` }} />
                 Dimension Breakdown
@@ -227,7 +228,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
               </h3>
               <h2 
                 className="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] xl:text-[64px] font-bold tracking-tight leading-[1.05] max-w-[550px] font-[var(--font-display)]"
-                style={{ color: `var(--color-${details.color})`, textShadow: theme === 'dark' ? `0 0 20px var(--color-${details.color})` : 'none' }}
+                style={{ color: `var(--color-${details.color})`, textShadow: theme === 'dark' ? `0 0 20px var(--color-${details.color}), 0 0 40px var(--color-${details.color})` : 'none' }}
               >
                 {details.title}
               </h2>
@@ -236,7 +237,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             {/* NEW: Computed Insights Panel (Balancing the Right Column) */}
             <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-8 xl:mt-4 md:mt-6 xl:mt-12 w-full max-w-[700px]">
               {/* Key Strength */}
-              <div className="bg-white/40 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 p-3 md:p-4 lg:p-3 md:p-4 lg:p-5 rounded-2xl flex flex-col gap-2">
+              <div className="bg-white/40 dark:bg-white/[0.03] border border-black/5 dark:border-white/10 p-4 md:p-5 lg:p-6 rounded-2xl flex flex-col gap-2">
                 <div className="flex items-center gap-2 text-[#00e5ff]">
                   <TrendingUp size={14} strokeWidth={2.5} />
                   <span className="text-[9px] font-bold tracking-[0.2em] uppercase opacity-90">Key Strength</span>
@@ -247,7 +248,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
               </div>
               
               {/* Critical Focus */}
-              <div className="bg-white/40 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 p-5 rounded-2xl flex flex-col gap-2 relative overflow-hidden group">
+              <div className="bg-white/40 dark:bg-white/[0.03] border border-black/5 dark:border-white/10 p-4 md:p-5 lg:p-6 rounded-2xl flex flex-col gap-2 relative overflow-hidden group">
                 <div className="absolute inset-0 bg-[#ff4d4d]/[0.02] pointer-events-none" />
                 <div className="flex items-center gap-2 text-[#ff4d4d]">
                   <AlertTriangle size={14} strokeWidth={2.5} />
@@ -263,12 +264,12 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             <motion.div variants={itemVariants} className="mt-12 w-full max-w-[700px]">
               <motion.div 
                 whileHover={{ scale: 1.02, y: -5 }}
-                className="bg-white/70 dark:bg-[#0b1426]/40 bg-white/70 dark:bg-[#0b1426]/40 backdrop-blur-xl border border-black/10 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-black/10 dark:border-white/10 p-5 md:p-6 lg:p-6 rounded-3xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] group cursor-default"
+                className="bg-white/70 dark:bg-[#0b1426]/60 backdrop-blur-2xl border border-black/10 dark:border-white/10 p-6 md:p-8 rounded-3xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] group cursor-default"
               >
                 {/* Glowing edge indicator */}
                 <div 
-                  className="absolute left-0 top-0 bottom-0 w-2 shadow-[0_0_20px_currentColor] transition-all duration-500 group-hover:w-3"
-                  style={{ backgroundColor: `var(--color-${details.color})` }}
+                  className="absolute left-0 top-0 bottom-0 w-2 transition-all duration-500 group-hover:w-3"
+                  style={{ backgroundColor: `var(--color-${details.color})`, boxShadow: `0 0 20px var(--color-${details.color})` }}
                 />
 
                 <div className="space-y-6">
