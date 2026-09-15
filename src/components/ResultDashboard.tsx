@@ -214,7 +214,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                 {details.subtitle}
               </h3>
               <h2 
-                className="text-[52px] md:text-[64px] font-bold tracking-tight leading-[1.05] max-w-[550px] font-[var(--font-display)]"
+                className="text-[52px] md:text-[64px] font-semibold leading-[1.05] max-w-[550px] font-[var(--font-display)]"
                 style={{ color: `var(--color-${details.color})`, textShadow: `0 0 40px var(--color-${details.color})` }}
               >
                 {details.title}

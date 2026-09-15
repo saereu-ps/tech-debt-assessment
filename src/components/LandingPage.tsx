@@ -71,10 +71,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
         {/* Title */}
         <div className="text-center mb-16 flex flex-col items-center w-full relative z-10">
-          <h1 className="text-[64px] md:text-[96px] font-black tracking-[-0.03em] text-white leading-[1.05] drop-shadow-lg">
+          <h1 className="text-[64px] md:text-[96px] font-extrabold text-white leading-[1.05] drop-shadow-lg">
             What's your true
           </h1>
-          <h1 className="text-[72px] md:text-[104px] font-black tracking-[-0.03em] text-[var(--color-neon-cyan)] animate-shine leading-[1.05] drop-shadow-[0_0_15px_rgba(0,229,255,0.4)]">
+          <h1 className="text-[72px] md:text-[104px] font-extrabold text-[var(--color-neon-cyan)] animate-shine leading-[1.05] drop-shadow-[0_0_15px_rgba(0,229,255,0.4)]">
             Tech Debt?
           </h1>
           <p className="text-[#8b93a5] text-[15px] md:text-[16px] font-medium max-w-[650px] mx-auto mt-6 leading-relaxed tracking-wide backdrop-blur-sm bg-black/10 rounded-lg p-2">
