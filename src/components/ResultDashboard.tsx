@@ -67,7 +67,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center py-10 px-5 md:px-12 relative overflow-x-hidden overflow-y-auto bg-transparent">
+    <div className="w-full min-h-[100dvh] flex flex-col items-center py-10 px-5 md:px-12 relative overflow-x-hidden overflow-y-auto bg-transparent">
       
       {/* Sci-Fi Background Glows */}
       <motion.div 

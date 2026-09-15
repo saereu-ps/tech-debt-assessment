@@ -68,7 +68,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
   });
 
   return (
-    <div className="w-full min-h-screen flex items-start lg:items-center justify-center relative overflow-x-hidden overflow-y-auto py-4 md:py-6 lg:py-0 bg-transparent">
+    <div className="w-full min-h-[100dvh] flex items-start lg:items-center justify-center relative overflow-x-hidden overflow-y-auto py-4 md:py-6 lg:py-0 bg-transparent">
       
       {/* Sci-Fi Background Glows - Using radial-gradient instead of heavy CSS blur for massive performance boost */}
       <div className="absolute top-[10%] left-[-10%] w-[800px] h-[800px] rounded-full pointer-events-none" 
@@ -79,7 +79,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
       {/* Tech Grid overlay - Removed expensive mix-blend-screen */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-40 pointer-events-none" />
 
-      <div className="max-w-[1400px] w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[450px_1fr] xl:grid-cols-[500px_1fr] gap-4 lg:gap-12 xl:gap-24 relative z-10 px-4 sm:px-8 py-4 md:py-6 lg:py-8 xl:py-12 items-center origin-center">
+      <div className="max-w-[1400px] w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[450px_1fr] xl:grid-cols-[500px_1fr] gap-4 lg:gap-10 xl:gap-24 relative z-10 px-4 sm:px-8 py-2 md:py-4 xl:py-12 items-center origin-center">
         
         {/* Left Column: Enlarged Sci-Fi Circular Stepper */}
         <div className="relative flex justify-center items-center w-full h-[320px] sm:h-[380px] md:h-[300px] lg:h-[350px] xl:h-[500px] flex-shrink-0 mx-auto">
@@ -286,7 +286,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                       
                       {/* Content */}
                       <div className="flex flex-col gap-1.5 pt-0.5 relative z-10">
-                        <p className="text-[16px] leading-relaxed tracking-wide">
+                        <p className="text-[13px] md:text-[14px] xl:text-[16px] leading-relaxed tracking-wide">
                           <span className={`font-semibold transition-colors duration-300 ${isSelected ? 'text-zinc-900 dark:text-white' : 'text-zinc-700 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white'}`}>
                             {choice.label}
                           </span> 
@@ -294,7 +294,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                             {choice.description}
                           </span>
                         </p>
-                        <p className={`text-[14px] font-medium tracking-wide transition-colors duration-300 ${isSelected ? 'text-[#00b8d4] dark:text-[#00e5ff]/90' : 'text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-500 dark:group-hover:text-zinc-500'}`}>
+                        <p className={`text-[11px] md:text-[12px] xl:text-[14px] font-medium tracking-wide transition-colors duration-300 ${isSelected ? 'text-[#00b8d4] dark:text-[#00e5ff]/90' : 'text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-500 dark:group-hover:text-zinc-500'}`}>
                           {choice.thaiDescription}
                         </p>
                       </div>
@@ -312,7 +312,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
             </motion.div>
 
           {/* Navigation - Sleek Modern Buttons */}
-          <div className="flex items-center justify-between mt-12 pt-6">
+          <div className="flex items-center justify-between mt-4 md:mt-6 xl:mt-12 pt-4 xl:pt-6">
             <button 
               onClick={handlePrev}
               className={`flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentIndex === 0 ? 'opacity-0 pointer-events-none' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white'}`}
