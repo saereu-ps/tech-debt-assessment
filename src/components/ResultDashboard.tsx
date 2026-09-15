@@ -10,9 +10,10 @@ interface ResultDashboardProps {
   userInfo: UserInfo;
   scores: number[];
   onRestart: () => void;
+  isSharedReport?: boolean;
 }
 
-const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onRestart }) => {
+const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onRestart, isSharedReport = false }) => {
   const totalScore = scores.filter(s => s > 0).reduce((a, b) => a + b, 0);
   const tier = getResultTier(totalScore);
   const details = resultDetails[tier];
@@ -291,16 +292,18 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             </div>
           </div>
 
-          {/* New Session Button */}
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={onRestart}
-            className="flex items-center gap-3 text-zinc-400 hover:text-white transition-all duration-300 bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 hover:border-white/10 px-8 py-4 rounded-2xl group shadow-lg"
-          >
-            <RefreshCw size={16} strokeWidth={2.5} className="group-hover:rotate-180 transition-transform duration-700" />
-            <span className="text-[11px] font-bold tracking-[0.2em] uppercase">New Session</span>
-          </motion.button>
+          {/* New Session Button (Hidden for Shared Reports) */}
+          {!isSharedReport && (
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={onRestart}
+              className="flex items-center gap-3 text-zinc-400 hover:text-white transition-all duration-300 bg-white/[0.03] hover:bg-white/[0.08] border border-white/5 hover:border-white/10 px-8 py-4 rounded-2xl group shadow-lg"
+            >
+              <RefreshCw size={16} strokeWidth={2.5} className="group-hover:rotate-180 transition-transform duration-700" />
+              <span className="text-[11px] font-bold tracking-[0.2em] uppercase">New Session</span>
+            </motion.button>
+          )}
         </motion.footer>
 
       </motion.div>

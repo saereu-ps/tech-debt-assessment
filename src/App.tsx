@@ -15,6 +15,7 @@ function App() {
   const [view, setView] = useState<'landing' | 'assessment' | 'result'>('landing');
   const [scores, setScores] = useState<number[]>([]);
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+  const [isSharedReport, setIsSharedReport] = useState(false);
 
   useEffect(() => {
     // Check URL for encoded data
@@ -27,6 +28,7 @@ function App() {
         if (decoded.s && decoded.n !== undefined && decoded.c !== undefined) {
           setScores(decoded.s);
           setUserInfo({ name: decoded.n, company: decoded.c });
+          setIsSharedReport(true);
           setView('result');
         }
       } catch (e) {
@@ -59,6 +61,7 @@ function App() {
   const handleRestart = () => {
     setScores([]);
     setUserInfo(null);
+    setIsSharedReport(false);
     setView('landing');
     // Clear URL
     window.history.pushState({}, '', window.location.pathname);
@@ -81,6 +84,7 @@ function App() {
             scores={scores} 
             userInfo={userInfo!} 
             onRestart={handleRestart} 
+            isSharedReport={isSharedReport}
           />
         )}
       </AnimatePresence>
