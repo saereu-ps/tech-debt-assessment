@@ -3,7 +3,7 @@
 
 @theme {
   --font-sans: 'Outfit', 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: 'Space Grotesk', 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Outfit', 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 @layer base {
