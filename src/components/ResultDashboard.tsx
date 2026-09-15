@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { RefreshCw, TrendingUp, AlertTriangle } from 'lucide-react';
+import { RefreshCw, TrendingUp, AlertTriangle, Phone, Mail, ArrowRight } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import type { UserInfo } from '../App';
 import { getResultTier, resultDetails, assessmentData } from '../data/assessmentData';
@@ -278,8 +278,54 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           
         </main>
 
+        {/* Call To Action - Contact MFEC */}
+        <motion.div 
+          variants={itemVariants} 
+          className="mt-16 w-full max-w-[1500px] bg-gradient-to-r from-[#0055ff]/10 to-[#00e5ff]/5 border border-[#00e5ff]/20 p-8 md:p-10 rounded-3xl shadow-[0_0_40px_rgba(0,229,255,0.05)] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-10"
+        >
+          {/* Background Glow */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00e5ff]/10 blur-[100px] rounded-full pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
+          
+          <div className="flex flex-col gap-3 relative z-10 max-w-[600px]">
+            <h3 className="text-[28px] md:text-[36px] font-bold text-white leading-tight font-[var(--font-display)]">
+              Ready to eliminate your <span className="text-[#00e5ff]">Tech Debt?</span>
+            </h3>
+            <p className="text-[#8b93a5] text-[15px] font-medium leading-relaxed">
+              Modernize your infrastructure and secure your digital future. Consult with MFEC experts today to turn your tech debt into a competitive tech edge.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-4 relative z-10 shrink-0 w-full md:w-auto">
+            <a 
+              href="tel:028217979" 
+              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#0b1426] hover:bg-[#111e38] border border-white/10 hover:border-[#00e5ff]/40 px-6 py-4 rounded-2xl transition-all duration-300 group"
+            >
+              <div className="w-10 h-10 rounded-full bg-[#00e5ff]/10 flex items-center justify-center group-hover:bg-[#00e5ff]/20 transition-colors">
+                <Phone size={18} className="text-[#00e5ff]" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] text-zinc-400 font-bold tracking-widest uppercase">Helpdesk 24x7</span>
+                <span className="text-[15px] text-white font-bold tracking-wide">02-821-7979</span>
+              </div>
+            </a>
+
+            <a 
+              href="mailto:helpdesk@mfec.co.th" 
+              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#0b1426] hover:bg-[#111e38] border border-white/10 hover:border-[#00e5ff]/40 px-6 py-4 rounded-2xl transition-all duration-300 group"
+            >
+              <div className="w-10 h-10 rounded-full bg-[#00e5ff]/10 flex items-center justify-center group-hover:bg-[#00e5ff]/20 transition-colors">
+                <Mail size={18} className="text-[#00e5ff]" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] text-zinc-400 font-bold tracking-widest uppercase">Email Support</span>
+                <span className="text-[15px] text-white font-bold tracking-wide">helpdesk@mfec.co.th</span>
+              </div>
+            </a>
+          </div>
+        </motion.div>
+
         {/* Footer Bar - Minimal QR & Action */}
-        <motion.footer variants={itemVariants} className="mt-auto pt-16 flex flex-col md:flex-row justify-between items-center md:items-end w-full gap-10">
+        <motion.footer variants={itemVariants} className="mt-auto pt-10 pb-8 flex flex-col md:flex-row justify-between items-center md:items-end w-full gap-10">
           
           {/* Minimal QR Scanner */}
           <div className="flex items-center gap-6">
