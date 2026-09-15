@@ -74,15 +74,19 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <div className="absolute top-0 left-[-20%] w-[500px] md:w-[800px] xl:w-[1000px] h-[500px] md:h-[800px] xl:h-[1000px] blur-[120px] md:blur-[150px] xl:blur-[200px] rounded-full pointer-events-none transform-gpu" 
-             style={{ backgroundColor: `${details.color === "neon-cyan" ? "#00e5ff" : details.color === "neon-yellow" ? "#ffcc00" : "#ff3366"}20` }} />
-        <div className="absolute bottom-[-10%] right-[-20%] w-[500px] md:w-[800px] xl:w-[1000px] h-[500px] md:h-[800px] xl:h-[1000px] blur-[150px] md:blur-[200px] xl:blur-[250px] rounded-full pointer-events-none transform-gpu"
-             style={{ backgroundColor: `${details.color === "neon-cyan" ? "#00e5ff" : details.color === "neon-yellow" ? "#ffcc00" : "#ff3366"}15` }} />
-      </motion.div>
+        className="absolute top-0 left-[-10%] w-[1000px] h-[1000px] blur-[200px] rounded-full pointer-events-none transform-gpu" 
+        style={{ backgroundColor: `var(--color-${details.color})`, opacity: 0.05 }}
+      />
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: theme === 'dark' ? 0.15 : 0.03, scale: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+        className="absolute bottom-[-20%] right-[-10%] w-[1000px] h-[1000px] blur-[250px] rounded-full pointer-events-none transform-gpu"
+        style={{ backgroundColor: `var(--color-${details.color})` }}
+      />
       
       {/* Tech Grid overlay */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-40 md:opacity-70 pointer-events-none mix-blend-screen" />
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-70 pointer-events-none mix-blend-screen" />
 
       <motion.div 
         variants={containerVariants}
@@ -96,7 +100,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           <div className="flex flex-col gap-6">
             <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-[140px] object-contain filter brightness-0 invert opacity-95 drop-shadow-lg self-start" />
             
-            <div className="bg-white/60 dark:bg-[#0b1426]/60 border border-black/5 dark:border-[#00e5ff]/20 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] px-6 py-4 rounded-2xl flex items-center gap-5">
+            <div className="bg-white/60 dark:bg-[#0b1426]/60 border border-black/5 dark:border-[#00e5ff]/20 bg-white/60 dark:bg-[#0b1426]/60 backdrop-blur-xl border border-black/5 dark:border-[#00e5ff]/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] px-6 py-4 rounded-2xl flex items-center gap-5 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
               <div className="w-12 h-12 rounded-full flex items-center justify-center text-zinc-900 dark:text-white font-black text-xl shadow-[0_0_15px_rgba(0,229,255,0.4)] relative" style={{ background: `linear-gradient(135deg, var(--color-${details.color}), #0055ff)` }}>
                 {userInfo.name.charAt(0).toUpperCase()}
                 <div className="absolute inset-0 rounded-full border-2 border-white/20"></div>
@@ -126,16 +130,16 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           <div className="flex flex-col w-full h-full">
             <motion.div variants={itemVariants} className="flex flex-col">
               <h4 className="text-[11px] text-zinc-900 dark:text-white/50 font-bold tracking-[0.2em] uppercase mb-2">Diagnostic Score</h4>
-              <div className="flex items-baseline mt-4 md:mt-6">
+              <div className="flex items-baseline leading-[0.8] tracking-tighter relative">
                 <motion.span 
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
-                  className="text-[80px] sm:text-[96px] md:text-[120px] lg:text-[140px] xl:text-[160px] font-black text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/30 leading-none tracking-tighter filter drop-shadow-[0_0_30px_rgba(255,255,255,0.4)] font-[var(--font-display)]"
+                  className="text-[48px] sm:text-[56px] md:text-[72px] lg:text-[80px] xl:text-[140px] font-bold text-zinc-900 dark:text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] font-[var(--font-display)]"
                 >
                   {totalScore}
                 </motion.span>
-                <span className="text-[32px] md:text-[48px] lg:text-[64px] text-transparent bg-clip-text bg-gradient-to-br from-white/70 to-white/20 ml-1 md:ml-2 tracking-normal font-bold drop-shadow-lg font-[var(--font-display)]">/25</span>
+                <span className="text-[32px] md:text-[36px] font-bold text-zinc-900 dark:text-white/30 ml-2 -mb-2 font-[var(--font-display)]">/25</span>
               </div>
             </motion.div>
 
@@ -155,7 +159,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             </motion.div>
 
             {/* 5-Dimension Tech Breakdown */}
-            <motion.div variants={itemVariants} className="w-full max-w-[650px] bg-white/50 dark:bg-[#090e15]/50 backdrop-blur-md border border-black/5 dark:border-white/5 p-4 md:p-5 lg:p-6 rounded-2xl mt-4 lg:mt-auto shadow-2xl">
+            <motion.div variants={itemVariants} className="w-full max-w-[650px] bg-white/50 dark:bg-[#090e15]/50 bg-white/50 dark:bg-[#090e15]/50 backdrop-blur-md border border-black/5 dark:border-white/5 shadow-2xl border border-black/5 dark:border-white/5 p-4 md:p-5 lg:p-6 rounded-2xl mt-4 lg:mt-auto shadow-2xl">
               <h4 className="text-[11px] text-zinc-900 dark:text-white font-bold tracking-[0.2em] uppercase mb-8 flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: `var(--color-${details.color})`, boxShadow: `0 0 10px var(--color-${details.color})` }} />
                 Dimension Breakdown
@@ -168,7 +172,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   
                   return (
                     <div key={metric.id} className="flex items-center gap-5">
-                      <div className="w-[120px] text-[11px] font-bold tracking-[0.15em] text-zinc-400 dark:text-zinc-500 uppercase">
+                      <div className="w-[120px] text-[11px] font-bold tracking-[0.15em] text-zinc-400 dark:text-zinc-500 dark:text-zinc-400 uppercase">
                         {metric.shortTitle}
                       </div>
                       <div className="flex-1 flex gap-2">
@@ -212,7 +216,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                 {details.subtitle}
               </h3>
               <h2 
-                className="text-[36px] sm:text-[42px] md:text-[56px] lg:text-[64px] xl:text-[72px] font-black text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/50 leading-[1.1] mb-2 tracking-tight drop-shadow-md font-[var(--font-display)]"
+                className="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] xl:text-[64px] font-semibold leading-[1.05] max-w-[550px] font-[var(--font-display)]"
                 style={{ color: `var(--color-${details.color})`, textShadow: theme === 'dark' ? `0 0 40px var(--color-${details.color})` : 'none' }}
               >
                 {details.title}
@@ -249,7 +253,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             <motion.div variants={itemVariants} className="mt-12 w-full max-w-[700px]">
               <motion.div 
                 whileHover={{ scale: 1.02, y: -5 }}
-                className="bg-white/70 dark:bg-[#0b1426]/40 backdrop-blur-xl border border-black/10 dark:border-white/10 p-5 md:p-6 lg:p-6 rounded-3xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] group cursor-default"
+                className="bg-white/70 dark:bg-[#0b1426]/40 bg-white/70 dark:bg-[#0b1426]/40 backdrop-blur-xl border border-black/10 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-black/10 dark:border-white/10 p-5 md:p-6 lg:p-6 rounded-3xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] group cursor-default"
               >
                 {/* Glowing edge indicator */}
                 <div 
@@ -265,7 +269,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                     {details.action.split('\n\n')[0]}
                   </p>
                   {details.action.split('\n\n')[1] && (
-                    <p className="text-[16px] md:text-[18px] font-medium leading-relaxed tracking-wide text-zinc-400 dark:text-zinc-500">
+                    <p className="text-[16px] md:text-[18px] font-medium leading-relaxed tracking-wide text-zinc-400 dark:text-zinc-500 dark:text-zinc-400">
                       {details.action.split('\n\n')[1]}
                     </p>
                   )}
@@ -282,7 +286,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           className="mt-4 md:mt-6 lg:mt-6 w-full max-w-[1500px] bg-gradient-to-r from-[#0055ff]/10 to-[#00e5ff]/5 border border-[#00e5ff]/20 p-4 md:p-5 lg:py-6 lg:px-8 rounded-[2.5rem] shadow-[0_0_40px_rgba(0,229,255,0.05)] relative overflow-hidden flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 lg:gap-20"
         >
           {/* Background Glow */}
-          <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-[#00e5ff]/15 blur-[60px] md:blur-[100px] rounded-full pointer-events-none transform-gpu translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00e5ff]/15 blur-[100px] rounded-full pointer-events-none transform-gpu translate-x-1/2 -translate-y-1/2"></div>
           
           <div className="flex flex-col gap-4 relative z-10 max-w-[600px] text-center lg:text-left">
             <h3 className="text-[24px] md:text-[28px] lg:text-[32px] font-bold text-zinc-900 dark:text-white leading-[1.1] font-[var(--font-display)]">
