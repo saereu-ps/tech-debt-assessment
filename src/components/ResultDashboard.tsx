@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '../hooks/useTheme';
 import { RefreshCw, TrendingUp, AlertTriangle, Phone, Mail, ArrowRight, User } from 'lucide-react';
@@ -19,6 +19,32 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
   const totalScore = scores.filter(s => s > 0).reduce((a, b) => a + b, 0);
   const tier = getResultTier(totalScore);
   const details = resultDetails[tier];
+
+  // Animated Score State
+  const [displayTotalScore, setDisplayTotalScore] = useState(0);
+
+  useEffect(() => {
+    let startTimestamp: number;
+    const duration = 2000; // 2 seconds counting animation
+
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      
+      // easeOutExpo easing for a rapid start and slow finish
+      const easeOutExpo = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      
+      setDisplayTotalScore(Math.floor(easeOutExpo * totalScore));
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        setDisplayTotalScore(totalScore);
+      }
+    };
+    
+    window.requestAnimationFrame(step);
+  }, [totalScore]);
 
   // Encode User Data and Scores into Base64 for the URL
   // Wrap in encodeURIComponent to prevent '+' from becoming spaces in URLs
@@ -157,7 +183,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   className="text-[120px] md:text-[160px] lg:text-[200px] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-zinc-800 via-zinc-900 to-zinc-600 dark:from-white dark:via-zinc-200 dark:to-zinc-500 font-[var(--font-display)]"
                   style={{ filter: theme === 'dark' ? `drop-shadow(0 20px 40px rgba(0,0,0,0.5))` : 'none' }}
                 >
-                  {totalScore}
+                  {displayTotalScore}
                 </motion.span>
                 <span className="text-[32px] md:text-[48px] lg:text-[64px] font-bold text-transparent bg-clip-text bg-gradient-to-br from-zinc-500 to-zinc-400 dark:from-white/60 dark:to-white/20 ml-1 md:ml-2 font-[var(--font-display)] pb-4 md:pb-8">/25</span>
               </div>

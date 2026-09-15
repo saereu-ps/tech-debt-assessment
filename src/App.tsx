@@ -3,10 +3,11 @@ import { AnimatePresence } from 'framer-motion';
 import LandingPage from './components/LandingPage';
 import AssessmentStepper from './components/AssessmentStepper';
 import ResultDashboard from './components/ResultDashboard';
+import AnalyzingScreen from './components/AnalyzingScreen';
 import { ThemeToggle } from './components/ThemeToggle';
 import { getResultTier, type AssessmentCategory } from './data/assessmentData';
 
-export type ViewState = 'landing' | 'assessment' | 'result';
+export type ViewState = 'landing' | 'assessment' | 'analyzing' | 'result';
 export interface UserInfo {
   name: string;
   email: string;
@@ -15,7 +16,7 @@ export interface UserInfo {
 }
 
 function App() {
-  const [view, setView] = useState<'landing' | 'assessment' | 'result'>('landing');
+  const [view, setView] = useState<'landing' | 'assessment' | 'analyzing' | 'result'>('landing');
   const [scores, setScores] = useState<number[]>([]);
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [isSharedReport, setIsSharedReport] = useState(false);
@@ -70,7 +71,10 @@ function App() {
       });
     }
 
-    setView('result');
+    setView('analyzing');
+    setTimeout(() => {
+      setView('result');
+    }, 2800);
   };
 
   const handleRestart = () => {
@@ -104,6 +108,7 @@ function App() {
       <AnimatePresence mode="wait">
         {view === 'landing' && <LandingPage key="landing" onStart={handleStart} />}
         {view === 'assessment' && <AssessmentStepper key="assessment" onComplete={handleAssessmentComplete} />}
+        {view === 'analyzing' && <AnalyzingScreen key="analyzing" />}
         {view === 'result' && (
           <ResultDashboard 
             key="result"
