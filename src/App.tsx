@@ -9,6 +9,7 @@ import { getResultTier, type AssessmentCategory } from './data/assessmentData';
 export type ViewState = 'landing' | 'assessment' | 'result';
 export interface UserInfo {
   name: string;
+  email: string;
   company: string;
   role: string;
 }
@@ -27,9 +28,9 @@ function App() {
     if (encodedData) {
       try {
         const decoded = JSON.parse(decodeURIComponent(atob(encodedData)));
-        if (decoded.s && decoded.n !== undefined && decoded.c !== undefined && decoded.r !== undefined) {
+        if (decoded.s && decoded.n !== undefined && decoded.e !== undefined && decoded.c !== undefined && decoded.r !== undefined) {
           setScores(decoded.s);
-          setUserInfo({ name: decoded.n, company: decoded.c, role: decoded.r });
+          setUserInfo({ name: decoded.n, email: decoded.e, company: decoded.c, role: decoded.r });
           setIsSharedReport(true);
           setView('result');
         }

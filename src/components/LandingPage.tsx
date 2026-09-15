@@ -11,6 +11,7 @@ interface LandingPageProps {
 
 const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [role, setRole] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -40,7 +41,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (name.trim() && company.trim() && role.trim()) {
-      onStart({ name, company, role });
+      onStart({ name, email, company, role });
     }
   };
 
@@ -86,7 +87,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         <form 
           onSubmit={handleSubmit}
           className={`
-            w-full max-w-[950px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-20 gap-2 md:gap-0
+            w-full max-w-[1100px] xl:max-w-[1200px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-20 gap-2 md:gap-0
             transition-all duration-300 ease-out border backdrop-blur-md
             border-zinc-200 dark:border-[#00e5ff]/80 shadow-xl dark:shadow-[0_0_20px_rgba(0,229,255,0.2)] bg-white/90 dark:bg-[#050810]/90
             hover:border-zinc-300 dark:hover:border-[#00e5ff] hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:bg-white dark:hover:bg-[#03060c]
@@ -107,6 +108,23 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             />
           </div>
           
+          {/* Vertical Divider (Hidden on mobile) */}
+          <div className="hidden md:block w-px h-6 md:h-8 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
+
+
+          {/* Email Input Area */}
+          <div className="flex-1 flex items-center px-4 md:px-5 relative group h-[52px] md:h-auto">
+            <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">EMAIL</span>
+            <input 
+              type="email" 
+              placeholder="Your email..." 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full bg-transparent border-none outline-none text-[14px] md:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
+              required
+            />
+          </div>
+
           {/* Vertical Divider (Hidden on mobile) */}
           <div className="hidden md:block w-px h-6 md:h-8 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
 

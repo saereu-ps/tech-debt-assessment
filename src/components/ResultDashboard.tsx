@@ -299,28 +299,15 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
 
           <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 relative z-10 shrink-0 w-full lg:w-auto">
             <a 
-              href="tel:028217979" 
-              className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white dark:bg-[#0b1426] hover:bg-zinc-50 dark:hover:bg-[#111e38] border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-[#00e5ff]/40 px-6 py-4 rounded-2xl transition-all duration-300 group"
-            >
-              <div className="w-10 h-10 rounded-full bg-[#00e5ff]/10 flex items-center justify-center group-hover:bg-[#00e5ff]/20 transition-colors">
-                <Phone size={18} className="text-[#00e5ff]" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[10px] text-zinc-400 dark:text-zinc-500 dark:text-zinc-400 font-bold tracking-widest uppercase">Helpdesk 24x7</span>
-                <span className="text-[15px] text-zinc-900 dark:text-white font-bold tracking-wide">02-821-7979</span>
-              </div>
-            </a>
-
-            <a 
-              href="mailto:helpdesk@mfec.co.th" 
+              href="mailto:datapresale@mfec.co.th" 
               className="w-full sm:w-auto flex items-center justify-center gap-3 bg-white dark:bg-[#0b1426] hover:bg-zinc-50 dark:hover:bg-[#111e38] border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-[#00e5ff]/40 px-6 py-4 rounded-2xl transition-all duration-300 group"
             >
               <div className="w-10 h-10 rounded-full bg-[#00e5ff]/10 flex items-center justify-center group-hover:bg-[#00e5ff]/20 transition-colors">
                 <Mail size={18} className="text-[#00e5ff]" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[10px] text-zinc-400 dark:text-zinc-500 dark:text-zinc-400 font-bold tracking-widest uppercase">Email Support</span>
-                <span className="text-[15px] text-zinc-900 dark:text-white font-bold tracking-wide">helpdesk@mfec.co.th</span>
+                <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-bold tracking-widest uppercase">Contact</span>
+                <span className="text-[15px] text-zinc-900 dark:text-white font-bold tracking-wide">datapresale@mfec.co.th</span>
               </div>
             </a>
           </div>
