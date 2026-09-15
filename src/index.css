@@ -2,22 +2,23 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-deep: #050810;
-  --color-bg-light: #061124;
-  
-  --color-neon-blue: #0ea5e9;
-  --color-neon-cyan: #00e5ff;
-  --color-neon-magenta: #a855f7;
-  --color-neon-red: #ef4444;
-  --color-neon-orange: #f97316;
-  --color-neon-yellow: #eab308;
-  --color-neon-green: #22c55e;
-
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 @layer base {
+  :root {
+    --color-bg-deep: #050810;
+    --color-bg-light: #061124;
+    --color-neon-blue: #0ea5e9;
+    --color-neon-cyan: #00e5ff;
+    --color-neon-magenta: #a855f7;
+    --color-neon-red: #ef4444;
+    --color-neon-orange: #f97316;
+    --color-neon-yellow: #eab308;
+    --color-neon-green: #22c55e;
+  }
+
   body {
     background-color: var(--color-bg-deep);
     color: #ffffff;
