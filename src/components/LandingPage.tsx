@@ -90,7 +90,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         >
           {/* Row 1: Name & Email */}
           <div className="
-            w-full max-w-[800px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-20 gap-2 md:gap-0
+            w-full max-w-[800px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-10 gap-2 md:gap-0
             transition-all duration-300 ease-out border backdrop-blur-md
             border-zinc-200 dark:border-[#00e5ff]/80 shadow-xl dark:shadow-[0_0_20px_rgba(0,229,255,0.2)] bg-white/90 dark:bg-[#050810]/90
             hover:border-zinc-300 dark:hover:border-[#00e5ff] hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:bg-white dark:hover:bg-[#03060c]
@@ -129,7 +129,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
           {/* Row 2: Org, Role & Scan */}
           <div className="
-            w-full max-w-[950px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-10 gap-2 md:gap-0
+            w-full max-w-[950px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-20 gap-2 md:gap-0
             transition-all duration-300 ease-out border backdrop-blur-md
             border-zinc-200 dark:border-[#00e5ff]/80 shadow-xl dark:shadow-[0_0_20px_rgba(0,229,255,0.2)] bg-white/90 dark:bg-[#050810]/90
             hover:border-zinc-300 dark:hover:border-[#00e5ff] hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:bg-white dark:hover:bg-[#03060c]
