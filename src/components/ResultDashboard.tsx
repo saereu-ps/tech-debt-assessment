@@ -247,7 +247,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-8 xl:mt-4 md:mt-6 xl:mt-12 w-full max-w-[700px]">
               {/* Key Strength */}
               <div className="bg-gradient-to-br from-[#00e5ff]/10 to-transparent dark:from-[#00e5ff]/[0.05] dark:to-transparent border border-[#00e5ff]/20 dark:border-[#00e5ff]/10 p-5 md:p-6 lg:p-8 rounded-[2rem] flex flex-col gap-3 relative overflow-hidden group hover:border-[#00e5ff]/40 transition-colors">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#00e5ff]/10 blur-[40px] rounded-full -mr-10 -mt-10 pointer-events-none group-hover:bg-[#00e5ff]/20 transition-colors duration-700"></div>
+                <div className="absolute top-0 right-0 w-48 h-48 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[#00e5ff]/20 to-transparent pointer-events-none group-hover:from-[#00e5ff]/30 transition-colors duration-700"></div>
                 <div className="flex items-center gap-3 text-[#00e5ff]">
                   <div className="p-2 bg-[#00e5ff]/10 rounded-full">
                     <TrendingUp size={16} strokeWidth={2.5} />
@@ -266,7 +266,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
               
               {/* Critical Focus */}
               <div className="bg-gradient-to-br from-[#ff4d4d]/10 to-transparent dark:from-[#ff4d4d]/[0.05] dark:to-transparent border border-[#ff4d4d]/20 dark:border-[#ff4d4d]/10 p-5 md:p-6 lg:p-8 rounded-[2rem] flex flex-col gap-3 relative overflow-hidden group hover:border-[#ff4d4d]/40 transition-colors">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#ff4d4d]/10 blur-[40px] rounded-full -mr-10 -mt-10 pointer-events-none group-hover:bg-[#ff4d4d]/20 transition-colors duration-700"></div>
+                <div className="absolute top-0 right-0 w-48 h-48 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[#ff4d4d]/20 to-transparent pointer-events-none group-hover:from-[#ff4d4d]/30 transition-colors duration-700"></div>
                 <div className="flex items-center gap-3 text-[#ff4d4d]">
                   <div className="p-2 bg-[#ff4d4d]/10 rounded-full">
                     <AlertTriangle size={16} strokeWidth={2.5} />
