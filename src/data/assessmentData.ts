@@ -179,7 +179,7 @@ export const getResultTier = (totalScore: number): Tier => {
 
 export const resultDetails = {
   high: {
-    title: "High Tech Debt",
+    title: "Legacy Crisis",
     subtitle: "BANKRUPTCY RISK",
     status: "องค์กรมี \"หนี้ทางเทคโนโลยี\" สะสมจนถึงขั้นวิกฤต ระบบไอทีที่ใช้อยู่กลายเป็นตัวถ่วงมากกว่าตัวช่วย ข้อมูลกระจัดกระจายและระบบล้าสมัยมาก",
     action: "ยังไม่ควรลงทุนทำระบบ AI ขั้นสูงในตอนนี้ ควรเร่งจัดระเบียบข้อมูลใหม่ (Data Modernization) และอัปเกรดระบบหลักให้ทันสมัยก่อนเป็นอันดับแรก",
@@ -193,7 +193,7 @@ export const resultDetails = {
     ]
   },
   moderate: {
-    title: "Moderate Debt",
+    title: "Scale Bottleneck",
     subtitle: "BOTTLENECK WARNING",
     status: "องค์กรของคุณมีพื้นฐานไอทีระดับกลาง แต่เริ่มมีปัญหาคอขวด (Bottleneck) การประมวลผลข้อมูลยังช้า และยังมีบางส่วนที่ต้องทำด้วยมือ (Manual)",
     action: "สามารถเริ่มทดลองใช้ AI ในบางแผนกได้ แต่ต้องควบคู่ไปกับการทำ Data Cleansing และปรับปรุงโครงสร้างพื้นฐานให้รองรับการสเกลในอนาคต",
@@ -207,7 +207,7 @@ export const resultDetails = {
     ]
   },
   ready: {
-    title: "AI Ready",
+    title: "Future Proof",
     subtitle: "INNOVATION LEADER",
     status: "ยินดีด้วย! องค์กรของคุณมีโครงสร้างพื้นฐานด้านข้อมูลที่แข็งแกร่งมาก ข้อมูลสะอาด รวมศูนย์ และระบบพร้อมต่อการขยายตัว (Scalable)",
     action: "คุณพร้อมเต็มที่สำหรับการนำ GenAI ขั้นสูงมาใช้เพื่อสร้างความได้เปรียบทางธุรกิจ (Competitive Advantage) และสามารถสเกลเทคโนโลยีได้อย่างไร้รอยต่อ",
