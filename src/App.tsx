@@ -27,7 +27,14 @@ function App() {
     
     if (encodedData) {
       try {
-        const decoded = JSON.parse(decodeURIComponent(atob(encodedData.replace(/ /g, "+"))));
+        let cleanData = encodedData.replace(/ /g, "+");
+        // Fix for old double-encoded QR codes
+        while (cleanData.includes('%')) {
+          try {
+            cleanData = decodeURIComponent(cleanData);
+          } catch(e) { break; }
+        }
+        const decoded = JSON.parse(decodeURIComponent(atob(cleanData)));
         if (decoded.s && decoded.n !== undefined) {
           setScores(decoded.s);
           setUserInfo({ name: decoded.n, email: decoded.e || "", company: decoded.c || "", role: decoded.r || "" });
