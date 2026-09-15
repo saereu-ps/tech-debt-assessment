@@ -160,7 +160,8 @@ export const resultDetails = {
     status: "องค์กรมี \"หนี้ทางเทคโนโลยี\" สะสมจนถึงขั้นวิกฤต ระบบไอทีที่ใช้อยู่กลายเป็นตัวถ่วงมากกว่าตัวช่วย ข้อมูลกระจัดกระจายและระบบล้าสมัยมาก",
     action: "ยังไม่ควรลงทุนทำระบบ AI ขั้นสูงในตอนนี้ ควรเร่งจัดระเบียบข้อมูลใหม่ (Data Modernization) และอัปเกรดระบบหลักให้ทันสมัยก่อนเป็นอันดับแรก",
     color: "neon-red",
-    glowClass: "glow-red"
+    glowClass: "glow-red",
+    titleGradient: "from-rose-400 via-red-500 to-red-600 dark:from-red-300 dark:via-rose-500 dark:to-red-700"
   },
   moderate: {
     title: "Moderate Tech Debt",
@@ -168,7 +169,8 @@ export const resultDetails = {
     status: "องค์กรมีความพร้อมในระดับกลาง มีการนำดิจิทัลมาใช้บ้างแล้ว แต่ระบบต่างๆ ยังไม่เชื่อมต่อกัน (Data Silos) และโครงสร้างยังไม่ยืดหยุ่นพอที่จะโตแบบก้าวกระโดด",
     action: "ควรเน้นวางรากฐานรวมข้อมูลไว้ที่ศูนย์กลาง (Data Lakehouse) เพื่อให้ระบบเชื่อมโยงถึงกันแบบเรียลไทม์ และสามารถเริ่มทดลองนำ AI มาใช้ในงานสเกลเล็กๆ ได้แล้ว",
     color: "neon-yellow",
-    glowClass: "glow-yellow"
+    glowClass: "glow-yellow",
+    titleGradient: "from-yellow-400 via-amber-500 to-orange-500 dark:from-amber-200 dark:via-yellow-400 dark:to-orange-500"
   },
   ready: {
     title: "AI-Ready Infrastructure",
@@ -176,6 +178,7 @@ export const resultDetails = {
     status: "องค์กรมีรากฐานไอทีที่แข็งแกร่งมาก ระบบมีความยืดหยุ่น ปลอดภัยสูง และข้อมูลทั้งหมดพร้อมนำไปต่อยอดได้ทันที",
     action: "พร้อมลุยเต็มที่สำหรับการทำ Enterprise AI Transformation องค์กรสามารถลงทุนพัฒนาระบบ AI เพื่อสร้างความได้เปรียบทางธุรกิจในระยะยาวได้เลย",
     color: "neon-cyan",
-    glowClass: "glow-cyan"
+    glowClass: "glow-cyan",
+    titleGradient: "from-cyan-300 via-teal-400 to-blue-500 dark:from-cyan-200 dark:via-cyan-400 dark:to-blue-600"
   }
 };

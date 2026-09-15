@@ -69,21 +69,30 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
   return (
     <div className="w-full min-h-[100dvh] flex flex-col items-center py-4 lg:py-4 px-4 md:px-8 lg:px-12 relative bg-transparent">
       
-      {/* Sci-Fi Background Glows */}
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: theme === 'dark' ? 0.06 : 0.02, scale: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="absolute top-0 left-[-10%] w-[1000px] h-[1000px] blur-[200px] rounded-full pointer-events-none transform-gpu" 
-        style={{ backgroundColor: `var(--color-${details.color})` }}
-      />
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: theme === 'dark' ? 0.15 : 0.03, scale: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-        className="absolute bottom-[-20%] right-[-10%] w-[1000px] h-[1000px] blur-[250px] rounded-full pointer-events-none transform-gpu"
-        style={{ backgroundColor: `var(--color-${details.color})` }}
-      />
+      {/* Premium Aurora Background Mesh */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: theme === 'dark' ? 0.08 : 0.03, scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="absolute top-[-10%] left-[-10%] w-[1200px] h-[1200px] blur-[150px] rounded-full transform-gpu" 
+          style={{ backgroundColor: `var(--color-${details.color})` }}
+        />
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: theme === 'dark' ? 0.05 : 0.02, scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+          className="absolute bottom-[-10%] right-[-10%] w-[1000px] h-[1000px] blur-[150px] rounded-full transform-gpu"
+          style={{ backgroundColor: `var(--color-${details.color})` }}
+        />
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: theme === 'dark' ? 0.04 : 0.01, scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut", delay: 0.4 }}
+          className="absolute top-[30%] left-[30%] w-[800px] h-[800px] blur-[150px] rounded-full transform-gpu mix-blend-screen"
+          style={{ backgroundColor: `var(--color-${details.color})` }}
+        />
+      </div>
       
       {/* Tech Grid overlay */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-70 pointer-events-none mix-blend-screen" />
@@ -145,8 +154,8 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
-                  className="text-[120px] md:text-[160px] lg:text-[200px] font-black leading-none tracking-tighter text-zinc-900 dark:text-white font-[var(--font-display)]"
-                  style={{ textShadow: theme === 'dark' ? `0 0 60px var(--color-${details.color})` : 'none' }}
+                  className="text-[120px] md:text-[160px] lg:text-[200px] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-zinc-800 via-zinc-900 to-zinc-600 dark:from-white dark:via-zinc-200 dark:to-zinc-500 font-[var(--font-display)]"
+                  style={{ filter: theme === 'dark' ? `drop-shadow(0 20px 40px rgba(0,0,0,0.5))` : 'none' }}
                 >
                   {totalScore}
                 </motion.span>
@@ -227,8 +236,8 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                 {details.subtitle}
               </h3>
               <h2 
-                className="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] xl:text-[64px] font-black tracking-tight leading-[1.05] max-w-[550px] font-[var(--font-display)] text-zinc-900 dark:text-white"
-                style={{ textShadow: theme === 'dark' ? `0 0 20px var(--color-${details.color}), 0 0 40px var(--color-${details.color}), 0 0 80px var(--color-${details.color})` : 'none' }}
+                className={`text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] xl:text-[64px] font-black tracking-tight leading-[1.05] max-w-[550px] font-[var(--font-display)] text-transparent bg-clip-text bg-gradient-to-br ${details.titleGradient || 'from-zinc-400 to-zinc-600 dark:from-white dark:to-zinc-400'}`}
+                style={{ filter: theme === 'dark' ? `drop-shadow(0 4px 20px var(--color-${details.color}))` : 'none' }}
               >
                 {details.title}
               </h2>
