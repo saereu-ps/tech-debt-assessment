@@ -74,14 +74,8 @@ function App() {
 
   // Backend integration (Google Sheets Webhook)
   const saveAssessmentData = (data: any) => {
-    // ⚠️ TODO: Paste your Google Apps Script Web App URL here
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby...YOUR_URL_HERE.../exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzUzve9mB2E5rr44_kdRMOWmGFGrg-lN6nL4CQ1Aza8q1hrd6Q8xPj4QvsXjpM-9Hjh/exec';
     
-    if (SCRIPT_URL.includes('YOUR_URL_HERE')) {
-      console.log("Mock Backend Saving (Google Sheets URL not configured yet)...", data);
-      return;
-    }
-
     fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors', // Important for avoiding CORS preflight on simple Google Apps Script setups
