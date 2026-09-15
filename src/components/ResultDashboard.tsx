@@ -338,9 +338,10 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
               </motion.div>
             </motion.div>
           </div>
+        </main>
           
-          {/* Strategic Action Plan & Solution Recommendation */}
-          <motion.div variants={itemVariants} className="mt-8 md:mt-12 w-full max-w-[1500px]">
+        {/* Strategic Action Plan & Solution Recommendation */}
+        <motion.div variants={itemVariants} className="mt-8 md:mt-12 w-full max-w-[1500px] z-10 relative px-4 md:px-0">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
               
               {/* 3-Step Roadmap (Option 1) */}
@@ -384,8 +385,6 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
 
             </div>
           </motion.div>
-          
-        </main>
 
         {/* Call To Action - Contact MFEC */}
         <motion.div 
