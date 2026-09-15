@@ -145,11 +145,11 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
-                  className="text-[80px] sm:text-[96px] md:text-[120px] lg:text-[140px] xl:text-[160px] font-black text-transparent bg-clip-text bg-gradient-to-br from-zinc-800 via-zinc-900 to-zinc-600 dark:from-white dark:via-white dark:to-white/50 drop-shadow-xl font-[var(--font-display)] leading-none tracking-tighter"
+                  className="text-[80px] sm:text-[96px] md:text-[120px] lg:text-[140px] xl:text-[160px] font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-zinc-800 via-zinc-900 to-zinc-600 dark:from-white dark:via-white dark:to-white/50 font-[var(--font-display)] leading-none tracking-tight"
                 >
                   {totalScore}
                 </motion.span>
-                <span className="text-[32px] md:text-[48px] lg:text-[64px] font-black text-transparent bg-clip-text bg-gradient-to-br from-zinc-500 to-zinc-300 dark:from-white/70 dark:to-white/20 ml-1 md:ml-2 font-[var(--font-display)] drop-shadow-md">/25</span>
+                <span className="text-[32px] md:text-[48px] lg:text-[64px] font-bold text-transparent bg-clip-text bg-gradient-to-br from-zinc-500 to-zinc-400 dark:from-white/60 dark:to-white/20 ml-1 md:ml-2 font-[var(--font-display)] pb-4 md:pb-8">/25</span>
               </div>
             </motion.div>
 
@@ -226,8 +226,8 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                 {details.subtitle}
               </h3>
               <h2 
-                className="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] xl:text-[64px] font-semibold leading-[1.05] max-w-[550px] font-[var(--font-display)]"
-                style={{ color: `var(--color-${details.color})`, textShadow: theme === 'dark' ? `0 0 40px var(--color-${details.color})` : 'none' }}
+                className="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] xl:text-[64px] font-bold tracking-tight leading-[1.05] max-w-[550px] font-[var(--font-display)]"
+                style={{ color: `var(--color-${details.color})`, textShadow: theme === 'dark' ? `0 0 20px var(--color-${details.color})` : 'none' }}
               >
                 {details.title}
               </h2>
