@@ -36,14 +36,30 @@ function App() {
           } catch(e) { break; }
         }
         const decoded = JSON.parse(decodeURIComponent(atob(cleanData)));
-        if (decoded.s && decoded.n !== undefined) {
+        
+        // Strict validation to prevent crashes from tampered or malicious payloads
+        if (
+          decoded && 
+          Array.isArray(decoded.s) && 
+          decoded.s.every((n: any) => typeof n === 'number') &&
+          typeof decoded.n === 'string'
+        ) {
           setScores(decoded.s);
-          setUserInfo({ name: decoded.n, email: decoded.e || "", company: decoded.c || "", role: decoded.r || "" });
+          setUserInfo({ 
+            name: decoded.n, 
+            email: typeof decoded.e === 'string' ? decoded.e : "", 
+            company: typeof decoded.c === 'string' ? decoded.c : "", 
+            role: typeof decoded.r === 'string' ? decoded.r : "" 
+          });
           setIsSharedReport(true);
           setView('result');
+        } else {
+          throw new Error("Invalid payload signature");
         }
       } catch (e) {
-        console.error("Invalid URL payload");
+        console.warn("Security Alert: Malformed URL payload detected and blocked.");
+        // Gracefully ignore the bad payload and clear the URL to prevent retry loops
+        window.history.replaceState({}, '', window.location.pathname);
       }
     }
   }, []);
