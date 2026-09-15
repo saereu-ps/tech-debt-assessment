@@ -135,7 +135,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                 >
                   {totalScore}
                 </motion.span>
-                <span className="text-[32px] md:text-[48px] lg:text-[64px] text-transparent bg-clip-text bg-gradient-to-br from-white/70 to-white/20 ml-1 md:ml-2 tracking-normal font-bold drop-shadow-lg font-[var(--font-display)]">%</span>
+                <span className="text-[32px] md:text-[48px] lg:text-[64px] text-transparent bg-clip-text bg-gradient-to-br from-white/70 to-white/20 ml-1 md:ml-2 tracking-normal font-bold drop-shadow-lg font-[var(--font-display)]">/25</span>
               </div>
             </motion.div>
 
