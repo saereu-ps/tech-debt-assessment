@@ -173,7 +173,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
               } else if (isCompleted) {
                 textColorClass = "text-zinc-300";
                 labelColorClass = "text-zinc-400";
-                dotColor = "bg-[#00e5ff] shadow-[0_0_10px_#00e5ff]";
+                dotColor = "bg-[#00b8d4] dark:bg-[#00e5ff] shadow-none dark:shadow-[0_0_10px_#00e5ff]";
               }
             }
             
@@ -202,7 +202,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                 <AnimatePresence>
                   {isActive && (
                     <motion.div 
-                      className="absolute flex flex-col items-center justify-center bg-white/90 dark:bg-[#0a0a0f]/90 backdrop-blur-xl border border-black/10 dark:border-white/20 rounded-2xl p-5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] min-w-[120px] z-20"
+                      className="absolute flex flex-col items-center justify-center bg-transparent dark:bg-[#0a0a0f]/90 backdrop-blur-none dark:backdrop-blur-xl border-none dark:border-solid border-white/20 rounded-2xl p-5 shadow-none dark:shadow-[0_20px_40px_rgba(0,0,0,0.6)] min-w-[120px] z-20"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.5 }}
@@ -257,7 +257,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                       className={`
                         w-full text-left p-6 rounded-2xl transition-all duration-300 flex items-start gap-5 group border relative overflow-hidden backdrop-blur-md
                         ${isSelected 
-                          ? 'bg-[#00e5ff]/[0.05] border-[#00e5ff]/40 shadow-[0_0_30px_rgba(0,229,255,0.08)]' 
+                          ? 'bg-cyan-50/50 dark:bg-[#00e5ff]/[0.05] border-cyan-400/50 dark:border-[#00e5ff]/40 shadow-sm dark:shadow-[0_0_30px_rgba(0,229,255,0.08)]' 
                           : 'bg-white/40 dark:bg-white/[0.01] border-black/5 dark:border-white/5 hover:bg-white/60 dark:hover:bg-white/[0.03] hover:border-black/10 dark:hover:border-white/10 shadow-sm dark:shadow-none'}
                       `}
                     >
@@ -297,7 +297,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                       {/* Edge Highlight Sweep */}
                       {isSelected && (
                         <div 
-                          className="absolute left-0 top-0 bottom-0 w-1 bg-[#00e5ff] shadow-[0_0_20px_#00e5ff]" 
+                          className="absolute left-0 top-0 bottom-0 w-1 bg-[#00b8d4] dark:bg-[#00e5ff] shadow-none dark:shadow-[0_0_20px_#00e5ff]" 
                         />
                       )}
                     </motion.button>
@@ -335,7 +335,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                 className={`
                   px-8 py-3.5 rounded-full text-[12px] font-bold flex items-center gap-3 tracking-[0.2em] transition-all duration-300 group backdrop-blur-md relative overflow-hidden
                   ${scores[currentIndex] !== 0 
-                    ? 'bg-[#00e5ff]/10 hover:bg-[#00e5ff]/20 border border-[#00e5ff]/50 hover:border-[#00e5ff] text-[#00b8d4] dark:text-white shadow-[0_0_30px_rgba(0,229,255,0.2)]' 
+                    ? 'bg-cyan-50 dark:bg-[#00e5ff]/10 hover:bg-cyan-100 dark:hover:bg-[#00e5ff]/20 border border-cyan-300 dark:border-[#00e5ff]/50 hover:border-cyan-400 dark:hover:border-[#00e5ff] text-[#008b9e] dark:text-white shadow-sm dark:shadow-[0_0_30px_rgba(0,229,255,0.2)]' 
                     : 'bg-black/5 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 text-zinc-400 dark:text-zinc-600 cursor-not-allowed'}
                 `}
               >

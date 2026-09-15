@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '../hooks/useTheme';
 import { RefreshCw, TrendingUp, AlertTriangle, Phone, Mail, ArrowRight } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import type { UserInfo } from '../App';
@@ -77,7 +78,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
       />
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.15, scale: 1 }}
+        animate={{ opacity: theme === 'dark' ? 0.15 : 0.03, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         className="absolute bottom-[-20%] right-[-10%] w-[1000px] h-[1000px] blur-[250px] rounded-full pointer-events-none"
         style={{ backgroundColor: `var(--color-${details.color})` }}
@@ -215,7 +216,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
               </h3>
               <h2 
                 className="text-[52px] md:text-[64px] font-semibold leading-[1.05] max-w-[550px] font-[var(--font-display)]"
-                style={{ color: `var(--color-${details.color})`, textShadow: `0 0 40px var(--color-${details.color})` }}
+                style={{ color: `var(--color-${details.color})`, textShadow: theme === 'dark' ? `0 0 40px var(--color-${details.color})` : 'none' }}
               >
                 {details.title}
               </h2>
@@ -251,7 +252,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             <motion.div variants={itemVariants} className="mt-12 w-full max-w-[700px]">
               <motion.div 
                 whileHover={{ scale: 1.02, y: -5 }}
-                className="bg-white/70 dark:bg-[#0b1426]/40 backdrop-blur-xl border border-black/10 dark:border-white/10 p-12 md:p-14 rounded-3xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3)] group cursor-default"
+                className="bg-white/70 dark:bg-[#0b1426]/40 backdrop-blur-xl border border-black/10 dark:border-white/10 p-12 md:p-14 rounded-3xl relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] group cursor-default"
               >
                 {/* Glowing edge indicator */}
                 <div 

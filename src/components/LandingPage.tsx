@@ -54,7 +54,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
       {/* Horizontal Flare shooting from the pill - ALWAYS VISIBLE */}
       <div className="absolute z-0 pointer-events-none flex items-center justify-center top-[calc(50%+140px)] w-full max-w-[1200px]">
-        <div className="w-[800px] h-[120px] bg-gradient-to-r from-transparent via-[#00e5ff]/30 to-transparent blur-[40px] transform translate-x-48"></div>
+        <div className="w-[800px] h-[120px] bg-gradient-to-r from-transparent via-[#00e5ff]/5 dark:via-[#00e5ff]/30 to-transparent blur-[40px] transform translate-x-48"></div>
       </div>
 
       <motion.div 
@@ -66,7 +66,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         {/* Logo and faint glow underneath */}
         <div className="mb-10 flex flex-col items-center relative">
           <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 object-contain dark:filter dark:brightness-0 dark:invert opacity-100 drop-shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
-          <div className="absolute -bottom-4 w-32 h-[20px] bg-[#00e5ff]/30 blur-[12px] pointer-events-none"></div>
+          <div className="absolute -bottom-4 w-32 h-[20px] bg-[#00e5ff]/5 dark:bg-[#00e5ff]/30 blur-[12px] pointer-events-none"></div>
         </div>
 
         {/* Title */}
@@ -74,7 +74,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           <h1 className="text-[64px] md:text-[96px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] drop-shadow-lg">
             What's your true
           </h1>
-          <h1 className="text-[72px] md:text-[104px] font-extrabold text-[var(--color-neon-cyan)] animate-shine leading-[1.05] drop-shadow-[0_0_15px_rgba(0,229,255,0.4)]">
+          <h1 className="text-[72px] md:text-[104px] font-extrabold text-[#0097a7] dark:text-[var(--color-neon-cyan)] dark:animate-shine leading-[1.05] drop-shadow-none dark:drop-shadow-[0_0_15px_rgba(0,229,255,0.4)]">
             Tech Debt?
           </h1>
           <p className="text-zinc-500 dark:text-[#8b93a5] text-[15px] md:text-[16px] font-medium max-w-[650px] mx-auto mt-6 leading-relaxed tracking-wide backdrop-blur-sm bg-black/5 dark:bg-black/10 rounded-lg p-2">
@@ -88,9 +88,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           className={`
             w-full max-w-[950px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-20 gap-2 md:gap-0
             transition-all duration-300 ease-out border backdrop-blur-md
-            border-[#00e5ff]/80 shadow-[0_0_20px_rgba(0,229,255,0.2)] bg-white/90 dark:bg-[#050810]/90
-            hover:border-[#00e5ff] hover:shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:bg-white dark:hover:bg-[#03060c]
-            focus-within:border-[#00e5ff] focus-within:shadow-[0_0_50px_rgba(0,229,255,0.5)] focus-within:bg-white dark:focus-within:bg-[#03060c]
+            border-zinc-200 dark:border-[#00e5ff]/80 shadow-xl dark:shadow-[0_0_20px_rgba(0,229,255,0.2)] bg-white/90 dark:bg-[#050810]/90
+            hover:border-zinc-300 dark:hover:border-[#00e5ff] hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:bg-white dark:hover:bg-[#03060c]
+            focus-within:border-cyan-400 dark:focus-within:border-[#00e5ff] focus-within:shadow-2xl dark:focus-within:shadow-[0_0_50px_rgba(0,229,255,0.5)] focus-within:bg-white dark:focus-within:bg-[#03060c]
             md:h-[72px]
           `}
         >
