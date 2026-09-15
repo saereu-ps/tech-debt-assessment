@@ -28,9 +28,9 @@ function App() {
     if (encodedData) {
       try {
         const decoded = JSON.parse(decodeURIComponent(atob(encodedData.replace(/ /g, "+"))));
-        if (decoded.s && decoded.n !== undefined && decoded.e !== undefined && decoded.c !== undefined && decoded.r !== undefined) {
+        if (decoded.s && decoded.n !== undefined) {
           setScores(decoded.s);
-          setUserInfo({ name: decoded.n, email: decoded.e, company: decoded.c, role: decoded.r });
+          setUserInfo({ name: decoded.n, email: decoded.e || "", company: decoded.c || "", role: decoded.r || "" });
           setIsSharedReport(true);
           setView('result');
         }
