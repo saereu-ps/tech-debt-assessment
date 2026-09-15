@@ -55,7 +55,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+      transition: { staggerChildren: 0.05, delayChildren: 0.1 }
     }
   };
 
@@ -71,14 +71,14 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         className="absolute top-0 left-[-10%] w-[1000px] h-[1000px] blur-[200px] rounded-full pointer-events-none" 
         style={{ backgroundColor: `var(--color-${details.color})`, opacity: 0.05 }}
       />
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 0.15, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         className="absolute bottom-[-20%] right-[-10%] w-[1000px] h-[1000px] blur-[250px] rounded-full pointer-events-none"
         style={{ backgroundColor: `var(--color-${details.color})` }}
       />
@@ -132,7 +132,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                 <motion.span 
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.4 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
                   className="text-[120px] md:text-[140px] font-bold text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] font-[var(--font-display)]"
                 >
                   {totalScore}
@@ -146,7 +146,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                 <motion.div 
                   initial={{ width: 0 }}
                   animate={{ width: 35 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
                   className="h-[3px] bg-zinc-600" 
                 />
                 <h4 className="text-[12px] text-white/50 font-bold tracking-[0.2em] uppercase">Current Status</h4>
@@ -179,7 +179,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                             key={step} 
                             initial={{ scaleY: 0 }}
                             animate={{ scaleY: 1 }}
-                            transition={{ duration: 0.4, delay: 0.5 + (idx * 0.1) + (step * 0.05) }}
+                            transition={{ duration: 0.3, delay: 0.3 + (idx * 0.05) + (step * 0.02) }}
                             className={`h-[12px] flex-1 rounded-full transition-colors duration-500 origin-bottom`}
                             style={{ 
                               backgroundColor: step <= displayScore ? `var(--color-${details.color})` : 'rgba(255,255,255,0.03)',
