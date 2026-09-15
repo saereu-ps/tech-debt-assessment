@@ -3,7 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import LandingPage from './components/LandingPage';
 import AssessmentStepper from './components/AssessmentStepper';
 import ResultDashboard from './components/ResultDashboard';
-import type { AssessmentCategory } from './data/assessmentData';
+import { getResultTier, type AssessmentCategory } from './data/assessmentData';
 
 export type ViewState = 'landing' | 'assessment' | 'result';
 export interface UserInfo {
@@ -46,13 +46,17 @@ function App() {
   const handleAssessmentComplete = (finalScores: number[]) => {
     setScores(finalScores);
     
-    // Mock backend logging
     if (userInfo) {
+      const totalScore = finalScores.reduce((a, b) => a + b, 0);
+      const tier = getResultTier(totalScore);
+      
       saveAssessmentData({
-        ...userInfo,
+        name: userInfo.name,
+        company: userInfo.company,
+        role: userInfo.role,
         scores: finalScores,
-        totalScore: finalScores.reduce((a, b) => a + b, 0),
-        timestamp: new Date().toISOString()
+        totalScore: totalScore,
+        tier: tier
       });
     }
 
@@ -68,10 +72,26 @@ function App() {
     window.history.pushState({}, '', window.location.pathname);
   };
 
-  // Placeholder for backend integration (Firebase/Supabase)
+  // Backend integration (Google Sheets Webhook)
   const saveAssessmentData = (data: any) => {
-    console.log("Mock Backend Saving...", data);
-    // TODO: Implement actual backend API call
+    // ⚠️ TODO: Paste your Google Apps Script Web App URL here
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby...YOUR_URL_HERE.../exec';
+    
+    if (SCRIPT_URL.includes('YOUR_URL_HERE')) {
+      console.log("Mock Backend Saving (Google Sheets URL not configured yet)...", data);
+      return;
+    }
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Important for avoiding CORS preflight on simple Google Apps Script setups
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+    .then(() => console.log('Data successfully dispatched to Google Sheets'))
+    .catch(error => console.error('Error saving data:', error));
   };
 
   return (
