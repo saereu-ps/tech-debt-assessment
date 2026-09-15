@@ -29,7 +29,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
     r: userInfo.role
   }))));
   
-  const reportUrl = `${window.location.origin}${window.location.pathname}?d=${payload}`;
+  const reportUrl = `${window.location.origin}${window.location.pathname}?d=${encodeURIComponent(payload)}`;
 
   // Calculate Insights
   const validScores = scores.map((score, index) => ({ score, index })).filter(s => s.score > 0);
