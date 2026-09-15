@@ -72,10 +72,10 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
       {/* Sci-Fi Background Glows */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
+        animate={{ opacity: theme === 'dark' ? 0.06 : 0.02, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="absolute top-0 left-[-10%] w-[1000px] h-[1000px] blur-[200px] rounded-full pointer-events-none transform-gpu" 
-        style={{ backgroundColor: `var(--color-${details.color})`, opacity: 0.05 }}
+        style={{ backgroundColor: `var(--color-${details.color})` }}
       />
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
@@ -227,8 +227,8 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                 {details.subtitle}
               </h3>
               <h2 
-                className="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] xl:text-[64px] font-bold tracking-tight leading-[1.05] max-w-[550px] font-[var(--font-display)]"
-                style={{ color: `var(--color-${details.color})`, textShadow: theme === 'dark' ? `0 0 20px var(--color-${details.color}), 0 0 40px var(--color-${details.color})` : 'none' }}
+                className="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] xl:text-[64px] font-black tracking-tight leading-[1.05] max-w-[550px] font-[var(--font-display)] text-zinc-900 dark:text-white"
+                style={{ textShadow: theme === 'dark' ? `0 0 20px var(--color-${details.color}), 0 0 40px var(--color-${details.color}), 0 0 80px var(--color-${details.color})` : 'none' }}
               >
                 {details.title}
               </h2>
