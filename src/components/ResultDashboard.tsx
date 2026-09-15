@@ -22,12 +22,12 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
 
   // Encode User Data and Scores into Base64 for the URL
   // Wrap in encodeURIComponent to prevent '+' from becoming spaces in URLs
-  const payload = encodeURIComponent(btoa(encodeURIComponent(JSON.stringify({
+  const payload = btoa(encodeURIComponent(JSON.stringify({
     s: scores,
     n: userInfo.name,
     c: userInfo.company,
     r: userInfo.role
-  }))));
+  })));
   
   const reportUrl = `${window.location.origin}${window.location.pathname}?d=${encodeURIComponent(payload)}`;
 
