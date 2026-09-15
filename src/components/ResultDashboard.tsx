@@ -23,7 +23,8 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
   const payload = encodeURIComponent(btoa(encodeURIComponent(JSON.stringify({
     s: scores,
     n: userInfo.name,
-    c: userInfo.company
+    c: userInfo.company,
+    r: userInfo.role
   }))));
   
   const reportUrl = `${window.location.origin}${window.location.pathname}?d=${payload}`;
