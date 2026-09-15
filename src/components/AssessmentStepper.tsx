@@ -79,10 +79,10 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
       {/* Tech Grid overlay - Removed expensive mix-blend-screen */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-40 pointer-events-none" />
 
-      <div className="max-w-[1400px] w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[450px_1fr] xl:grid-cols-[500px_1fr] gap-2 lg:gap-6 xl:gap-24 relative z-10 px-4 sm:px-8 py-1 lg:py-2 xl:py-12 items-center origin-center">
+      <div className="max-w-[1400px] w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[450px_1fr] xl:grid-cols-[500px_1fr] gap-2 lg:gap-6 xl:gap-24 relative z-10 px-4 sm:px-8 py-1 lg:py-2 xl:py-12 items-center origin-center">
         
         {/* Left Column: Enlarged Sci-Fi Circular Stepper */}
-        <div className="relative flex justify-center items-center w-full h-[320px] sm:h-[380px] md:h-[280px] lg:h-[300px] xl:h-[500px] flex-shrink-0 mx-auto">
+        <div className="relative flex justify-center items-center w-full h-[200px] sm:h-[240px] md:h-[280px] lg:h-[300px] xl:h-[500px] flex-shrink-0 mx-auto">
           <div className="absolute w-[500px] h-[500px] flex justify-center items-center scale-[0.65] sm:scale-[0.75] md:scale-[0.6] lg:scale-[0.7] xl:scale-[0.95] 2xl:scale-100 origin-center">
             <div className="relative w-full h-full">
           
@@ -260,7 +260,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                       key={choice.score}
                       onClick={() => handleSelect(choice.score)}
                       className={`
-                        w-full text-left p-3 md:p-2 lg:p-2.5 xl:p-6 rounded-xl transition-all duration-300 flex items-start gap-5 group border relative overflow-hidden backdrop-blur-md
+                        w-full text-left p-2.5 sm:p-2 lg:p-2.5 xl:p-6 rounded-xl transition-all duration-300 flex items-start gap-5 group border relative overflow-hidden backdrop-blur-md
                         ${isSelected 
                           ? 'bg-cyan-50/50 dark:bg-[#00e5ff]/[0.05] border-cyan-400/50 dark:border-[#00e5ff]/40 shadow-sm dark:shadow-[0_0_30px_rgba(0,229,255,0.08)]' 
                           : 'bg-white/40 dark:bg-white/[0.01] border-black/5 dark:border-white/5 hover:bg-white/60 dark:hover:bg-white/[0.03] hover:border-black/10 dark:hover:border-white/10 shadow-sm dark:shadow-none'}
@@ -286,7 +286,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                       
                       {/* Content */}
                       <div className="flex flex-col gap-1.5 pt-0.5 relative z-10">
-                        <p className="text-[13px] md:text-[14px] xl:text-[16px] leading-relaxed tracking-wide">
+                        <p className="text-[11px] sm:text-[12px] md:text-[14px] xl:text-[16px] leading-relaxed tracking-wide">
                           <span className={`font-semibold transition-colors duration-300 ${isSelected ? 'text-zinc-900 dark:text-white' : 'text-zinc-700 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white'}`}>
                             {choice.label}
                           </span> 
@@ -312,7 +312,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
             </motion.div>
 
           {/* Navigation - Sleek Modern Buttons */}
-          <div className="flex items-center justify-between mt-3 md:mt-4 xl:mt-12 pt-2 xl:pt-6">
+          <div className="flex items-center justify-between mt-2 sm:mt-3 md:mt-4 xl:mt-12 pt-2 xl:pt-6">
             <button 
               onClick={handlePrev}
               className={`flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${currentIndex === 0 ? 'opacity-0 pointer-events-none' : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white'}`}

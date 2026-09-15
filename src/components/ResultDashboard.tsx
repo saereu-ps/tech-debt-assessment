@@ -74,19 +74,19 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="absolute top-0 left-[-10%] w-[1000px] h-[1000px] blur-[200px] rounded-full pointer-events-none" 
+        className="absolute top-0 left-[-10%] w-[300px] md:w-[600px] lg:w-[1000px] h-[300px] md:h-[600px] lg:h-[1000px] blur-[100px] lg:blur-[200px] rounded-full pointer-events-none" 
         style={{ backgroundColor: `var(--color-${details.color})`, opacity: 0.05 }}
       />
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: theme === 'dark' ? 0.15 : 0.03, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-        className="absolute bottom-[-20%] right-[-10%] w-[1000px] h-[1000px] blur-[250px] rounded-full pointer-events-none"
+        className="absolute bottom-[-20%] right-[-10%] w-[300px] md:w-[600px] lg:w-[1000px] h-[300px] md:h-[600px] lg:h-[1000px] blur-[100px] lg:blur-[250px] rounded-full pointer-events-none"
         style={{ backgroundColor: `var(--color-${details.color})` }}
       />
       
       {/* Tech Grid overlay */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-70 pointer-events-none mix-blend-screen" />
+      <div className="hidden lg:block absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-70 pointer-events-none mix-blend-screen" />
 
       <motion.div 
         variants={containerVariants}
@@ -124,7 +124,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         </motion.header>
 
         {/* Main Content Grid - Perfectly Balanced Layout */}
-        <main className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-x-6 lg:gap-x-10 xl:gap-x-32 gap-y-4 lg:gap-y-6 items-start w-full">
+        <main className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-x-6 lg:gap-x-10 xl:gap-x-32 gap-y-4 lg:gap-y-6 items-start w-full">
           
           {/* Left Column: Diagnostics & Data */}
           <div className="flex flex-col w-full h-full">
@@ -135,7 +135,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
-                  className="text-[64px] md:text-[72px] lg:text-[80px] xl:text-[140px] font-bold text-zinc-900 dark:text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] font-[var(--font-display)]"
+                  className="text-[48px] sm:text-[56px] md:text-[72px] lg:text-[80px] xl:text-[140px] font-bold text-zinc-900 dark:text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] font-[var(--font-display)]"
                 >
                   {totalScore}
                 </motion.span>
@@ -216,7 +216,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                 {details.subtitle}
               </h3>
               <h2 
-                className="text-[32px] md:text-[36px] lg:text-[42px] xl:text-[64px] font-semibold leading-[1.05] max-w-[550px] font-[var(--font-display)]"
+                className="text-[24px] sm:text-[28px] md:text-[36px] lg:text-[42px] xl:text-[64px] font-semibold leading-[1.05] max-w-[550px] font-[var(--font-display)]"
                 style={{ color: `var(--color-${details.color})`, textShadow: theme === 'dark' ? `0 0 40px var(--color-${details.color})` : 'none' }}
               >
                 {details.title}
@@ -265,7 +265,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   <h4 className="text-[12px] font-bold tracking-[0.25em] uppercase opacity-70" style={{ color: `var(--color-${details.color})` }}>
                     Executive Action
                   </h4>
-                  <p className="text-[24px] md:text-[28px] font-semibold text-zinc-900 dark:text-white leading-[1.6] tracking-wide">
+                  <p className="text-[18px] sm:text-[20px] md:text-[28px] font-semibold text-zinc-900 dark:text-white leading-[1.6] tracking-wide">
                     {details.action.split('\n\n')[0]}
                   </p>
                   {details.action.split('\n\n')[1] && (
@@ -286,7 +286,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
           className="mt-4 md:mt-6 lg:mt-6 w-full max-w-[1500px] bg-gradient-to-r from-[#0055ff]/10 to-[#00e5ff]/5 border border-[#00e5ff]/20 p-4 md:p-5 lg:py-6 lg:px-8 rounded-[2.5rem] shadow-[0_0_40px_rgba(0,229,255,0.05)] relative overflow-hidden flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 lg:gap-20"
         >
           {/* Background Glow */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00e5ff]/10 blur-[100px] rounded-full pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute top-0 right-0 w-[200px] lg:w-[500px] h-[200px] lg:h-[500px] bg-[#00e5ff]/10 blur-[50px] lg:blur-[100px] rounded-full pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
           
           <div className="flex flex-col gap-4 relative z-10 max-w-[600px] text-center lg:text-left">
             <h3 className="text-[24px] md:text-[28px] lg:text-[32px] font-bold text-zinc-900 dark:text-white leading-[1.1] font-[var(--font-display)]">

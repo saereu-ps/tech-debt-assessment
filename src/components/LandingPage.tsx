@@ -72,10 +72,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
         {/* Title */}
         <div className="text-center mb-10 md:mb-12 lg:mb-16 flex flex-col items-center w-full relative z-10">
-          <h1 className="text-[36px] sm:text-[48px] md:text-[64px] lg:text-[80px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] drop-shadow-lg">
+          <h1 className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[80px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] drop-shadow-lg">
             What's your true
           </h1>
-          <h1 className="text-[42px] sm:text-[52px] md:text-[72px] lg:text-[88px] font-extrabold animate-shine leading-[1.05]" style={{ filter: 'var(--title-drop-shadow)' }}>
+          <h1 className="text-[36px] sm:text-[48px] md:text-[56px] lg:text-[64px] xl:text-[88px] font-extrabold animate-shine leading-[1.05]" style={{ filter: 'var(--title-drop-shadow)' }}>
             Tech Debt?
           </h1>
           <p className="text-zinc-500 dark:text-[#8b93a5] text-[14px] md:text-[15px] font-medium max-w-[550px] mx-auto mt-4 lg:mt-6 leading-relaxed tracking-wide backdrop-blur-sm bg-black/5 dark:bg-black/10 rounded-lg p-2">
@@ -90,7 +90,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         >
           {/* Row 1: Name & Email */}
           <div className="
-            w-full max-w-[800px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-10 gap-2 md:gap-0
+            w-full max-w-[800px] flex flex-col md:flex-row items-stretch p-1.5 md:p-1 lg:p-1.5 rounded-[32px] md:rounded-full relative z-10 gap-2 md:gap-0
             transition-all duration-300 ease-out border backdrop-blur-md
             border-zinc-200 dark:border-[#00e5ff]/80 shadow-xl dark:shadow-[0_0_20px_rgba(0,229,255,0.2)] bg-white/90 dark:bg-[#050810]/90
             hover:border-zinc-300 dark:hover:border-[#00e5ff] hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:bg-white dark:hover:bg-[#03060c]
@@ -106,7 +106,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                   placeholder="Enter your name" 
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-transparent border-none outline-none text-[14px] md:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
+                  className="w-full bg-transparent border-none outline-none text-[14px] md:text-[14px] lg:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
                   required
                 />
               </div>
@@ -124,7 +124,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                   placeholder="Your email..." 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-transparent border-none outline-none text-[14px] md:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
+                  className="w-full bg-transparent border-none outline-none text-[14px] md:text-[14px] lg:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
                   required
                 />
               </div>
@@ -149,7 +149,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                   placeholder="Company name..." 
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
-                  className="w-full bg-transparent border-none outline-none text-[14px] md:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
+                  className="w-full bg-transparent border-none outline-none text-[14px] md:text-[14px] lg:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
                   required
                 />
               </div>
