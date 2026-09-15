@@ -79,10 +79,10 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
       {/* Tech Grid overlay - Removed expensive mix-blend-screen */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMykiLz48L3N2Zz4=')] opacity-40 pointer-events-none" />
 
-      <div className="max-w-[1400px] w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[500px_1fr] gap-4 lg:gap-24 relative z-10 px-4 sm:px-8 py-6 md:py-12 items-center origin-center">
+      <div className="max-w-[1400px] w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[500px_1fr] gap-4 lg:gap-24 relative z-10 px-4 sm:px-8 py-6 md:py-12 items-center origin-center">
         
         {/* Left Column: Enlarged Sci-Fi Circular Stepper */}
-        <div className="relative w-[500px] h-[500px] flex-shrink-0 mx-auto scale-[0.65] sm:scale-[0.75] md:scale-[0.8] lg:scale-[0.75] xl:scale-[0.95] 2xl:scale-100 origin-[top_center] lg:origin-[center_right] xl:origin-center -mb-32 sm:-mb-24 md:-mb-20 lg:mb-0">
+        <div className="relative w-[500px] h-[500px] flex-shrink-0 mx-auto scale-[0.65] sm:scale-[0.75] md:scale-[0.65] lg:scale-[0.75] xl:scale-[0.95] 2xl:scale-100 origin-[top_center] md:origin-[center_right] xl:origin-center -mb-32 sm:-mb-24 md:mb-0">
           
           {/* SVG Complex Background Ring */}
           <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 500">
@@ -225,7 +225,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
         </div>
 
         {/* Right Column: Content */}
-        <div className="flex flex-col justify-center w-full relative z-10 lg:pl-10">
+        <div className="flex flex-col justify-center w-full relative z-10 md:pl-4 lg:pl-10">
           <motion.div
             key={currentMetric.id}
             variants={containerVariants}
