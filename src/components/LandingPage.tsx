@@ -65,20 +65,20 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         className="relative z-10 flex flex-col items-center justify-center w-full px-4"
       >
         {/* Logo and faint glow underneath */}
-        <div className="mb-10 flex flex-col items-center relative">
+        <div className="mb-6 md:mb-10 flex flex-col items-center relative">
           <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 object-contain dark:filter dark:brightness-0 dark:invert opacity-100 drop-shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
           <div className="absolute -bottom-4 w-32 h-[20px] bg-[#00e5ff]/5 dark:bg-[#00e5ff]/30 blur-[12px] pointer-events-none"></div>
         </div>
 
         {/* Title */}
-        <div className="text-center mb-16 flex flex-col items-center w-full relative z-10">
-          <h1 className="text-[40px] md:text-[80px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] drop-shadow-lg">
+        <div className="text-center mb-10 md:mb-12 lg:mb-16 flex flex-col items-center w-full relative z-10">
+          <h1 className="text-[36px] sm:text-[48px] md:text-[64px] lg:text-[80px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] drop-shadow-lg">
             What's your true
           </h1>
-          <h1 className="text-[48px] sm:text-[56px] md:text-[88px] font-extrabold animate-shine leading-[1.05]" style={{ filter: 'var(--title-drop-shadow)' }}>
+          <h1 className="text-[42px] sm:text-[52px] md:text-[72px] lg:text-[88px] font-extrabold animate-shine leading-[1.05]" style={{ filter: 'var(--title-drop-shadow)' }}>
             Tech Debt?
           </h1>
-          <p className="text-zinc-500 dark:text-[#8b93a5] text-[14px] md:text-[15px] font-medium max-w-[550px] mx-auto mt-6 leading-relaxed tracking-wide backdrop-blur-sm bg-black/5 dark:bg-black/10 rounded-lg p-2">
+          <p className="text-zinc-500 dark:text-[#8b93a5] text-[14px] md:text-[15px] font-medium max-w-[550px] mx-auto mt-4 lg:mt-6 leading-relaxed tracking-wide backdrop-blur-sm bg-black/5 dark:bg-black/10 rounded-lg p-2">
             Evaluate your infrastructure maturity, discover hidden<br/>vulnerabilities, and prepare for the AI era.
           </p>
         </div>

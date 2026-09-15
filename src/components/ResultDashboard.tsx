@@ -67,7 +67,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
   };
 
   return (
-    <div className="w-full min-h-[100dvh] flex flex-col items-center py-10 px-5 md:px-12 relative overflow-x-hidden overflow-y-auto bg-transparent">
+    <div className="w-full min-h-[100dvh] flex flex-col items-center py-6 md:py-8 lg:py-10 px-4 md:px-8 lg:px-12 relative overflow-x-hidden overflow-y-auto bg-transparent">
       
       {/* Sci-Fi Background Glows */}
       <motion.div 
@@ -96,7 +96,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
       >
         
         {/* Header - Executive Profile */}
-        <motion.header variants={itemVariants} className="flex justify-between items-start w-full mb-12">
+        <motion.header variants={itemVariants} className="flex justify-between items-start w-full mb-6 md:mb-8 lg:mb-12">
           <div className="flex flex-col gap-6">
             <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-[140px] object-contain filter brightness-0 invert opacity-95 drop-shadow-lg self-start" />
             
@@ -124,7 +124,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         </motion.header>
 
         {/* Main Content Grid - Perfectly Balanced Layout */}
-        <main className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-x-32 gap-y-16 items-start w-full">
+        <main className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-x-8 lg:gap-x-16 xl:gap-x-32 gap-y-8 lg:gap-y-16 items-start w-full">
           
           {/* Left Column: Diagnostics & Data */}
           <div className="flex flex-col w-full h-full">
@@ -135,7 +135,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
-                  className="text-[120px] md:text-[140px] font-bold text-zinc-900 dark:text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] font-[var(--font-display)]"
+                  className="text-[96px] md:text-[112px] lg:text-[140px] font-bold text-zinc-900 dark:text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] font-[var(--font-display)]"
                 >
                   {totalScore}
                 </motion.span>
@@ -159,7 +159,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
             </motion.div>
 
             {/* 5-Dimension Tech Breakdown */}
-            <motion.div variants={itemVariants} className="w-full max-w-[650px] bg-white/50 dark:bg-[#090e15]/50 backdrop-blur-md border border-black/5 dark:border-white/5 p-10 rounded-3xl mt-auto shadow-2xl">
+            <motion.div variants={itemVariants} className="w-full max-w-[650px] bg-white/50 dark:bg-[#090e15]/50 backdrop-blur-md border border-black/5 dark:border-white/5 p-6 md:p-8 lg:p-10 rounded-3xl mt-6 lg:mt-auto shadow-2xl">
               <h4 className="text-[11px] text-zinc-900 dark:text-white font-bold tracking-[0.2em] uppercase mb-8 flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: `var(--color-${details.color})`, boxShadow: `0 0 10px var(--color-${details.color})` }} />
                 Dimension Breakdown
@@ -216,7 +216,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                 {details.subtitle}
               </h3>
               <h2 
-                className="text-[52px] md:text-[64px] font-semibold leading-[1.05] max-w-[550px] font-[var(--font-display)]"
+                className="text-[42px] md:text-[52px] lg:text-[64px] font-semibold leading-[1.05] max-w-[550px] font-[var(--font-display)]"
                 style={{ color: `var(--color-${details.color})`, textShadow: theme === 'dark' ? `0 0 40px var(--color-${details.color})` : 'none' }}
               >
                 {details.title}
@@ -283,7 +283,7 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         {/* Call To Action - Contact MFEC */}
         <motion.div 
           variants={itemVariants} 
-          className="mt-20 w-full max-w-[1500px] bg-gradient-to-r from-[#0055ff]/10 to-[#00e5ff]/5 border border-[#00e5ff]/20 p-8 md:py-14 md:px-12 rounded-[2.5rem] shadow-[0_0_40px_rgba(0,229,255,0.05)] relative overflow-hidden flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 lg:gap-20"
+          className="mt-10 md:mt-12 lg:mt-20 w-full max-w-[1500px] bg-gradient-to-r from-[#0055ff]/10 to-[#00e5ff]/5 border border-[#00e5ff]/20 p-6 md:p-8 lg:py-14 lg:px-12 rounded-[2.5rem] shadow-[0_0_40px_rgba(0,229,255,0.05)] relative overflow-hidden flex flex-col lg:flex-row items-center lg:items-center justify-between gap-12 lg:gap-20"
         >
           {/* Background Glow */}
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00e5ff]/10 blur-[100px] rounded-full pointer-events-none transform translate-x-1/2 -translate-y-1/2"></div>
