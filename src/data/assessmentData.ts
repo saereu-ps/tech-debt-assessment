@@ -57,13 +57,13 @@ export const assessmentData: AssessmentMetric[] = [
         score: 3,
         label: "Cloud Infrastructure:",
         description: "Shipped some workloads to Public Cloud, but lack a clear Hybrid Cloud strategy for large volumes.",
-        thaiDescription: "ย้ายบางระบบไปใช้ Public Cloud แต่ยังขาดกลยุทธ์ Hybrid Cloud ที่ชัดเจนสำหรับปริมาณงานมาก"
+        thaiDescription: "ย้ายบางระบบขึ้น Cloud แล้ว แต่ยังจัดการทรัพยากรระบบเก่าและใหม่ร่วมกันได้ไม่ค่อยดี"
       },
       {
         score: 5,
         label: "Modern Hybrid Cloud:",
         description: "Scalable infrastructure capable of supporting 1,000+ users seamlessly with high availability.",
-        thaiDescription: "โครงสร้างพื้นฐานที่ขยายตัวได้ รองรับผู้ใช้มากกว่า 1,000 คนได้อย่างราบรื่นและมีความพร้อมใช้งานสูง"
+        thaiDescription: "ระบบถูกออกแบบมาให้ขยายตัวได้ทันที รองรับผู้ใช้งานหลักพันคนได้อย่างราบรื่นและระบบไม่ล่ม"
       }
     ]
   },
@@ -77,19 +77,19 @@ export const assessmentData: AssessmentMetric[] = [
         score: 1,
         label: "Legacy Trapped:",
         description: "Systems are over 7-10 years old; high maintenance cost; vendors no longer support upgrades.",
-        thaiDescription: "ระบบมีอายุ 7-10 ปี ค่าดูแลรักษาสูง และผู้ขายไม่สนับสนุนการอัปเกรดแล้ว"
+        thaiDescription: "ระบบเก่าเกิน 7 ปีขึ้นไป ต้องเสียค่าบำรุงรักษาแพงมาก และไม่สามารถอัปเกรดซอฟต์แวร์ได้แล้ว"
       },
       {
         score: 3,
         label: "Fragmented Stack:",
         description: "A mix of old software patched with new tools; requires constant IT troubleshooting.",
-        thaiDescription: "ซอฟต์แวร์เก่าผสมกับเครื่องมือใหม่ ต้องให้ฝ่ายไอทีคอยแก้ปัญหาตลอดเวลา"
+        thaiDescription: "ระบบเก่าและใหม่ปะปนกัน ทำให้มักมีปัญหาจุกจิกและฝ่ายไอทีต้องคอยตามแก้ตลอดเวลา"
       },
       {
         score: 5,
         label: "Future-Proof Stack:",
         description: "Systems align with global tech standards (Gartner); easily upgradeable via APIs.",
-        thaiDescription: "ระบบสอดคล้องกับมาตรฐานเทคโนโลยีระดับโลก (Gartner) และอัปเกรดได้ง่ายผ่าน API"
+        thaiDescription: "ระบบทันสมัย ได้มาตรฐานสากล และสามารถเชื่อมต่อเทคโนโลยีใหม่ๆ เพิ่มเข้าไปได้ง่ายมาก"
       }
     ]
   },
@@ -103,19 +103,19 @@ export const assessmentData: AssessmentMetric[] = [
         score: 1,
         label: "Disconnected Operations:",
         description: "Front-office (CRM/Sales) and Shop-floor (MES/Production) do not talk to each other.",
-        thaiDescription: "ระบบส่วนหน้า (CRM/Sales) และส่วนการผลิต (MES/Production) ไม่มีการเชื่อมโยงกัน"
+        thaiDescription: "ระบบแต่ละแผนกทำงานแยกกัน เช่น ข้อมูลหน้าร้านกับข้อมูลหลังบ้านไม่เชื่อมต่อกัน"
       },
       {
         score: 3,
         label: "Batch Synced:",
         description: "Systems sync via nightly batch updates; management cannot see real-time performance.",
-        thaiDescription: "ระบบซิงค์ข้อมูลผ่าน Batch กลางคืน ผู้บริหารไม่สามารถดูประสิทธิภาพแบบเรียลไทม์ได้"
+        thaiDescription: "ระบบเชื่อมต่อกันเป็นรอบๆ (เช่น อัปเดตตอนสิ้นวัน) ทำให้ผู้บริหารไม่เห็นข้อมูลที่อัปเดตแบบวินาทีต่อวินาที"
       },
       {
         score: 5,
         label: "Real-Time Synergy:",
         description: "Full end-to-end data pipeline connecting IoT, MES, and ERP for automated insights.",
-        thaiDescription: "ระบบท่อข้อมูลเชื่อมต่อ IoT, MES และ ERP แบบครบวงจรเพื่อรับข้อมูลเชิงลึกแบบอัตโนมัติ"
+        thaiDescription: "ทุกระบบเชื่อมโยงข้อมูลถึงกันแบบอัตโนมัติ ทำให้ผู้บริหารเห็นภาพรวมของธุรกิจได้แบบเรียลไทม์"
       }
     ]
   },
@@ -129,19 +129,19 @@ export const assessmentData: AssessmentMetric[] = [
         score: 1,
         label: "Reactive / Paper-based:",
         description: "No strict digital access controls; no data governance policy; high risk of a security breach.",
-        thaiDescription: "ไม่มีการควบคุมการเข้าถึงแบบดิจิทัลที่เข้มงวด ไม่มีการกำกับดูแลข้อมูล เสี่ยงต่อการถูกแฮ็ก"
+        thaiDescription: "ไม่มีระบบป้องกันข้อมูลที่เข้มงวด ใครก็เข้าถึงข้อมูลได้ง่าย ทำให้มีความเสี่ยงสูงที่จะถูกเจาะระบบ"
       },
       {
         score: 3,
         label: "Basic Compliance:",
         description: "Have firewalls and anti-virus, but lack an executive-led business continuity and recovery plan.",
-        thaiDescription: "มีไฟร์วอลล์และแอนตี้ไวรัส แต่ขาดแผนความต่อเนื่องทางธุรกิจและการกู้คืนระบบที่นำโดยผู้บริหาร"
+        thaiDescription: "มีระบบป้องกันพื้นฐาน (เช่น สแกนไวรัส) แต่ยังไม่มีแผนกู้คืนระบบและกู้คืนธุรกิจหากเกิดเหตุระบบล่มใหญ่"
       },
       {
         score: 5,
         label: "Proactive Resilience:",
         description: "Zero-Trust architecture, automated monitoring, and active board-level risk management.",
-        thaiDescription: "สถาปัตยกรรม Zero-Trust การตรวจสอบอัตโนมัติ และการจัดการความเสี่ยงเชิงรุกระดับผู้บริหาร"
+        thaiDescription: "มีระบบรักษาความปลอดภัยขั้นสูง ตรวจจับความผิดปกติอัตโนมัติ และมีการบริหารความเสี่ยงระดับองค์กรที่เข้มงวด"
       }
     ]
   }
@@ -157,24 +157,24 @@ export const resultDetails = {
   high: {
     title: "High Tech Debt",
     subtitle: "BANKRUPTCY RISK",
-    status: "องค์กรติดหนี้ทางเทคโนโลยีขั้นวิกฤต ระบบไอทีปัจจุบันเป็น \"ภาระ\" มากกว่า \"สินทรัพย์\" ข้อมูลกระจัดกระจายและระบบล้าสมัย",
-    action: "ห้ามลงทุนในระบบ AI ขั้นสูงเด็ดขาดเพราะจะล้มเหลว ควรมุ่งเน้นไปที่โครงการ \"Data Modernization\" และ \"Core System Upgrade\" เป็นอันดับแรก",
+    status: "องค์กรมี \"หนี้ทางเทคโนโลยี\" สะสมจนถึงขั้นวิกฤต ระบบไอทีที่ใช้อยู่กลายเป็นตัวถ่วงมากกว่าตัวช่วย ข้อมูลกระจัดกระจายและระบบล้าสมัยมาก",
+    action: "ยังไม่ควรลงทุนทำระบบ AI ขั้นสูงในตอนนี้ ควรเร่งจัดระเบียบข้อมูลใหม่ (Data Modernization) และอัปเกรดระบบหลักให้ทันสมัยก่อนเป็นอันดับแรก",
     color: "neon-red",
     glowClass: "glow-red"
   },
   moderate: {
     title: "Moderate Tech Debt",
     subtitle: "THE TRANSITION ZONE",
-    status: "องค์กรมีความพร้อมระดับหนึ่ง มีการใช้ระบบดิจิทัลแล้ว แต่ยังขาดการเชื่อมโยงที่เป็นหนึ่งเดียว (Data Silos) และระบบยังไม่ยืดหยุ่นพอที่จะโตแบบก้าวกระโดด",
-    action: "ควรมุ่งเน้นการวางกลยุทธ์ \"Hybrid Cloud & Data Lakehouse\" เพื่อทลาย Silo ของข้อมูล และเริ่มทำระบบเชื่อมต่อแบบ Real-time สามารถเริ่มทำ AI Prototype (PoC) เล็ก ๆ ในบางแผนกได้",
+    status: "องค์กรมีความพร้อมในระดับกลาง มีการนำดิจิทัลมาใช้บ้างแล้ว แต่ระบบต่างๆ ยังไม่เชื่อมต่อกัน (Data Silos) และโครงสร้างยังไม่ยืดหยุ่นพอที่จะโตแบบก้าวกระโดด",
+    action: "ควรเน้นวางรากฐานรวมข้อมูลไว้ที่ศูนย์กลาง (Data Lakehouse) เพื่อให้ระบบเชื่อมโยงถึงกันแบบเรียลไทม์ และสามารถเริ่มทดลองนำ AI มาใช้ในงานสเกลเล็กๆ ได้แล้ว",
     color: "neon-yellow",
     glowClass: "glow-yellow"
   },
   ready: {
     title: "AI-Ready Infrastructure",
     subtitle: "STRATEGIC ADVANTAGE",
-    status: "Strong IT foundation. Systems are secure, scalable, and data is ready.\n\nองค์กรมีรากฐานไอทีที่แข็งแกร่ง ระบบมีความปลอดภัย ยืดหยุ่น และข้อมูลพร้อมใช้งาน",
-    action: "Ready for 'Enterprise AI Transformation'. Invest in GenAI or Agentic AI for long-term strategic advantage.\n\nพร้อมแล้วสำหรับ Enterprise AI Transformation สามารถลงทุนในระบบ AI เพื่อสร้างความได้เปรียบทางธุรกิจระยะยาว",
+    status: "องค์กรมีรากฐานไอทีที่แข็งแกร่งมาก ระบบมีความยืดหยุ่น ปลอดภัยสูง และข้อมูลทั้งหมดพร้อมนำไปต่อยอดได้ทันที",
+    action: "พร้อมลุยเต็มที่สำหรับการทำ Enterprise AI Transformation องค์กรสามารถลงทุนพัฒนาระบบ AI เพื่อสร้างความได้เปรียบทางธุรกิจในระยะยาวได้เลย",
     color: "neon-cyan",
     glowClass: "glow-cyan"
   }
