@@ -76,9 +76,9 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <div className="absolute top-0 left-[-20%] w-[500px] md:w-[800px] xl:w-[1000px] h-[500px] md:h-[800px] xl:h-[1000px] blur-[120px] md:blur-[150px] xl:blur-[200px] rounded-full pointer-events-none transform-gpu" 
-             style={{ backgroundColor: `${currentTier.color === "neon-cyan" ? "#00e5ff" : currentTier.color === "neon-yellow" ? "#ffcc00" : "#ff3366"}20` }} />
+             style={{ backgroundColor: `${details.color === "neon-cyan" ? "#00e5ff" : details.color === "neon-yellow" ? "#ffcc00" : "#ff3366"}20` }} />
         <div className="absolute bottom-[-10%] right-[-20%] w-[500px] md:w-[800px] xl:w-[1000px] h-[500px] md:h-[800px] xl:h-[1000px] blur-[150px] md:blur-[200px] xl:blur-[250px] rounded-full pointer-events-none transform-gpu"
-             style={{ backgroundColor: `${currentTier.color === "neon-cyan" ? "#00e5ff" : currentTier.color === "neon-yellow" ? "#ffcc00" : "#ff3366"}15` }} />
+             style={{ backgroundColor: `${details.color === "neon-cyan" ? "#00e5ff" : details.color === "neon-yellow" ? "#ffcc00" : "#ff3366"}15` }} />
       </motion.div>
       
       {/* Tech Grid overlay */}
