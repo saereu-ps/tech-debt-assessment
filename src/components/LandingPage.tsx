@@ -71,13 +71,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
         {/* Title */}
         <div className="text-center mb-16 flex flex-col items-center w-full relative z-10">
-          <h1 className="text-[64px] md:text-[96px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] drop-shadow-lg">
+          <h1 className="text-[56px] md:text-[80px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] drop-shadow-lg">
             What's your true
           </h1>
-          <h1 className="text-[72px] md:text-[104px] font-extrabold animate-shine leading-[1.05]" style={{ filter: 'var(--title-drop-shadow)' }}>
+          <h1 className="text-[64px] md:text-[88px] font-extrabold animate-shine leading-[1.05]" style={{ filter: 'var(--title-drop-shadow)' }}>
             Tech Debt?
           </h1>
-          <p className="text-zinc-500 dark:text-[#8b93a5] text-[15px] md:text-[16px] font-medium max-w-[650px] mx-auto mt-6 leading-relaxed tracking-wide backdrop-blur-sm bg-black/5 dark:bg-black/10 rounded-lg p-2">
+          <p className="text-zinc-500 dark:text-[#8b93a5] text-[14px] md:text-[15px] font-medium max-w-[550px] mx-auto mt-6 leading-relaxed tracking-wide backdrop-blur-sm bg-black/5 dark:bg-black/10 rounded-lg p-2">
             Evaluate your infrastructure maturity, discover hidden<br/>vulnerabilities, and prepare for the AI era.
           </p>
         </div>
@@ -86,12 +86,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         <form 
           onSubmit={handleSubmit}
           className={`
-            w-full max-w-[950px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-20 gap-2 md:gap-0
+            w-full max-w-[850px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-20 gap-2 md:gap-0
             transition-all duration-300 ease-out border backdrop-blur-md
             border-zinc-200 dark:border-[#00e5ff]/80 shadow-xl dark:shadow-[0_0_20px_rgba(0,229,255,0.2)] bg-white/90 dark:bg-[#050810]/90
             hover:border-zinc-300 dark:hover:border-[#00e5ff] hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:bg-white dark:hover:bg-[#03060c]
             focus-within:border-cyan-400 dark:focus-within:border-[#00e5ff] focus-within:shadow-2xl dark:focus-within:shadow-[0_0_50px_rgba(0,229,255,0.5)] focus-within:bg-white dark:focus-within:bg-[#03060c]
-            md:h-[72px]
+            md:h-[64px]
           `}
         >
           {/* Name Input Area */}
@@ -102,13 +102,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               placeholder="Enter your name" 
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full bg-transparent border-none outline-none text-[15px] md:text-[18px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
+              className="w-full bg-transparent border-none outline-none text-[14px] md:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
               required
             />
           </div>
           
           {/* Vertical Divider (Hidden on mobile) */}
-          <div className="hidden md:block w-px h-8 md:h-10 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
+          <div className="hidden md:block w-px h-6 md:h-8 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
 
           {/* Org Input Area */}
           <div className="flex-1 flex items-center px-6 md:px-6 relative group h-[52px] md:h-auto">
@@ -118,19 +118,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               placeholder="Company name..." 
               value={company}
               onChange={(e) => setCompany(e.target.value)}
-              className="w-full bg-transparent border-none outline-none text-[15px] md:text-[18px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
+              className="w-full bg-transparent border-none outline-none text-[14px] md:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
               required
             />
           </div>
 
           {/* Vertical Divider (Hidden on mobile) */}
-          <div className="hidden md:block w-px h-8 md:h-10 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
+          <div className="hidden md:block w-px h-6 md:h-8 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
 
           {/* Role Input Area (Custom Dropdown) */}
           <div ref={dropdownRef} className="flex-[1.2] flex items-center px-6 md:px-6 relative group h-[52px] md:h-auto cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
             <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">ROLE</span>
             <div className="relative w-full flex items-center justify-between md:pr-[140px]">
-              <span className={`text-[15px] md:text-[18px] font-black ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-400 dark:text-[#2f3542]'} truncate pr-6`}>
+              <span className={`text-[14px] md:text-[16px] font-black ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-400 dark:text-[#2f3542]'} truncate pr-6`}>
                 {role || "Select Role..."}
               </span>
               <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }}>
@@ -166,7 +166,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             disabled={!isFormValid}
             className={`
               md:absolute md:right-2 md:top-1/2 md:transform md:-translate-y-1/2
-              px-6 h-[52px] md:h-[60px] rounded-full font-bold text-[13px] md:text-[14px] flex items-center justify-center gap-2 transition-all duration-300 shrink-0
+              px-6 h-[46px] md:h-[50px] rounded-full font-bold text-[13px] flex items-center justify-center gap-2 transition-all duration-300 shrink-0
               border border-black/10 dark:border-white/5 mx-2 md:mx-0 mb-2 md:mb-0
               ${isFormValid 
                 ? 'bg-zinc-900 dark:bg-[#18181b] text-white hover:bg-black dark:hover:bg-[#27272a] hover:border-black/30 dark:hover:border-white/30 shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(255,255,255,0.1)]' 

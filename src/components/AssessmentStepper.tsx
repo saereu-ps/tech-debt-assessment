@@ -57,8 +57,8 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
   };
 
   // Enlarge Circular Layout Math
-  const radius = 200; // Increased from 155
-  const center = 250; // Increased from 200 (500x500 container)
+  const radius = 170; // Increased from 155
+  const center = 210; // Increased from 200 (500x500 container)
   const items = assessmentData.map((_, i) => {
     const angle = (i * 72 - 90) * (Math.PI / 180);
     return {
@@ -82,10 +82,10 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
       <div className="max-w-[1400px] w-full grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-16 lg:gap-24 relative z-10 px-8 py-12 items-center">
         
         {/* Left Column: Enlarged Sci-Fi Circular Stepper */}
-        <div className="relative w-[500px] h-[500px] flex-shrink-0 mx-auto">
+        <div className="relative w-[420px] h-[420px] flex-shrink-0 mx-auto">
           
           {/* SVG Complex Background Ring */}
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 500">
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 420 420">
             <defs>
               <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#ff00cc" />
@@ -117,7 +117,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
 
             {/* Base gradient track (Fuller look) */}
             <circle 
-              cx="250" cy="250" r="200" 
+              cx="210" cy="210" r="170" 
               fill="none" 
               stroke="url(#trackGradient)" 
               strokeWidth="30" 
@@ -238,7 +238,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                   <div className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shadow-[0_0_10px_#00e5ff] animate-pulse" />
                   Metric 0{currentIndex + 1}
                 </span>
-                <h2 className="text-[44px] font-bold tracking-tight text-zinc-900 dark:text-white leading-[1.15] drop-shadow-md">{currentMetric.title}</h2>
+                <h2 className="text-[36px] font-bold tracking-tight text-zinc-900 dark:text-white leading-[1.15] drop-shadow-md">{currentMetric.title}</h2>
                 <p className="text-zinc-500 dark:text-zinc-400 text-[16px] font-medium tracking-wide mt-3 leading-relaxed">{currentMetric.description}</p>
               </motion.div>
 
@@ -321,7 +321,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleSkip}
-                className="px-8 py-3.5 rounded-full text-[12px] font-bold flex items-center gap-2 tracking-[0.2em] transition-all duration-300 group bg-black/5 dark:bg-white/[0.03] hover:bg-black/10 dark:hover:bg-white/[0.08] border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/30 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.02)]"
+                className="px-6 py-3 rounded-full text-[12px] font-bold flex items-center gap-2 tracking-[0.2em] transition-all duration-300 group bg-black/5 dark:bg-white/[0.03] hover:bg-black/10 dark:hover:bg-white/[0.08] border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/30 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.02)]"
               >
                 SKIP <FastForward size={14} strokeWidth={2} className="group-hover:translate-x-1 transition-transform" />
               </motion.button>
@@ -333,7 +333,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                 onClick={handleNext}
                 disabled={scores[currentIndex] === 0}
                 className={`
-                  px-8 py-3.5 rounded-full text-[12px] font-bold flex items-center gap-3 tracking-[0.2em] transition-all duration-300 group backdrop-blur-md relative overflow-hidden
+                  px-6 py-3 rounded-full text-[12px] font-bold flex items-center gap-3 tracking-[0.2em] transition-all duration-300 group backdrop-blur-md relative overflow-hidden
                   ${scores[currentIndex] !== 0 
                     ? 'bg-cyan-50 dark:bg-[#00e5ff]/10 hover:bg-cyan-100 dark:hover:bg-[#00e5ff]/20 border border-cyan-300 dark:border-[#00e5ff]/50 hover:border-cyan-400 dark:hover:border-[#00e5ff] text-[#008b9e] dark:text-white shadow-sm dark:shadow-[0_0_30px_rgba(0,229,255,0.2)]' 
                     : 'bg-black/5 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 text-zinc-400 dark:text-zinc-600 cursor-not-allowed'}
