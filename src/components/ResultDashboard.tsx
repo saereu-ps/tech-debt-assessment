@@ -195,21 +195,21 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                       <div className="w-[120px] text-[11px] font-bold tracking-[0.15em] text-zinc-400 dark:text-zinc-500 dark:text-zinc-400 uppercase">
                         {metric.shortTitle}
                       </div>
-                      <div className="flex-1 flex gap-2">
-                        {[1, 2, 3, 4, 5].map(step => (
-                          <motion.div 
-                            key={step} 
-                            initial={{ scaleY: 0 }}
-                            animate={{ scaleY: 1 }}
-                            transition={{ duration: 0.3, delay: 0.3 + (idx * 0.05) + (step * 0.02) }}
-                            className={`h-[12px] flex-1 rounded-full transition-colors duration-500 origin-bottom`}
-                            style={{ 
-                              backgroundColor: step <= displayScore ? `var(--color-${details.color})` : 'rgba(255,255,255,0.03)',
-                              boxShadow: step <= displayScore ? `0 0 10px var(--color-${details.color})` : 'none',
-                              opacity: step <= displayScore ? 1 - ((5 - displayScore) * 0.05) : 1
-                            }}
+                      <div className="flex-1 h-[4px] bg-black/5 dark:bg-white/[0.05] rounded-full relative flex items-center">
+                        <motion.div 
+                          initial={{ width: 0 }}
+                          animate={{ width: `${(displayScore / 5) * 100}%` }}
+                          transition={{ duration: 1, delay: 0.3 + (idx * 0.1), ease: "easeOut" }}
+                          className="absolute left-0 top-0 bottom-0 rounded-full"
+                          style={{ 
+                            background: `linear-gradient(90deg, rgba(255,255,255,0.01), var(--color-${details.color}))`
+                          }}
+                        >
+                          <div 
+                            className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white"
+                            style={{ boxShadow: `0 0 10px 2px var(--color-${details.color})` }}
                           />
-                        ))}
+                        </motion.div>
                       </div>
                       <div className="w-[30px] text-right text-[12px] font-bold text-zinc-900 dark:text-white font-[var(--font-display)]">
                         {displayScore}/5
