@@ -97,8 +97,16 @@ function App() {
     setUserInfo(null);
     setIsSharedReport(false);
     setView('landing');
-    // Clear URL
-    window.history.pushState({}, '', window.location.pathname);
+    
+    // Clear URL data payload (?d=) but preserve the event ID (?event=)
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventId = urlParams.get('event');
+    
+    if (eventId) {
+      window.history.pushState({}, '', `${window.location.pathname}?event=${eventId}`);
+    } else {
+      window.history.pushState({}, '', window.location.pathname);
+    }
   };
 
   // Backend integration (Google Sheets Webhook)
