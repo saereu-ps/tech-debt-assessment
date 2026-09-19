@@ -84,148 +84,128 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           </p>
         </div>
 
-        {/* Input Form Pill */}
+        {/* Unified Input Form Card */}
         <form 
           onSubmit={handleSubmit}
-          className="w-full flex flex-col gap-4 items-center relative z-20"
+          className="w-full max-w-[800px] flex flex-col gap-6 relative z-20 mt-8 mx-auto p-6 md:p-8 rounded-[32px] md:rounded-[40px] border border-zinc-200 dark:border-[#00e5ff]/30 shadow-2xl dark:shadow-[0_0_40px_rgba(0,229,255,0.15)] bg-white/70 dark:bg-[#050810]/70 backdrop-blur-xl transition-all duration-500 hover:shadow-[0_0_50px_rgba(0,229,255,0.2)]"
         >
-          {/* Row 1: Name & Email */}
-          <div className="
-            w-full max-w-[800px] flex flex-col md:flex-row items-stretch p-1.5 md:p-1 lg:p-1.5 rounded-[32px] md:rounded-full relative z-10 gap-2 md:gap-0
-            transition-all duration-300 ease-out border backdrop-blur-md
-            border-zinc-200 dark:border-[#00e5ff]/80 shadow-xl dark:shadow-[0_0_20px_rgba(0,229,255,0.2)] bg-white/90 dark:bg-[#050810]/90
-            hover:border-zinc-300 dark:hover:border-[#00e5ff] hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:bg-white dark:hover:bg-[#03060c]
-            focus-within:border-cyan-400 dark:focus-within:border-[#00e5ff] focus-within:shadow-2xl dark:focus-within:shadow-[0_0_50px_rgba(0,229,255,0.5)] focus-within:bg-white dark:focus-within:bg-[#03060c]
-            md:h-[64px]
-          ">
-            {/* Name Input Area */}
-            <div className="w-full md:w-auto flex-1 flex border-b border-black/5 dark:border-white/5 md:border-none">
-              <div className="w-full h-full flex items-center px-6 md:px-8 relative group py-2 md:py-0">
-                <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">NAME</span>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {/* Name Input */}
+            <div className="flex flex-col gap-2 group">
+              <label className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-zinc-500 dark:text-[#00e5ff] uppercase ml-4 transition-colors group-focus-within:text-[#00e5ff]">Name</label>
+              <div className="h-[56px] rounded-2xl bg-black/5 dark:bg-white/5 border border-transparent dark:border-white/5 px-4 flex items-center transition-all group-focus-within:border-[#00e5ff]/50 group-focus-within:bg-black/10 dark:group-focus-within:bg-white/10">
                 <input 
                   type="text" 
                   placeholder="Enter your name" 
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-transparent border-none outline-none text-[14px] md:text-[14px] lg:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
+                  className="w-full bg-transparent border-none outline-none text-[15px] md:text-[16px] font-bold text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:ring-0"
                   required
                 />
               </div>
             </div>
-            
-            {/* Vertical Divider */}
-            <div className="hidden md:block w-px h-6 md:h-8 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
 
-            {/* Email Input Area */}
-            <div className="w-full md:w-auto flex-1 flex">
-              <div className="w-full h-full flex items-center px-6 md:px-8 relative group py-2 md:py-0">
-                <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">EMAIL</span>
+            {/* Email Input */}
+            <div className="flex flex-col gap-2 group">
+              <label className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-zinc-500 dark:text-[#00e5ff] uppercase ml-4 transition-colors group-focus-within:text-[#00e5ff]">Email</label>
+              <div className="h-[56px] rounded-2xl bg-black/5 dark:bg-white/5 border border-transparent dark:border-white/5 px-4 flex items-center transition-all group-focus-within:border-[#00e5ff]/50 group-focus-within:bg-black/10 dark:group-focus-within:bg-white/10">
                 <input 
                   type="email" 
-                  placeholder="Your email..." 
+                  placeholder="name@company.com" 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-transparent border-none outline-none text-[14px] md:text-[14px] lg:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
+                  className="w-full bg-transparent border-none outline-none text-[15px] md:text-[16px] font-bold text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:ring-0"
                   required
                 />
               </div>
             </div>
-          </div>
 
-          {/* Row 2: Org, Role & Scan */}
-          <div className="
-            w-full max-w-[950px] flex flex-col md:flex-row items-stretch p-1.5 rounded-[32px] md:rounded-full relative z-20 gap-2 md:gap-0
-            transition-all duration-300 ease-out border backdrop-blur-md
-            border-zinc-200 dark:border-[#00e5ff]/80 shadow-xl dark:shadow-[0_0_20px_rgba(0,229,255,0.2)] bg-white/90 dark:bg-[#050810]/90
-            hover:border-zinc-300 dark:hover:border-[#00e5ff] hover:shadow-2xl dark:hover:shadow-[0_0_40px_rgba(0,229,255,0.4)] hover:bg-white dark:hover:bg-[#03060c]
-            focus-within:border-cyan-400 dark:focus-within:border-[#00e5ff] focus-within:shadow-2xl dark:focus-within:shadow-[0_0_50px_rgba(0,229,255,0.5)] focus-within:bg-white dark:focus-within:bg-[#03060c]
-            md:h-[64px]
-          ">
-            {/* Org Input Area */}
-            <div className="w-full md:w-auto flex-1 flex border-b border-black/5 dark:border-white/5 md:border-none">
-              <div className="w-full h-full flex items-center px-6 md:px-8 relative group py-2 md:py-0">
-                <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">ORG</span>
+            {/* Org Input */}
+            <div className="flex flex-col gap-2 group">
+              <label className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-zinc-500 dark:text-[#00e5ff] uppercase ml-4 transition-colors group-focus-within:text-[#00e5ff]">Organization</label>
+              <div className="h-[56px] rounded-2xl bg-black/5 dark:bg-white/5 border border-transparent dark:border-white/5 px-4 flex items-center transition-all group-focus-within:border-[#00e5ff]/50 group-focus-within:bg-black/10 dark:group-focus-within:bg-white/10">
                 <input 
                   type="text" 
-                  placeholder="Company name..." 
+                  placeholder="Your company name" 
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
-                  className="w-full bg-transparent border-none outline-none text-[14px] md:text-[14px] lg:text-[16px] font-black text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-[#2f3542] focus:ring-0"
+                  className="w-full bg-transparent border-none outline-none text-[15px] md:text-[16px] font-bold text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 focus:ring-0"
                   required
                 />
               </div>
             </div>
 
-            {/* Vertical Divider */}
-            <div className="hidden md:block w-px h-6 md:h-8 bg-black/10 dark:bg-white/10 self-center mx-1 transition-colors duration-300 group-hover:bg-[#00e5ff]/30"></div>
+            {/* Role Dropdown */}
+            <div className="flex flex-col gap-2 group relative">
+              <label className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-zinc-500 dark:text-[#00e5ff] uppercase ml-4 transition-colors group-focus-within:text-[#00e5ff]">Role</label>
+              <div 
+                ref={dropdownRef}
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="h-[56px] rounded-2xl bg-black/5 dark:bg-white/5 border border-transparent dark:border-white/5 px-4 flex items-center justify-between cursor-pointer transition-all hover:bg-black/10 dark:hover:bg-white/10"
+              >
+                <span className={`text-[15px] md:text-[16px] font-bold ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-400 dark:text-zinc-600'} truncate pr-4`}>
+                  {role || "Select your role"}
+                </span>
+                <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }}>
+                  <ChevronDown size={18} className="text-zinc-400 dark:text-[#00e5ff] shrink-0" />
+                </motion.div>
+              </div>
 
-            {/* Role Input Area (Custom Dropdown) */}
-            <div className="w-full md:w-auto flex-[1.2] flex border-b border-black/5 dark:border-white/5 md:border-none">
-              <div ref={dropdownRef} className="w-full h-full flex items-center px-6 md:px-6 relative group py-2 md:py-0 cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-                <span className="text-[10px] md:text-[11px] font-black tracking-[0.2em] text-[#00e5ff] mr-4 shrink-0 uppercase">ROLE</span>
-                <div className="relative w-full flex items-center justify-between md:pr-[140px]">
-                  <span className={`text-[14px] md:text-[16px] font-black ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-400 dark:text-[#2f3542]'} truncate pr-4`}>
-                    {role || "Select Role..."}
-                  </span>
-                  <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }}>
-                    <ChevronDown size={16} className="text-[#00e5ff] shrink-0" />
-                  </motion.div>
-                </div>
-
-                {/* Dropdown Menu */}
+              {/* Dropdown Menu */}
+              <AnimatePresence>
                 {isDropdownOpen && (
                   <motion.div 
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute bottom-[110%] left-0 w-full bg-white/95 dark:bg-[#0b1426]/95 backdrop-blur-2xl border border-zinc-200 dark:border-[#00e5ff]/20 rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.8)] z-50 max-h-[220px] overflow-y-auto"
+                    className="absolute top-[85px] left-0 w-full bg-white dark:bg-[#0b1426] border border-zinc-200 dark:border-[#00e5ff]/30 rounded-2xl overflow-hidden shadow-2xl z-50 max-h-[240px] overflow-y-auto"
                   >
                     {roles.map((r) => (
                       <div 
                         key={r}
                         onClick={() => setRole(r)}
-                        className="px-6 py-3 text-[14px] md:text-[15px] font-bold text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-[#00e5ff]/15 transition-colors duration-200 cursor-pointer border-b border-black/5 dark:border-white/5 last:border-b-0"
+                        className="px-5 py-3.5 text-[14px] md:text-[15px] font-bold text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-[#00e5ff]/20 transition-colors duration-200 cursor-pointer border-b border-black/5 dark:border-white/5 last:border-b-0"
                       >
                         {r}
                       </div>
                     ))}
                   </motion.div>
                 )}
-              </div>
+              </AnimatePresence>
             </div>
-
-            {/* Scan Now Button (Inner Pill) */}
-            <button 
-              type="submit"
-              disabled={!isFormValid}
-              className={`
-                md:absolute md:right-2 md:top-1/2 md:transform md:-translate-y-1/2
-                w-full md:w-auto px-6 h-[52px] md:h-[50px] rounded-full font-bold text-[13px] flex items-center justify-center gap-2 transition-all duration-300 shrink-0
-                border border-black/10 dark:border-white/5 mx-0 my-2 md:my-0
-                ${isFormValid 
-                  ? 'bg-zinc-900 dark:bg-[#18181b] text-white hover:bg-black dark:hover:bg-[#27272a] hover:border-black/30 dark:hover:border-white/30 shadow-[0_0_15px_rgba(0,0,0,0.1)] dark:shadow-[0_0_15px_rgba(255,255,255,0.1)]' 
-                  : 'bg-zinc-200 dark:bg-[#141414] text-zinc-400 dark:text-[#e5e7eb] cursor-not-allowed'}
-              `}
-            >
-              Scan Now <ArrowRight size={14} className={isFormValid ? "text-white" : "text-[#e5e7eb]"} />
-            </button>
           </div>
-          
+
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/10 to-transparent my-2"></div>
+
           {/* PDPA Consent Checkbox */}
-          <div className="mt-4 flex items-start gap-3 w-full max-w-[800px] px-2 md:px-6">
+          <div className="flex items-start gap-3 w-full px-2">
             <input 
               type="checkbox" 
               id="pdpaConsent" 
               checked={pdpaConsent}
               onChange={(e) => setPdpaConsent(e.target.checked)}
-              className="mt-1 w-4 h-4 rounded border-zinc-300 dark:border-zinc-600 text-[#00e5ff] focus:ring-[#00e5ff] focus:ring-offset-0 bg-transparent cursor-pointer"
+              className="mt-1 w-[18px] h-[18px] rounded border-zinc-300 dark:border-zinc-500 text-[#00e5ff] focus:ring-[#00e5ff] focus:ring-offset-0 bg-transparent cursor-pointer transition-colors"
             />
-            <label htmlFor="pdpaConsent" className="text-[12px] md:text-[13px] text-zinc-500 dark:text-zinc-400 leading-relaxed cursor-pointer font-medium select-none">
+            <label htmlFor="pdpaConsent" className="text-[12.5px] md:text-[13.5px] text-zinc-500 dark:text-zinc-400 leading-relaxed cursor-pointer font-medium select-none">
               ข้าพเจ้ายินยอมให้ MFEC เก็บรวบรวมข้อมูลเพื่อใช้ในการติดต่อกลับและนำเสนอโซลูชัน ตามนโยบายความเป็นส่วนตัวของบริษัท
             </label>
           </div>
 
+          {/* Scan Now Button */}
+          <button 
+            type="submit"
+            disabled={!isFormValid}
+            className={`
+              w-full h-[60px] md:h-[64px] rounded-2xl font-black text-[15px] md:text-[16px] tracking-wide flex items-center justify-center gap-3 transition-all duration-300 mt-2
+              ${isFormValid 
+                ? 'bg-zinc-900 dark:bg-[#00e5ff] text-white dark:text-black shadow-xl hover:shadow-[0_0_30px_rgba(0,229,255,0.4)] hover:scale-[1.01]' 
+                : 'bg-zinc-200 dark:bg-white/5 text-zinc-400 dark:text-zinc-600 cursor-not-allowed'}
+            `}
+          >
+            START ASSESSMENT <ArrowRight size={18} className={isFormValid ? "text-white dark:text-black" : "text-zinc-400 dark:text-zinc-600"} />
+          </button>
         </form>
       </motion.div>
     </div>
