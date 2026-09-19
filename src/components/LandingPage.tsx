@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, UserCircle2, ChevronDown, Mail, Building2, Briefcase, Sparkles } from 'lucide-react';
+import { ArrowRight, UserCircle2, ChevronDown, Mail, Building2, Briefcase, Sparkles, Check } from 'lucide-react';
 import MeshGraphBackground from './MeshGraphBackground';
 import type { UserInfo } from '../App';
 import mfecLogo from '../assets/mfec-logo.png';
@@ -73,10 +73,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           className="flex flex-col gap-6 text-center lg:text-left pt-10 lg:pt-0"
         >
           <div className="flex flex-col w-full relative z-10">
-            <h1 className="text-[40px] sm:text-[48px] md:text-[56px] xl:text-[72px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] tracking-tight whitespace-nowrap">
+            <h1 className="text-[40px] sm:text-[48px] md:text-[56px] xl:text-[72px] font-outfit font-black text-zinc-900 dark:text-white leading-[1.05] tracking-tight whitespace-nowrap">
               What's your true
             </h1>
-            <h1 className="text-[48px] sm:text-[56px] md:text-[64px] xl:text-[80px] font-extrabold animate-shine leading-[1.05] tracking-tight mt-1" style={{ filter: 'var(--title-drop-shadow)' }}>
+            <h1 className="text-[48px] sm:text-[56px] md:text-[64px] xl:text-[80px] font-outfit font-black animate-shine leading-[1.05] tracking-tight mt-1" style={{ filter: 'var(--title-drop-shadow)' }}>
               Tech Debt?
             </h1>
           </div>
@@ -198,17 +198,31 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
             {/* PDPA Consent Checkbox */}
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.5 }} className="flex items-start gap-3 mt-4 relative z-10">
-              <div className="relative flex items-center justify-center mt-1">
+              <div className="relative flex items-center justify-center mt-1 cursor-pointer" onClick={() => setPdpaConsent(!pdpaConsent)}>
                 <input 
                   type="checkbox" 
                   id="pdpaConsent" 
                   checked={pdpaConsent}
                   onChange={(e) => setPdpaConsent(e.target.checked)}
-                  className="peer w-5 h-5 rounded-[6px] border-2 border-zinc-400/50 dark:border-white/30 text-[#0077ff] dark:text-[#00e5ff] focus:ring-0 focus:ring-offset-0 bg-white/50 dark:bg-black/20 cursor-pointer transition-all duration-300 checked:border-[#0077ff] dark:checked:border-[#00e5ff] checked:bg-[#0077ff] dark:checked:bg-[#00e5ff] backdrop-blur-md"
+                  className="sr-only peer"
                 />
+                <div className={`w-5 h-5 rounded-[6px] border-2 flex items-center justify-center transition-all duration-300 backdrop-blur-md ${pdpaConsent ? 'bg-[#0077ff] dark:bg-[#00e5ff] border-[#0077ff] dark:border-[#00e5ff]' : 'bg-white/50 dark:bg-black/20 border-zinc-400/50 dark:border-white/30 hover:border-[#0077ff] dark:hover:border-[#00e5ff]/60'}`}>
+                  <AnimatePresence>
+                    {pdpaConsent && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Check className="w-3.5 h-3.5 text-white dark:text-black stroke-[3px]" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
-              <label htmlFor="pdpaConsent" className="text-[13px] md:text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed cursor-pointer font-medium select-none">
-                ยินดีให้ MFEC ดูแลข้อมูลนี้ เพื่อวิเคราะห์และนำเสนอโซลูชันที่เหมาะกับคุณ (อ่านรายละเอียดได้ใน <a href="#" className="text-zinc-900 dark:text-white font-bold hover:underline underline-offset-4 decoration-[#00e5ff] transition-all hover:text-[#00e5ff]">นโยบายความเป็นส่วนตัว</a>)
+              <label htmlFor="pdpaConsent" onClick={() => setPdpaConsent(!pdpaConsent)} className="text-[13px] md:text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed cursor-pointer font-medium select-none">
+                ยินดีให้ MFEC ดูแลข้อมูลนี้ เพื่อวิเคราะห์และนำเสนอโซลูชันที่เหมาะกับคุณ (อ่านรายละเอียดได้ใน <a href="#" onClick={(e) => e.stopPropagation()} className="text-zinc-900 dark:text-white font-bold hover:underline underline-offset-4 decoration-[#00e5ff] transition-all hover:text-[#00e5ff]">นโยบายความเป็นส่วนตัว</a>)
               </label>
             </motion.div>
 
