@@ -63,7 +63,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-auto dark:invert dark:brightness-0 opacity-90 dark:opacity-100" />
       </div>
 
-      <div className="w-full max-w-[1100px] z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative mt-16 md:mt-0">
+      <div className="w-full max-w-[1400px] z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative mt-16 md:mt-0">
         
         {/* Left Side: Typography & Value Prop */}
         <motion.div 
@@ -73,10 +73,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           className="flex flex-col gap-6 text-center lg:text-left pt-10 lg:pt-0"
         >
           <div className="flex flex-col w-full relative z-10">
-            <h1 className="text-[40px] sm:text-[48px] md:text-[56px] xl:text-[72px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] tracking-tight">
+            <h1 className="text-[40px] sm:text-[48px] md:text-[56px] xl:text-[72px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] tracking-tight whitespace-nowrap">
               What's your true
             </h1>
-            <h1 className="text-[48px] sm:text-[56px] md:text-[64px] xl:text-[80px] font-extrabold bg-gradient-to-r from-[#00e5ff] to-[#0077ff] text-transparent bg-clip-text leading-[1.05] tracking-tight mt-1 drop-shadow-sm">
+            <h1 className="text-[48px] sm:text-[56px] md:text-[64px] xl:text-[80px] font-extrabold animate-shine leading-[1.05] tracking-tight mt-1" style={{ filter: 'var(--title-drop-shadow)' }}>
               Tech Debt?
             </h1>
           </div>
@@ -88,7 +88,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
         {/* Right Side: VisionOS Form */}
         <div className="w-full relative flex justify-center lg:justify-end perspective-1000">
-          {/* Spatial Glass Card with Floating Animation */}
+          {/* Spatial Glass Card with Subtle Floating Animation */}
           <motion.form 
             onSubmit={handleSubmit}
             initial={{ opacity: 0, scale: 0.95, rotateX: 5 }}
@@ -96,15 +96,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               opacity: 1, 
               scale: 1, 
               rotateX: 0,
-              y: [-8, 8, -8] // Floating effect
+              y: [-4, 4, -4] // Subtle floating effect
             }}
             transition={{ 
               opacity: { duration: 0.8, ease: "easeOut", delay: 0.1 },
               scale: { duration: 0.8, ease: "easeOut", delay: 0.1, type: "spring", bounce: 0.4 },
               rotateX: { duration: 0.8, ease: "easeOut", delay: 0.1 },
-              y: { duration: 6, repeat: Infinity, ease: "easeInOut" } // Infinite float
+              y: { duration: 8, repeat: Infinity, ease: "easeInOut" } // Infinite float, slower
             }}
-            className="w-full max-w-[480px] flex flex-col gap-6 relative p-8 md:p-10 rounded-[40px] border border-white/20 dark:border-white/10 shadow-[0_40px_80px_-20px_rgba(0,229,255,0.15)] bg-white/40 dark:bg-white/5 backdrop-blur-[40px] overflow-hidden"
+            className="w-full max-w-[480px] flex flex-col gap-6 relative p-8 md:p-10 rounded-[40px] border border-white/20 dark:border-white/10 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] bg-white/40 dark:bg-white/5 backdrop-blur-[40px] overflow-hidden"
           >
             {/* Subtle inner highlight for the 3D glass effect */}
             <div className="absolute inset-0 rounded-[40px] border border-white/30 pointer-events-none mix-blend-overlay"></div>
