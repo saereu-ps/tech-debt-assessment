@@ -112,24 +112,37 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               rotateX: { duration: 0.8, ease: "easeOut", delay: 0.1 },
               y: { duration: 8, repeat: Infinity, ease: "easeInOut" } // Infinite float, slower
             }}
-            className="w-full max-w-[480px] flex flex-col gap-6 relative p-8 md:p-10 rounded-[40px] border border-white/20 dark:border-white/10 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] bg-white/40 dark:bg-white/5 backdrop-blur-[40px] overflow-hidden"
+            className="w-full max-w-[480px] flex flex-col gap-6 relative p-8 md:p-10 rounded-[40px] border border-white/20 dark:border-white/10 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] bg-white/40 dark:bg-[#0a0a0a]/60 backdrop-blur-[40px] overflow-hidden"
           >
+            {/* Animated Glowing Orbs Background */}
+            <motion.div 
+              animate={{ scale: [1, 1.2, 1], x: [0, 50, 0], y: [0, 30, 0] }} 
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-10 -right-10 w-48 h-48 bg-[#00e5ff] rounded-full mix-blend-screen filter blur-[80px] opacity-30 dark:opacity-20 pointer-events-none"
+            />
+            <motion.div 
+              animate={{ scale: [1, 1.5, 1], x: [0, -40, 0], y: [0, -50, 0] }} 
+              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+              className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#0077ff] rounded-full mix-blend-screen filter blur-[80px] opacity-30 dark:opacity-20 pointer-events-none"
+            />
+
             {/* Subtle inner highlight for the 3D glass effect */}
             <div className="absolute inset-0 rounded-[40px] border border-white/30 pointer-events-none mix-blend-overlay"></div>
 
             <div className="relative z-10 text-center mb-2">
-              <h2 className="text-[28px] md:text-[32px] font-bold text-zinc-900 dark:text-white tracking-tight">Let's Get Started</h2>
-              <p className="text-[14px] text-zinc-700 dark:text-zinc-300 mt-2 font-medium">Just a few details to see your results.</p>
+              <h2 className="text-[28px] md:text-[32px] font-outfit font-black text-zinc-900 dark:text-white tracking-tight">Let's Get Started</h2>
+              <p className="text-[14px] text-zinc-600 dark:text-zinc-300 mt-2 font-medium">Just a few details to see your results.</p>
             </div>
 
             <div className="flex flex-col gap-4 relative z-10">
               
               {/* Name Input */}
-              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.5 }} className="w-full">
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.5 }} className="w-full relative group">
+                <UserCircle2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400 group-focus-within:text-[#00e5ff] transition-colors z-10" />
                 <input
                   type="text"
                   id="nameInput"
-                  className="w-full h-[52px] px-5 rounded-2xl bg-white/50 dark:bg-black/20 border border-white/40 dark:border-white/10 focus:border-[#00e5ff] dark:focus:border-[#00e5ff] focus:bg-white/60 dark:focus:bg-black/40 outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-400 transition-all duration-300 shadow-inner"
+                  className="w-full h-[52px] pl-12 pr-5 rounded-2xl bg-white/50 dark:bg-black/40 border border-zinc-200 dark:border-white/10 focus:border-[#00e5ff] dark:focus:border-[#00e5ff] focus:ring-1 focus:ring-[#00e5ff]/50 outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 transition-all duration-300 shadow-inner hover:border-zinc-300 dark:hover:border-white/20"
                   placeholder="Full Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -138,11 +151,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               </motion.div>
 
               {/* Email Input */}
-              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4, duration: 0.5 }} className="w-full">
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4, duration: 0.5 }} className="w-full relative group">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400 group-focus-within:text-[#00e5ff] transition-colors z-10" />
                 <input
                   type="email"
                   id="emailInput"
-                  className="w-full h-[52px] px-5 rounded-2xl bg-white/50 dark:bg-black/20 border border-white/40 dark:border-white/10 focus:border-[#00e5ff] dark:focus:border-[#00e5ff] focus:bg-white/60 dark:focus:bg-black/40 outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-400 transition-all duration-300 shadow-inner"
+                  className="w-full h-[52px] pl-12 pr-5 rounded-2xl bg-white/50 dark:bg-black/40 border border-zinc-200 dark:border-white/10 focus:border-[#00e5ff] dark:focus:border-[#00e5ff] focus:ring-1 focus:ring-[#00e5ff]/50 outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 transition-all duration-300 shadow-inner hover:border-zinc-300 dark:hover:border-white/20"
                   placeholder="Work Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -151,11 +165,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               </motion.div>
 
               {/* Organization Input */}
-              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5, duration: 0.5 }} className="w-full">
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5, duration: 0.5 }} className="w-full relative group">
+                <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400 group-focus-within:text-[#00e5ff] transition-colors z-10" />
                 <input
                   type="text"
                   id="companyInput"
-                  className="w-full h-[52px] px-5 rounded-2xl bg-white/50 dark:bg-black/20 border border-white/40 dark:border-white/10 focus:border-[#00e5ff] dark:focus:border-[#00e5ff] focus:bg-white/60 dark:focus:bg-black/40 outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-400 transition-all duration-300 shadow-inner"
+                  className="w-full h-[52px] pl-12 pr-5 rounded-2xl bg-white/50 dark:bg-black/40 border border-zinc-200 dark:border-white/10 focus:border-[#00e5ff] dark:focus:border-[#00e5ff] focus:ring-1 focus:ring-[#00e5ff]/50 outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 transition-all duration-300 shadow-inner hover:border-zinc-300 dark:hover:border-white/20"
                   placeholder="Company Name"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
@@ -168,14 +183,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                 <div 
                   ref={dropdownRef}
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="relative flex items-center h-[52px] w-full px-5 rounded-2xl bg-white/50 dark:bg-black/20 border border-white/40 dark:border-white/10 transition-all duration-300 cursor-pointer shadow-inner hover:border-white/30"
-                  style={{ borderColor: isDropdownOpen ? '#00e5ff' : undefined, backgroundColor: isDropdownOpen ? 'rgba(0,0,0,0.4)' : undefined }}
+                  className="relative flex items-center h-[52px] w-full pl-12 pr-5 rounded-2xl bg-white/50 dark:bg-black/40 border border-zinc-200 dark:border-white/10 transition-all duration-300 cursor-pointer shadow-inner hover:border-zinc-300 dark:hover:border-white/20 group"
+                  style={{ borderColor: isDropdownOpen ? '#00e5ff' : undefined, boxShadow: isDropdownOpen ? '0 0 0 1px rgba(0,229,255,0.5) inset' : undefined }}
                 >
-                  <span className={`w-full text-[15px] font-medium truncate ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-500 dark:text-zinc-400'}`}>
+                  <Briefcase className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors z-10 ${isDropdownOpen ? 'text-[#00e5ff]' : 'text-zinc-400 group-hover:text-zinc-500 dark:group-hover:text-zinc-300'}`} />
+                  <span className={`w-full text-[15px] font-medium truncate ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-500'}`}>
                     {role || "Select Role"}
                   </span>
                   <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }} className="absolute right-5">
-                    <ChevronDown className="w-5 h-5 text-zinc-500 dark:text-zinc-400 shrink-0" />
+                    <ChevronDown className={`w-5 h-5 transition-colors ${isDropdownOpen ? 'text-[#00e5ff]' : 'text-zinc-400'}`} />
                   </motion.div>
                 </div>
 
@@ -244,8 +260,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               className={`
                 w-full h-[56px] rounded-full font-bold text-[16px] flex items-center justify-center gap-2 transition-all duration-300 mt-4 relative z-10 overflow-hidden group
                 ${isFormValid 
-                  ? 'bg-zinc-900 dark:bg-white text-white dark:text-black hover:scale-[1.02] active:scale-[0.98] shadow-[0_10px_30px_-10px_rgba(0,229,255,0.6)] animate-pulse hover:animate-none' 
-                  : 'bg-zinc-900/10 dark:bg-white/10 text-zinc-500 dark:text-white/30 cursor-not-allowed backdrop-blur-md'}
+                  ? 'bg-gradient-to-r from-[#00e5ff] to-[#0077ff] text-white hover:scale-[1.02] active:scale-[0.98] shadow-[0_10px_30px_-10px_rgba(0,229,255,0.6)] animate-pulse hover:animate-none' 
+                  : 'bg-white/10 dark:bg-white/5 text-zinc-400 dark:text-white/30 cursor-not-allowed backdrop-blur-md border border-zinc-200 dark:border-white/10'}
               `}
             >
               <span>Reveal My Tech Debt</span>
