@@ -49,7 +49,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const isFormValid = name.trim().length > 0 && company.trim().length > 0 && role.trim().length > 0 && pdpaConsent;
 
   return (
-    <div className="relative min-h-[100dvh] w-full flex items-center justify-center p-6 md:p-12 font-sans overflow-hidden bg-white dark:bg-[#050810] transition-colors duration-500">
+    <div className="relative min-h-[100dvh] w-full flex items-center justify-center p-6 md:p-12 font-sans overflow-x-hidden bg-white dark:bg-[#050810] transition-colors duration-500">
       
       {/* Dynamic Network Background spanning full screen to support Spatial Glassmorphism */}
       <div className="absolute inset-0 z-0">
