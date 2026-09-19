@@ -248,7 +248,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                 </div>
               </div>
               <label htmlFor="pdpaConsent" onClick={() => setPdpaConsent(!pdpaConsent)} className="text-[13px] md:text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed cursor-pointer font-medium select-none">
-                ยินดีให้ MFEC ดูแลข้อมูลนี้ เพื่อวิเคราะห์และนำเสนอโซลูชันที่เหมาะกับคุณ (อ่านรายละเอียดได้ใน <a href="#" onClick={(e) => e.stopPropagation()} className="text-zinc-900 dark:text-white font-bold hover:underline underline-offset-4 decoration-[#00e5ff] transition-all hover:text-[#00e5ff]">นโยบายความเป็นส่วนตัว</a>)
+                ยินดีให้ MFEC ช่วยวิเคราะห์ข้อมูล เพื่อออกแบบโซลูชันที่ตอบโจทย์คุณที่สุด (อ่านรายละเอียดใน <a href="#" onClick={(e) => e.stopPropagation()} className="text-zinc-900 dark:text-white font-bold hover:underline underline-offset-4 decoration-[#00e5ff] transition-all hover:text-[#00e5ff]">นโยบายความเป็นส่วนตัว</a>)
               </label>
             </motion.div>
 
