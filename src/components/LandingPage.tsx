@@ -63,7 +63,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-auto dark:invert dark:brightness-0 opacity-90 dark:opacity-100" />
       </div>
 
-      <div className="w-full max-w-[1400px] z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative mt-16 md:mt-0">
+      <div className="w-full max-w-[1200px] z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center relative mt-16 md:mt-0">
         
         {/* Left Side: Typography & Value Prop */}
         <motion.div 
@@ -73,15 +73,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           className="flex flex-col gap-6 text-center lg:text-left pt-10 lg:pt-0"
         >
           <div className="flex flex-col w-full relative z-10">
-            <h1 className="text-[40px] sm:text-[48px] md:text-[56px] xl:text-[72px] font-outfit font-black text-zinc-900 dark:text-white leading-[1.05] tracking-tight whitespace-nowrap">
+            <h1 className="text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] font-outfit font-black text-zinc-900 dark:text-white leading-[1.05] tracking-tight whitespace-nowrap">
               What's your true
             </h1>
-            <h1 className="text-[48px] sm:text-[56px] md:text-[64px] xl:text-[80px] font-outfit font-black animate-shine leading-[1.05] tracking-tight mt-1" style={{ filter: 'var(--title-drop-shadow)' }}>
+            <h1 className="text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] font-outfit font-black animate-shine leading-[1.05] tracking-tight mt-1" style={{ filter: 'var(--title-drop-shadow)' }}>
               Tech Debt?
             </h1>
           </div>
 
-          <div className="flex flex-col gap-5 max-w-[500px] mx-auto lg:mx-0 mt-4 relative z-10 text-center lg:text-left">
+          <div className="flex flex-col gap-5 max-w-[560px] mx-auto lg:mx-0 mt-4 relative z-10 text-center lg:text-left">
             <p className="text-[16px] md:text-[18px] font-medium leading-relaxed tracking-wide text-zinc-600 dark:text-zinc-300">
               Evaluate your infrastructure maturity, discover hidden vulnerabilities, and prepare your organization for the AI era.
             </p>
