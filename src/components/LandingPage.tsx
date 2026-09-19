@@ -106,37 +106,64 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative bg-white dark:bg-[#0a0a0a] p-8 rounded-[32px] border border-zinc-200 dark:border-white/10 shadow-2xl flex flex-col items-center max-w-sm w-full"
+              className="relative bg-white dark:bg-[#060c18] p-8 md:p-10 rounded-[2.5rem] border border-black/5 dark:border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.4)] flex flex-col items-center max-w-sm w-full overflow-hidden group"
             >
+              {/* Radial gradient ambient lighting (very lightweight) */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#00e5ff]/10 via-transparent to-transparent pointer-events-none" />
+              
               <button 
                 onClick={() => setShowQRModal(false)}
-                className="absolute top-4 right-4 p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors bg-zinc-100 dark:bg-white/5 rounded-full"
+                className="absolute top-5 right-5 p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all bg-zinc-100/50 hover:bg-zinc-200 dark:bg-white/5 dark:hover:bg-white/10 rounded-full z-10"
               >
                 <X className="w-5 h-5" />
               </button>
               
-              <div className="w-16 h-16 rounded-full bg-blue-50 dark:bg-white/5 flex items-center justify-center mb-5 mt-2">
-                <QrCode className="w-8 h-8 text-[#0077ff] dark:text-[#00e5ff]" />
+              <div className="relative mb-5 mt-2">
+                <div className="absolute inset-0 bg-[#00e5ff] rounded-full opacity-20 blur-xl pointer-events-none" />
+                <div className="w-14 h-14 rounded-full bg-blue-50 dark:bg-[#00e5ff]/10 border border-[#00e5ff]/20 flex items-center justify-center relative z-10">
+                  <QrCode className="w-6 h-6 text-[#0077ff] dark:text-[#00e5ff]" />
+                </div>
               </div>
               
-              <h3 className="text-2xl font-outfit font-black text-zinc-900 dark:text-white mb-2 tracking-tight">Scan QR Code</h3>
-              <p className="text-zinc-500 dark:text-zinc-400 text-center mb-8 text-[14px] font-medium leading-relaxed">
-                Scan this code with your mobile device's camera to seamlessly continue the assessment on your phone.
+              <h3 className="text-[24px] font-black font-[var(--font-display)] text-transparent bg-clip-text bg-gradient-to-br from-zinc-900 to-zinc-600 dark:from-white dark:to-zinc-400 mb-2 tracking-tight text-center relative z-10">
+                Mobile Handoff
+              </h3>
+              <p className="text-zinc-500 dark:text-zinc-400 text-center mb-8 text-[14px] font-medium leading-relaxed relative z-10">
+                Scan to securely continue this session on your mobile device.
               </p>
               
-              <div className="bg-white p-4 rounded-2xl shadow-sm border border-zinc-200 w-[232px] h-[232px] flex items-center justify-center">
-                {isQRReady ? (
-                  <QRCodeSVG 
-                    value={currentUrl} 
-                    size={200}
-                    bgColor="#ffffff"
-                    fgColor="#000000"
-                    level="Q"
-                    includeMargin={false}
+              {/* Scanner Container */}
+              <div className="relative p-1.5 w-[232px] h-[232px] flex items-center justify-center group-hover:shadow-[0_0_40px_rgba(0,229,255,0.15)] transition-shadow duration-700 rounded-2xl bg-zinc-50 dark:bg-[#0a1122] border border-black/5 dark:border-white/5 z-10 overflow-hidden">
+                
+                {/* 4 Corners */}
+                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#0077ff] dark:border-[#00e5ff] rounded-tl-lg opacity-50" />
+                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#0077ff] dark:border-[#00e5ff] rounded-tr-lg opacity-50" />
+                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#0077ff] dark:border-[#00e5ff] rounded-bl-lg opacity-50" />
+                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#0077ff] dark:border-[#00e5ff] rounded-br-lg opacity-50" />
+                
+                {/* Scanner Line */}
+                {isQRReady && (
+                  <motion.div 
+                    className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#0077ff] dark:via-[#00e5ff] to-transparent z-20 opacity-50 shadow-[0_0_10px_#00e5ff]"
+                    animate={{ y: [0, 232, 0] }}
+                    transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
                   />
-                ) : (
-                  <div className="w-8 h-8 border-4 border-zinc-100 border-t-[#0077ff] rounded-full animate-spin" />
                 )}
+
+                <div className="bg-white p-3 rounded-xl w-full h-full flex items-center justify-center shadow-inner relative z-10">
+                  {isQRReady ? (
+                    <QRCodeSVG 
+                      value={currentUrl} 
+                      size={190}
+                      bgColor="#ffffff"
+                      fgColor="#000000"
+                      level="Q"
+                      includeMargin={false}
+                    />
+                  ) : (
+                    <div className="w-8 h-8 border-4 border-zinc-100 border-t-[#00e5ff] rounded-full animate-spin" />
+                  )}
+                </div>
               </div>
             </motion.div>
           </div>
