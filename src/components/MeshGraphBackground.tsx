@@ -33,124 +33,147 @@ const MeshGraphBackground: React.FC = () => {
     window.addEventListener('resize', resize);
     resize();
 
-    // Premium Wave Configuration
-    const cols = 70; // Smooth, high resolution
-    const rows = 45;
-    const spacing = 50; // Spread out
+    // Sphere configuration - Premium Density
+    const numPoints = 550;
+    const sphereRadius = Math.min(width, height) * 0.48;
+    const points: { origX: number, origY: number, origZ: number, x: number, y: number, z: number, px: number, py: number, scale: number }[] = [];
+    const edges: [number, number][] = [];
+
+    // Generate points using Fibonacci Sphere algorithm
+    const phi = Math.PI * (3 - Math.sqrt(5)); 
+    for (let i = 0; i < numPoints; i++) {
+      const y = 1 - (i / (numPoints - 1)) * 2;
+      const radiusAtY = Math.sqrt(1 - y * y);
+      const theta = phi * i;
+      const x = Math.cos(theta) * radiusAtY;
+      const z = Math.sin(theta) * radiusAtY;
+      
+      points.push({
+        origX: x * sphereRadius,
+        origY: y * sphereRadius,
+        origZ: z * sphereRadius,
+        x: 0, y: 0, z: 0, px: 0, py: 0, scale: 0
+      });
+    }
+
+    // Pre-calculate edges
+    const connectionDist = sphereRadius * 0.22;
+    const connectionDistSq = connectionDist * connectionDist;
+    
+    for (let i = 0; i < numPoints; i++) {
+      let connections = 0;
+      for (let j = i + 1; j < numPoints; j++) {
+        if (connections > 4) break; 
+        
+        const dx = points[i].origX - points[j].origX;
+        const dy = points[i].origY - points[j].origY;
+        const dz = points[i].origZ - points[j].origZ;
+        
+        if (dx * dx + dy * dy + dz * dz < connectionDistSq) {
+          edges.push([i, j]);
+          connections++;
+        }
+      }
+    }
 
     let time = 0;
+    const fov = 1100; // Increased FOV for flatter, more elegant perspective
 
     const render = () => {
-      time += 0.004; // Glacially slow and elegant movement (Expensive feel)
+      time += 0.0015; // Glacially slow rotation
       
-      mouseX += (targetMouseX - mouseX) * 0.05;
-      mouseY += (targetMouseY - mouseY) * 0.05;
+      mouseX += (targetMouseX - mouseX) * 0.03;
+      mouseY += (targetMouseY - mouseY) * 0.03;
 
-      const parallaxX = (mouseX - width / 2) * 0.03;
-      const parallaxY = (mouseY - height / 2) * 0.03;
-      
-      // Deep premium dark background (Almost absolute black)
-      ctx.fillStyle = '#020308'; 
+      const parallaxX = (mouseX - width / 2) * 0.04;
+      const parallaxY = (mouseY - height / 2) * 0.04;
+
+      // Absolute premium dark background
+      ctx.fillStyle = '#020308';
       ctx.fillRect(0, 0, width, height);
       
       ctx.save();
-      // Center the mesh, slightly lower to act as a digital landscape/floor
-      ctx.translate(width / 2 + parallaxX, height / 2 + 100 + parallaxY);
+      
+      const isDesktop = width > 1024;
+      const centerX = isDesktop ? width * 0.38 : width / 2;
+      const centerY = height / 2;
+      
+      // Center the globe with subtle mouse parallax
+      ctx.translate(centerX + parallaxX, centerY + parallaxY);
 
-      const points: {x: number, y: number, z: number, px: number, py: number, scale: number, heightRatio: number}[] = [];
+      // Rotation angles with microscopic mouse influence
+      const rotX = time * 0.4 + (mouseY / height - 0.5) * 0.1;
+      const rotY = time + (mouseX / width - 0.5) * 0.1;
+      
+      const cosX = Math.cos(rotX);
+      const sinX = Math.sin(rotX);
+      const cosY = Math.cos(rotY);
+      const sinY = Math.sin(rotY);
 
-      // Calculate 3D topology
-      for (let z = 0; z < rows; z++) {
-        for (let x = 0; x < cols; x++) {
-          const worldX = (x - cols / 2) * spacing;
-          const worldZ = (z - rows / 2) * spacing;
-          
-          const dist = Math.sqrt(worldX * worldX + worldZ * worldZ);
-          
-          // Smooth, elegant organic waves
-          const y = 
-            Math.sin(worldX * 0.002 + time) * 140 +
-            Math.cos(worldZ * 0.003 + time * 0.8) * 140 +
-            Math.sin(dist * 0.0015 - time * 0.4) * 90;
+      // 3. Rotate and Project Points
+      for (let i = 0; i < numPoints; i++) {
+        const p = points[i];
+        
+        let rx = p.origX * cosY - p.origZ * sinY;
+        let rz = p.origX * sinY + p.origZ * cosY;
+        let ry = p.origY * cosX - rz * sinX;
+        rz = p.origY * sinX + rz * cosX;
+        
+        p.x = rx;
+        p.y = ry;
+        p.z = rz;
+        
+        const zDepth = rz + fov;
+        p.scale = zDepth > 0 ? fov / zDepth : 0;
+        p.px = p.x * p.scale;
+        p.py = p.y * p.scale;
+      }
 
-          // Projection
-          const fov = 1000;
-          const zDepth = worldZ + 1200; // Push back into the screen
+      // 4. Draw Edges (Ultra-thin, elegant lines)
+      ctx.lineWidth = 0.6; // Thinner lines look more expensive
+      for (let i = 0; i < edges.length; i++) {
+        const [p1Idx, p2Idx] = edges[i];
+        const p1 = points[p1Idx];
+        const p2 = points[p2Idx];
+        
+        if (p1.scale > 0 && p2.scale > 0) {
+          const avgZ = (p1.z + p2.z) / 2;
+          const normalizedZ = (avgZ + sphereRadius) / (sphereRadius * 2); 
+          const alpha = Math.max(0.01, Math.min(0.35, normalizedZ * normalizedZ * 0.5));
           
-          if (zDepth > 0) {
-            const scale = fov / zDepth;
-            const px = worldX * scale;
-            const py = y * scale;
-            
-            // Calculate a ratio for how high the peak is (for subtle glowing)
-            const heightRatio = Math.max(0, Math.min(1, (150 - y) / 300));
-            
-            points.push({ x, y, z, px, py, scale, heightRatio });
+          if (alpha > 0.03) { 
+            ctx.beginPath();
+            // Refined Cyan tone
+            ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`;
+            ctx.moveTo(p1.px, p1.py);
+            ctx.lineTo(p2.px, p2.py);
+            ctx.stroke();
           }
         }
       }
 
-      // Draw the Mesh Wireframe (Elegant, ultra-thin lines)
-      ctx.lineWidth = 0.5; // Very thin, premium look
-      for (let i = 0; i < points.length; i++) {
+      // 5. Draw Nodes (Tiny, sharp dots)
+      for (let i = 0; i < numPoints; i++) {
         const p = points[i];
-        
-        // Vignette fade out based on distance from center (Makes it seamlessly blend into the dark)
-        const maxDist = (cols / 2) * spacing;
-        const currentDist = Math.sqrt(Math.pow((p.x - cols/2)*spacing, 2) + Math.pow((p.z - rows/2)*spacing, 2));
-        const edgeFade = Math.max(0, 1 - (currentDist / maxDist));
-        
-        // Depth fade
-        const depthFade = Math.max(0.01, p.scale * 1.2 - 0.2);
-        
-        const finalAlpha = edgeFade * depthFade;
-        
-        if (finalAlpha > 0.01) {
-          // Horizontal connections
-          if (p.x < cols - 1 && i + 1 < points.length) {
-            const right = points[i + 1];
-            ctx.beginPath();
-            // Mostly white/silver lines, with a very subtle hint of cyan based on height
-            if (p.heightRatio > 0.6) {
-               ctx.strokeStyle = `rgba(0, 229, 255, ${finalAlpha * 0.4})`;
-            } else {
-               ctx.strokeStyle = `rgba(255, 255, 255, ${finalAlpha * 0.15})`;
-            }
-            ctx.moveTo(p.px, p.py);
-            ctx.lineTo(right.px, right.py);
-            ctx.stroke();
-          }
-
-          // Vertical connections
-          if (p.z < rows - 1 && i + cols < points.length) {
-            const bottom = points[i + cols];
-            ctx.beginPath();
-            // Subtle hint of purple based on height
-            if (p.heightRatio > 0.6) {
-               ctx.strokeStyle = `rgba(168, 85, 247, ${finalAlpha * 0.4})`;
-            } else {
-               ctx.strokeStyle = `rgba(255, 255, 255, ${finalAlpha * 0.15})`;
-            }
-            ctx.moveTo(p.px, p.py);
-            ctx.lineTo(bottom.px, bottom.py);
-            ctx.stroke();
-          }
+        if (p.scale > 0) {
+          const normalizedZ = (p.z + sphereRadius) / (sphereRadius * 2);
           
-          // Draw tiny nodes only on peaks
-          if (p.heightRatio > 0.5) {
-             const radius = Math.max(0.3, p.scale * 0.8);
-             ctx.fillStyle = `rgba(255, 255, 255, ${finalAlpha * 0.6})`;
-             ctx.beginPath();
-             ctx.arc(p.px, p.py, radius, 0, Math.PI * 2);
-             ctx.fill();
-             
-             // Extra soft glow for very high peaks
-             if (p.heightRatio > 0.75) {
-                ctx.fillStyle = `rgba(0, 229, 255, ${finalAlpha * 0.1})`;
-                ctx.beginPath();
-                ctx.arc(p.px, p.py, radius * 12, 0, Math.PI * 2);
-                ctx.fill();
-             }
+          if (normalizedZ > 0.3) { 
+            const alpha = Math.max(0.1, Math.min(0.9, normalizedZ * normalizedZ));
+            const radius = Math.max(0.4, p.scale * 1.0); // Smaller nodes
+            
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+            ctx.arc(p.px, p.py, radius, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Soft, luxurious glow only for the very front nodes
+            if (normalizedZ > 0.85) {
+              ctx.beginPath();
+              ctx.fillStyle = `rgba(0, 229, 255, ${alpha * 0.15})`;
+              ctx.arc(p.px, p.py, radius * 6, 0, Math.PI * 2);
+              ctx.fill();
+            }
           }
         }
       }
