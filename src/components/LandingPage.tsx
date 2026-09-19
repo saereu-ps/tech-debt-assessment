@@ -18,9 +18,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const [pdpaConsent, setPdpaConsent] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showQRModal, setShowQRModal] = useState(false);
+  const [isQRReady, setIsQRReady] = useState(false);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
   
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+
+  React.useEffect(() => {
+    if (showQRModal) {
+      const timer = setTimeout(() => setIsQRReady(true), 200);
+      return () => clearTimeout(timer);
+    } else {
+      setIsQRReady(false);
+    }
+  }, [showQRModal]);
 
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -111,15 +121,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                 Scan this code with your mobile device's camera to seamlessly continue the assessment on your phone.
               </p>
               
-              <div className="bg-white p-4 rounded-2xl shadow-sm border border-zinc-200">
-                <QRCodeSVG 
-                  value={currentUrl} 
-                  size={200}
-                  bgColor="#ffffff"
-                  fgColor="#000000"
-                  level="Q"
-                  includeMargin={false}
-                />
+              <div className="bg-white p-4 rounded-2xl shadow-sm border border-zinc-200 w-[232px] h-[232px] flex items-center justify-center">
+                {isQRReady ? (
+                  <QRCodeSVG 
+                    value={currentUrl} 
+                    size={200}
+                    bgColor="#ffffff"
+                    fgColor="#000000"
+                    level="Q"
+                    includeMargin={false}
+                  />
+                ) : (
+                  <div className="w-8 h-8 border-4 border-zinc-100 border-t-[#0077ff] rounded-full animate-spin" />
+                )}
               </div>
             </motion.div>
           </div>
