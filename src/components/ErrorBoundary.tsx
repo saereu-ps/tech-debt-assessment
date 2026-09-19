@@ -46,7 +46,7 @@ class ErrorBoundary extends Component<Props, State> {
             
             <div className="flex flex-col gap-3">
               <h1 className="text-2xl md:text-3xl font-black tracking-tight text-white font-[var(--font-display)]">
-                แงงง... มีบางอย่างผิดพลาด 👻
+                แงงง... มีบางอย่างผิดพลาด
               </h1>
               <p className="text-zinc-400 text-sm md:text-base font-medium leading-relaxed px-4">
                 อาจจะมีบั๊กซ่อนอยู่นิดหน่อย ไม่ต้องตกใจน้า<br/>เดี๋ยวเรากลับไปตั้งหลักที่หน้าแรกกันใหม่ดีกว่า!
@@ -58,7 +58,7 @@ class ErrorBoundary extends Component<Props, State> {
               className="mt-4 flex items-center gap-2 bg-[#00e5ff] text-black px-8 py-4 rounded-2xl font-black text-[15px] hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(0,229,255,0.4)] transition-all"
             >
               <Home size={18} strokeWidth={2.5} />
-              กลับไปหน้าแรกกันเถอะ ✨
+              กลับไปหน้าแรกกันเถอะ
             </button>
           </div>
         </div>
