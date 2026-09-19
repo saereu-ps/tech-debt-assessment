@@ -179,7 +179,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               </motion.div>
 
               {/* Role Dropdown */}
-              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6, duration: 0.5 }} className="relative group w-full">
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6, duration: 0.5 }} className="relative group w-full z-20">
                 <div 
                   ref={dropdownRef}
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
