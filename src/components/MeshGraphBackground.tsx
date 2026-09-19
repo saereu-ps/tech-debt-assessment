@@ -6,201 +6,177 @@ const MeshGraphBackground: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d', { alpha: false }); // Optimize for performance if background is drawn
+    const ctx = canvas.getContext('2d', { alpha: false });
     if (!ctx) return;
 
     let animationFrameId: number;
-    let time = 0;
-    
-    // Mouse tracking
-    let mouseX = -1000;
-    let mouseY = -1000;
-    let targetMouseX = -1000;
-    let targetMouseY = -1000;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      targetMouseX = e.clientX;
-      targetMouseY = e.clientY;
-    };
-    
-    const handleMouseLeave = () => {
-      targetMouseX = -1000;
-      targetMouseY = -1000;
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseleave', handleMouseLeave);
+    let width = window.innerWidth;
+    let height = window.innerHeight;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
     };
     window.addEventListener('resize', resize);
     resize();
 
-    // Define the dense 3D grid
-    const cols = 75; // Increased density
-    const rows = 55; // Increased density
-    const spacing = 45; // Decreased spacing
+    const gridSize = 50;
+    
+    // Data Pulses (AI/Data Flow)
+    class Pulse {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      length: number;
+      color: string;
+      speed: number;
+      history: {x: number, y: number}[];
 
-    // Generate some random noise for neural-like randomness
-    const noise = new Float32Array(cols * rows);
-    for (let i = 0; i < noise.length; i++) {
-      noise[i] = Math.random();
+      constructor() {
+        // Snap to grid
+        this.x = Math.floor(Math.random() * (width / gridSize)) * gridSize;
+        this.y = Math.floor(Math.random() * (height / gridSize)) * gridSize;
+        
+        // Speed must be a divisor of gridSize (50) so it hits intersections exactly
+        const speeds = [1, 2, 2, 5]; 
+        this.speed = speeds[Math.floor(Math.random() * speeds.length)];
+        
+        // Pick direction (horizontal or vertical)
+        if (Math.random() > 0.5) {
+          this.vx = Math.random() > 0.5 ? this.speed : -this.speed;
+          this.vy = 0;
+        } else {
+          this.vx = 0;
+          this.vy = Math.random() > 0.5 ? this.speed : -this.speed;
+        }
+        
+        this.length = Math.random() * 100 + 40;
+        // Cyan and Magenta/Purple from the brand
+        this.color = Math.random() > 0.5 ? '#00e5ff' : '#a855f7';
+        this.history = [];
+      }
+
+      update() {
+        this.history.push({x: this.x, y: this.y});
+        if (this.history.length > this.length / this.speed) {
+          this.history.shift();
+        }
+
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Turn at grid intersections
+        if (this.x % gridSize === 0 && this.y % gridSize === 0) {
+          if (Math.random() > 0.5) { // 50% chance to turn
+            if (this.vx !== 0) { 
+              this.vx = 0;
+              this.vy = Math.random() > 0.5 ? this.speed : -this.speed;
+            } else {
+              this.vy = 0;
+              this.vx = Math.random() > 0.5 ? this.speed : -this.speed;
+            }
+          }
+        }
+
+        // Reset if significantly off screen
+        if (this.x < -200 || this.x > width + 200 || this.y < -200 || this.y > height + 200) {
+           this.x = Math.floor(Math.random() * (width / gridSize)) * gridSize;
+           this.y = Math.floor(Math.random() * (height / gridSize)) * gridSize;
+           this.history = [];
+        }
+      }
+
+      draw(ctx: CanvasRenderingContext2D) {
+        if (this.history.length < 2) return;
+        
+        ctx.beginPath();
+        // Create gradient for the trail (fading out)
+        const grad = ctx.createLinearGradient(
+          this.history[0].x, this.history[0].y, 
+          this.x, this.y
+        );
+        grad.addColorStop(0, 'rgba(0,0,0,0)');
+        grad.addColorStop(1, this.color);
+        
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2;
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = this.color;
+        ctx.lineCap = 'round';
+        ctx.moveTo(this.history[0].x, this.history[0].y);
+        for (let i = 1; i < this.history.length; i++) {
+          ctx.lineTo(this.history[i].x, this.history[i].y);
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+        
+        // Draw bright head of the pulse
+        ctx.beginPath();
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#ffffff';
+        ctx.arc(this.x, this.y, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
     }
 
+    const pulses = Array.from({ length: 45 }, () => new Pulse());
+    let time = 0;
+
     const render = () => {
-      time += 0.012;
+      time += 0.01;
       
-      // Smooth mouse movement
-      mouseX += (targetMouseX - mouseX) * 0.1;
-      mouseY += (targetMouseY - mouseY) * 0.1;
-      
-      // Dark background fill
+      // Clear with deep tech background
       ctx.fillStyle = '#050810';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, width, height);
+
+      // Draw Math Coordinate Grid
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+      ctx.lineWidth = 1;
       
-      ctx.save();
-      // Move center of projection to middle of screen
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2 + 50;
-      ctx.translate(centerX, centerY);
-
-      const points: {x: number, y: number, z: number, px: number, py: number, scale: number, active: number}[] = [];
-
-      // Calculate 3D points and 2D projection
-      for (let z = 0; z < rows; z++) {
-        for (let x = 0; x < cols; x++) {
-          const idx = z * cols + x;
-          const worldX = (x - cols / 2) * spacing;
-          const worldZ = (z - rows / 2) * spacing;
-          
-          const dist = Math.sqrt(worldX * worldX + worldZ * worldZ);
-          
-          // Base math topology
-          let y = 
-            Math.sin(worldX * 0.003 + time) * 120 +
-            Math.cos(worldZ * 0.004 + time * 1.2) * 120 +
-            Math.sin(dist * 0.002 - time * 0.5) * 80;
-
-          // Simple 3D to 2D projection
-          const fov = 800;
-          const zDepth = worldZ + 1000; 
-          
-          if (zDepth > 0) {
-            const scale = fov / zDepth;
-            const px = worldX * scale;
-            const py = y * scale - 100;
-            
-            // Calculate mouse interaction in projected space
-            const absolutePx = px + centerX;
-            const absolutePy = py + centerY;
-            const dx = mouseX - absolutePx;
-            const dy = mouseY - absolutePy;
-            const mouseDist = Math.sqrt(dx * dx + dy * dy);
-            
-            // Mouse repulse/attract and glow effect
-            let active = 0;
-            if (mouseDist < 250) {
-              const influence = (250 - mouseDist) / 250;
-              active = influence;
-              // Lift points near mouse
-              y -= influence * 150 * scale; 
-            }
-
-            // Recalculate with new Y
-            const finalPy = y * scale - 100;
-            
-            points.push({ x, y, z, px, finalPy, scale, active });
-          }
-        }
+      for (let x = 0; x < width + gridSize; x += gridSize) {
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
       }
+      for (let y = 0; y < height + gridSize; y += gridSize) {
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+      }
+      ctx.stroke();
 
-      // Draw the Neural Mesh
-      // We'll draw lines first so nodes render on top
-      for (let i = 0; i < points.length; i++) {
-        const p = points[i];
-        // Base alpha from depth + noise
-        const baseAlpha = Math.min(1, Math.max(0.02, p.scale * 1.2 - 0.2));
-        const activeAlpha = p.active * 0.8;
-        
-        // Draw horizontal connections
-        if (p.x < cols - 1 && i + 1 < points.length) {
-          const right = points[i + 1];
-          const lineAlpha = baseAlpha * 0.2 + activeAlpha;
-          ctx.beginPath();
-          // Mix colors based on mouse proximity
-          if (p.active > 0.1 || right.active > 0.1) {
-             ctx.strokeStyle = `rgba(0, 255, 255, ${Math.min(1, lineAlpha * 2)})`;
-             ctx.lineWidth = p.scale * 1.5;
+      // Draw Grid Intersections (Math/Data Nodes)
+      for (let x = 0; x < width + gridSize; x += gridSize) {
+        for (let y = 0; y < height + gridSize; y += gridSize) {
+          // Create a wave of glowing nodes across the grid
+          const wave = Math.sin(x * 0.005 - time * 2) * Math.cos(y * 0.005 + time);
+          
+          if (wave > 0.8) {
+             const intensity = (wave - 0.8) * 5; // 0 to 1
+             ctx.fillStyle = `rgba(0, 229, 255, ${intensity * 0.8})`;
+             ctx.shadowBlur = 10;
+             ctx.shadowColor = '#00e5ff';
+             ctx.beginPath();
+             ctx.arc(x, y, 2 + intensity * 2, 0, Math.PI * 2);
+             ctx.fill();
+             ctx.shadowBlur = 0;
           } else {
-             ctx.strokeStyle = `rgba(0, 180, 255, ${lineAlpha})`;
-             ctx.lineWidth = p.scale * 0.6;
+             ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+             ctx.fillRect(x - 1, y - 1, 2, 2); // Tiny standard node
           }
-          ctx.moveTo(p.px, p.finalPy);
-          ctx.lineTo(right.px, right.finalPy);
-          ctx.stroke();
-        }
-
-        // Draw vertical connections
-        if (p.z < rows - 1 && i + cols < points.length) {
-          const bottom = points[i + cols];
-          const lineAlpha = baseAlpha * 0.2 + activeAlpha;
-          ctx.beginPath();
-          if (p.active > 0.1 || bottom.active > 0.1) {
-             ctx.strokeStyle = `rgba(168, 85, 247, ${Math.min(1, lineAlpha * 2)})`;
-             ctx.lineWidth = p.scale * 1.5;
-          } else {
-             ctx.strokeStyle = `rgba(130, 50, 200, ${lineAlpha})`;
-             ctx.lineWidth = p.scale * 0.6;
-          }
-          ctx.moveTo(p.px, p.finalPy);
-          ctx.lineTo(bottom.px, bottom.finalPy);
-          ctx.stroke();
-        }
-        
-        // Random diagonal connections for neural net feel (only sparse)
-        const nIndex = p.z * cols + p.x;
-        if (noise[nIndex] > 0.85 && p.x < cols - 1 && p.z < rows - 1 && i + cols + 1 < points.length) {
-           const diag = points[i + cols + 1];
-           ctx.beginPath();
-           ctx.strokeStyle = `rgba(255, 255, 255, ${baseAlpha * 0.15 + activeAlpha})`;
-           ctx.lineWidth = p.scale * 0.5;
-           ctx.moveTo(p.px, p.finalPy);
-           ctx.lineTo(diag.px, diag.finalPy);
-           ctx.stroke();
         }
       }
 
-      // Draw Nodes
-      for (let i = 0; i < points.length; i++) {
-        const p = points[i];
-        const baseAlpha = Math.min(1, Math.max(0.05, p.scale * 1.5 - 0.2));
-        
-        const radius = Math.max(0.5, p.scale * 1.5);
-        
-        if (p.active > 0.05) {
-          // Active node (near mouse)
-          ctx.fillStyle = `rgba(255, 255, 255, 1)`;
-          ctx.beginPath();
-          ctx.arc(p.px, p.finalPy, radius * 2, 0, Math.PI * 2);
-          ctx.fill();
-          
-          // Intense Glow
-          ctx.fillStyle = `rgba(0, 255, 255, ${p.active * 0.6})`;
-          ctx.beginPath();
-          ctx.arc(p.px, p.finalPy, radius * 8 * p.active, 0, Math.PI * 2);
-          ctx.fill();
-        } else {
-          // Normal node
-          ctx.fillStyle = `rgba(255, 255, 255, ${baseAlpha * 0.7})`;
-          ctx.beginPath();
-          ctx.arc(p.px, p.finalPy, radius, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
+      // Update and Draw Data Pulses
+      pulses.forEach(p => {
+        p.update();
+        p.draw(ctx);
+      });
 
-      ctx.restore();
       animationFrameId = requestAnimationFrame(render);
     };
 
@@ -208,21 +184,19 @@ const MeshGraphBackground: React.FC = () => {
 
     return () => {
       window.removeEventListener('resize', resize);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-auto bg-transparent">
-      {/* Background ambient corner glows to match the mesh colors */}
-      <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-[#00e5ff]/5 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-[#a855f7]/5 blur-[120px] rounded-full mix-blend-screen pointer-events-none" />
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#050810]">
+      {/* Subtle ambient glows */}
+      <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vw] bg-[#00e5ff]/5 blur-[120px] rounded-full mix-blend-screen" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-[#a855f7]/5 blur-[120px] rounded-full mix-blend-screen" />
       
       <canvas 
         ref={canvasRef} 
-        className="absolute inset-0 z-0 w-full h-full"
+        className="absolute inset-0 z-0 w-full h-full opacity-70 dark:opacity-100"
       />
     </div>
   );
