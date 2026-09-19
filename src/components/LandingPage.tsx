@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, UserCircle2, ChevronDown, Mail, Building2, Briefcase, Sparkles, Check, Timer, QrCode, X, Smartphone } from 'lucide-react';
+import { ArrowRight, UserCircle2, ChevronDown, Mail, Building2, Briefcase, Sparkles, Check, Timer, QrCode, X } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import MeshGraphBackground from './MeshGraphBackground';
 import type { UserInfo } from '../App';
@@ -103,30 +103,28 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               className="absolute inset-0 bg-zinc-900/60 dark:bg-black/80"
             />
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              className="relative bg-white dark:bg-[#0a0a0a] p-8 md:p-10 rounded-[2rem] shadow-2xl flex flex-col items-center max-w-sm w-full border border-zinc-200 dark:border-white/10"
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative bg-white dark:bg-[#0a0a0a] p-8 rounded-[32px] border border-zinc-200 dark:border-white/10 shadow-2xl flex flex-col items-center max-w-sm w-full"
             >
               <button 
                 onClick={() => setShowQRModal(false)}
                 className="absolute top-4 right-4 p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors bg-zinc-100 dark:bg-white/5 rounded-full"
               >
-                <X className="w-4 h-4" strokeWidth={2.5} />
+                <X className="w-5 h-5" />
               </button>
               
-              <div className="w-12 h-12 rounded-2xl bg-zinc-100 dark:bg-white/5 flex items-center justify-center mb-5 mt-2 shadow-sm">
-                <Smartphone className="w-5 h-5 text-zinc-700 dark:text-zinc-300" strokeWidth={2} />
+              <div className="w-16 h-16 rounded-full bg-blue-50 dark:bg-white/5 flex items-center justify-center mb-5 mt-2">
+                <QrCode className="w-8 h-8 text-[#0077ff] dark:text-[#00e5ff]" />
               </div>
               
-              <h3 className="text-xl md:text-2xl font-semibold text-zinc-900 dark:text-white mb-2 tracking-tight">
-                Continue on mobile
-              </h3>
-              <p className="text-zinc-500 dark:text-zinc-400 text-center mb-8 text-sm font-medium leading-relaxed max-w-[260px]">
-                Scan the QR code to seamlessly hand off this session to your mobile device.
+              <h3 className="text-2xl font-outfit font-black text-zinc-900 dark:text-white mb-2 tracking-tight">Scan QR Code</h3>
+              <p className="text-zinc-500 dark:text-zinc-400 text-center mb-8 text-[14px] font-medium leading-relaxed">
+                Scan this code with your mobile device's camera to seamlessly continue the assessment on your phone.
               </p>
               
-              <div className="bg-white p-5 rounded-3xl shadow-sm border border-zinc-200 w-[240px] h-[240px] flex items-center justify-center">
+              <div className="bg-white p-4 rounded-2xl shadow-sm border border-zinc-200 w-[232px] h-[232px] flex items-center justify-center">
                 {isQRReady ? (
                   <QRCodeSVG 
                     value={currentUrl} 
@@ -137,7 +135,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                     includeMargin={false}
                   />
                 ) : (
-                  <div className="w-8 h-8 border-4 border-zinc-100 border-t-zinc-900 rounded-full animate-spin" />
+                  <div className="w-8 h-8 border-4 border-zinc-100 border-t-[#0077ff] rounded-full animate-spin" />
                 )}
               </div>
             </motion.div>
