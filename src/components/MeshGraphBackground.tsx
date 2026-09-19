@@ -356,4 +356,4 @@ const MeshGraphBackground: React.FC = () => {
   );
 };
 
-export default MeshGraphBackground;
+export default React.memo(MeshGraphBackground);
