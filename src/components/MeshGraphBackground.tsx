@@ -36,7 +36,8 @@ const MeshGraphBackground: React.FC = () => {
     // Sphere configuration - Premium Density
     const numPoints = 550;
     const sphereRadius = Math.min(width, height) * 0.48;
-    const points: { origX: number, origY: number, origZ: number, x: number, y: number, z: number, px: number, py: number, scale: number }[] = [];
+    
+    const points: { origX: number, origY: number, origZ: number, x: number, y: number, z: number, px: number, py: number, scale: number, twinkle: number }[] = [];
     const edges: [number, number][] = [];
 
     // Generate points using Fibonacci Sphere algorithm
@@ -52,7 +53,8 @@ const MeshGraphBackground: React.FC = () => {
         origX: x * sphereRadius,
         origY: y * sphereRadius,
         origZ: z * sphereRadius,
-        x: 0, y: 0, z: 0, px: 0, py: 0, scale: 0
+        x: 0, y: 0, z: 0, px: 0, py: 0, scale: 0,
+        twinkle: 0
       });
     }
 
@@ -77,13 +79,13 @@ const MeshGraphBackground: React.FC = () => {
     }
 
     let time = 0;
-    const fov = 1100; // Increased FOV for flatter, more elegant perspective
+    const fov = 1100;
 
     const render = () => {
       time += 0.0015; // Glacially slow rotation
       
-      mouseX += (targetMouseX - mouseX) * 0.03;
-      mouseY += (targetMouseY - mouseY) * 0.03;
+      mouseX += (targetMouseX - mouseX) * 0.05;
+      mouseY += (targetMouseY - mouseY) * 0.05;
 
       const parallaxX = (mouseX - width / 2) * 0.04;
       const parallaxY = (mouseY - height / 2) * 0.04;
@@ -98,10 +100,17 @@ const MeshGraphBackground: React.FC = () => {
       const centerX = isDesktop ? width * 0.38 : width / 2;
       const centerY = height / 2;
       
+      // EFFECT 1: Breathing Core (Subtle)
+      const breath = Math.sin(time * 15) * 0.5 + 0.5; // 0 to 1
+      const coreGradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, sphereRadius * 0.8);
+      coreGradient.addColorStop(0, `rgba(0, 229, 255, ${0.03 + breath * 0.03})`); 
+      coreGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = coreGradient;
+      ctx.fillRect(centerX - sphereRadius, centerY - sphereRadius, sphereRadius * 2, sphereRadius * 2);
+
       // Center the globe with subtle mouse parallax
       ctx.translate(centerX + parallaxX, centerY + parallaxY);
 
-      // Rotation angles with microscopic mouse influence
       const rotX = time * 0.4 + (mouseY / height - 0.5) * 0.1;
       const rotY = time + (mouseX / width - 0.5) * 0.1;
       
@@ -127,10 +136,18 @@ const MeshGraphBackground: React.FC = () => {
         p.scale = zDepth > 0 ? fov / zDepth : 0;
         p.px = p.x * p.scale;
         p.py = p.y * p.scale;
+
+        // EFFECT 2: Micro-Processing Twinkle
+        if (Math.random() < 0.0005) { // Extremely rare
+          p.twinkle = 1.0;
+        }
+        if (p.twinkle > 0) {
+          p.twinkle -= 0.01; // Fade out slowly
+        }
       }
 
       // 4. Draw Edges (Ultra-thin, elegant lines)
-      ctx.lineWidth = 0.6; // Thinner lines look more expensive
+      ctx.lineWidth = 0.5;
       for (let i = 0; i < edges.length; i++) {
         const [p1Idx, p2Idx] = edges[i];
         const p1 = points[p1Idx];
@@ -143,8 +160,12 @@ const MeshGraphBackground: React.FC = () => {
           
           if (alpha > 0.03) { 
             ctx.beginPath();
-            // Refined Cyan tone
-            ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`;
+            
+            // Mix in twinkle for lines connected to twinkling nodes
+            const lineTwinkle = Math.max(p1.twinkle, p2.twinkle) * 0.3;
+            const finalAlpha = Math.min(1, alpha + lineTwinkle);
+
+            ctx.strokeStyle = `rgba(0, 229, 255, ${finalAlpha})`;
             ctx.moveTo(p1.px, p1.py);
             ctx.lineTo(p2.px, p2.py);
             ctx.stroke();
@@ -152,25 +173,47 @@ const MeshGraphBackground: React.FC = () => {
         }
       }
 
-      // 5. Draw Nodes (Tiny, sharp dots)
+      // 5. Draw Nodes
       for (let i = 0; i < numPoints; i++) {
         const p = points[i];
         if (p.scale > 0) {
           const normalizedZ = (p.z + sphereRadius) / (sphereRadius * 2);
           
-          if (normalizedZ > 0.3) { 
-            const alpha = Math.max(0.1, Math.min(0.9, normalizedZ * normalizedZ));
-            const radius = Math.max(0.4, p.scale * 1.0); // Smaller nodes
+          if (normalizedZ > 0.25) { 
+            let alpha = Math.max(0.1, Math.min(0.9, normalizedZ * normalizedZ));
+            let radius = Math.max(0.4, p.scale * 1.0); 
+
+            // EFFECT 3: Interactive Mouse Glow
+            const absX = p.px + centerX + parallaxX;
+            const absY = p.py + centerY + parallaxY;
+            const dx = targetMouseX - absX;
+            const dy = targetMouseY - absY;
+            const mouseDist = Math.sqrt(dx * dx + dy * dy);
+            
+            let mouseGlow = 0;
+            if (mouseDist < 120) {
+              mouseGlow = (120 - mouseDist) / 120; // 0 to 1
+              radius += mouseGlow * 1.5; 
+              alpha = Math.min(1, alpha + mouseGlow * 0.5);
+            }
+
+            // Apply twinkle
+            const currentTwinkle = Math.max(0, p.twinkle);
+            if (currentTwinkle > 0) {
+              radius += currentTwinkle * 1.0;
+              alpha = Math.min(1, alpha + currentTwinkle);
+            }
             
             ctx.beginPath();
             ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
             ctx.arc(p.px, p.py, radius, 0, Math.PI * 2);
             ctx.fill();
             
-            // Soft, luxurious glow only for the very front nodes
-            if (normalizedZ > 0.85) {
+            // Soft glow for front nodes, OR if interacted/twinkling
+            const totalGlow = (normalizedZ > 0.85 ? 0.15 : 0) + (mouseGlow * 0.25) + (currentTwinkle * 0.3);
+            if (totalGlow > 0) {
               ctx.beginPath();
-              ctx.fillStyle = `rgba(0, 229, 255, ${alpha * 0.15})`;
+              ctx.fillStyle = `rgba(0, 229, 255, ${totalGlow})`;
               ctx.arc(p.px, p.py, radius * 6, 0, Math.PI * 2);
               ctx.fill();
             }
@@ -193,14 +236,9 @@ const MeshGraphBackground: React.FC = () => {
 
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-auto bg-[#020308]">
-      {/* Background ambient corner glows - extremely soft and blurry for a premium feel */}
       <div className="absolute top-[-30%] left-[-20%] w-[80vw] h-[80vw] bg-[#00e5ff]/3 blur-[180px] rounded-full mix-blend-screen pointer-events-none" />
       <div className="absolute bottom-[-30%] right-[-20%] w-[70vw] h-[70vw] bg-[#a855f7]/3 blur-[180px] rounded-full mix-blend-screen pointer-events-none" />
-      
-      <canvas 
-        ref={canvasRef} 
-        className="absolute inset-0 z-0 w-full h-full opacity-90"
-      />
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 w-full h-full opacity-90" />
     </div>
   );
 };
