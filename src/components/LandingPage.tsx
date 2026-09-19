@@ -58,7 +58,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
       {/* Logo Component */}
       <div className="absolute top-6 left-6 md:top-8 md:left-8 z-50">
-        <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-auto" style={{ filter: 'var(--logo-filter)' }} />
+        <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-auto dark:filter dark:brightness-0 dark:invert" style={{ filter: 'var(--logo-filter)' }} />
       </div>
 
       <div className="w-full max-w-[1400px] z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative mt-16 md:mt-0">
@@ -70,10 +70,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col gap-6 text-center lg:text-left pt-10 lg:pt-0"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff] text-xs md:text-sm font-bold w-fit mx-auto lg:mx-0 shadow-[0_0_20px_rgba(0,229,255,0.15)]">
-            <Sparkles size={16} /> ENTERPRISE READINESS ASSESSMENT
-          </div>
-          
           <div className="flex flex-col w-full relative z-10">
             <h1 className="text-[40px] sm:text-[48px] md:text-[56px] xl:text-[72px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] tracking-tight">
               Modernize your
@@ -86,6 +82,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           <p className="text-zinc-500 dark:text-[#8b93a5] text-[15px] md:text-[17px] font-medium max-w-[500px] mx-auto lg:mx-0 leading-relaxed tracking-wide mt-2">
             Evaluate your technical debt maturity, uncover hidden bottlenecks, and prepare your organization for the AI era in less than 5 minutes.
           </p>
+        </motion.div>
+
+        {/* Right Side: Form */}
+        <motion.div 
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          className="w-full relative"
+        >
           <form 
             onSubmit={handleSubmit}
             className="w-full flex flex-col gap-6 relative p-8 md:p-10 rounded-[32px] md:rounded-[40px] border border-white/40 dark:border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_rgba(0,229,255,0.1)] bg-white/40 dark:bg-[#03060c]/40 backdrop-blur-3xl overflow-hidden"
