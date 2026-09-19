@@ -4,7 +4,7 @@ import { ArrowRight, UserCircle2, ChevronDown, Mail, Building2, Briefcase, Spark
 import { QRCode } from 'react-qrcode-logo';
 import MeshGraphBackground from './MeshGraphBackground';
 import type { UserInfo } from '../App';
-import mfecLogo from '../assets/mfec-logo.png';
+import mfecPixel from '../assets/mfec-pixel.svg';
 
 interface LandingPageProps {
   onStart: (data: UserInfo) => void;
@@ -133,10 +133,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                     fgColor="#000000"
                     qrStyle="dots"
                     eyeRadius={10}
-                    logoImage={mfecLogo}
-                    logoWidth={56}
-                    logoHeight={56}
-                    logoPadding={4}
+                    logoImage={mfecPixel}
+                    logoWidth={80}
+                    logoHeight={20}
+                    logoPadding={2}
                     removeQrCodeBehindLogo={true}
                   />
                 ) : (
