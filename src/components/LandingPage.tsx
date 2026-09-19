@@ -67,7 +67,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
       
       {/* Dynamic Network Background spanning full screen to support Spatial Glassmorphism */}
       <div className="absolute inset-0 z-0">
-        <MeshGraphBackground />
+        <MeshGraphBackground isPaused={showQRModal} />
         {/* Extra vibrant gradient overlay to enhance glass blur */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#00e5ff]/10 via-transparent to-[#0077ff]/20 mix-blend-screen pointer-events-none"></div>
       </div>

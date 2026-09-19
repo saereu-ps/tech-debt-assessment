@@ -1,7 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 
-const MeshGraphBackground: React.FC = () => {
+interface MeshGraphBackgroundProps {
+  isPaused?: boolean;
+}
+
+const MeshGraphBackground: React.FC<MeshGraphBackgroundProps> = ({ isPaused = false }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const isPausedRef = useRef(isPaused);
+
+  useEffect(() => {
+    isPausedRef.current = isPaused;
+  }, [isPaused]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -126,6 +135,12 @@ const MeshGraphBackground: React.FC = () => {
     const fov = 1100;
 
     const render = () => {
+      // If paused, just skip the heavy math and drawing entirely, but keep the loop alive
+      if (isPausedRef.current) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+      
       const isDark = document.documentElement.classList.contains('dark');
       
       time += 0.0015; 
