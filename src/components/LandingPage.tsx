@@ -67,11 +67,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-auto dark:invert dark:brightness-0 opacity-90 dark:opacity-100" />
       </div>
 
-      {/* QR Code Button (Top Right) */}
-      <div className="absolute top-6 right-6 md:top-8 md:right-8 z-50">
+      {/* QR Code Button (Top Right, shifted left to avoid Theme Toggle) */}
+      <div className="absolute top-6 right-20 md:top-8 md:right-24 z-50">
         <button 
           onClick={() => setShowQRModal(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/50 dark:bg-black/40 backdrop-blur-md border border-zinc-200 dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-white/10 transition-all shadow-sm group"
+          className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-full bg-white/50 dark:bg-black/40 backdrop-blur-md border border-zinc-200 dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-white/10 transition-all shadow-sm group"
         >
           <QrCode className="w-5 h-5 group-hover:scale-110 transition-transform" />
           <span className="text-[14px] font-medium hidden sm:inline">Scan to fill on mobile</span>
@@ -133,13 +133,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", type: "spring", bounce: 0.4 }}
-          className="flex flex-col gap-6 text-center lg:text-left pt-10 lg:pt-0"
+          className="flex flex-col gap-5 md:gap-6 text-center lg:text-left pt-16 sm:pt-10 lg:pt-0"
         >
           <div className="flex flex-col w-full relative z-10">
-            <h1 className="text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] font-outfit font-black text-zinc-900 dark:text-white leading-[1.05] tracking-tight whitespace-nowrap">
+            <h1 className="text-[38px] min-[400px]:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] font-outfit font-black text-zinc-900 dark:text-white leading-[1.1] md:leading-[1.05] tracking-tight sm:whitespace-nowrap">
               What's your true
             </h1>
-            <h1 className="text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] font-outfit font-black animate-shine leading-[1.05] tracking-tight mt-1" style={{ filter: 'var(--title-drop-shadow)' }}>
+            <h1 className="text-[38px] min-[400px]:text-[44px] md:text-[56px] lg:text-[64px] xl:text-[72px] font-outfit font-black animate-shine leading-[1.1] md:leading-[1.05] tracking-tight mt-1" style={{ filter: 'var(--title-drop-shadow)' }}>
               Tech Debt?
             </h1>
           </div>
@@ -175,7 +175,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               rotateX: { duration: 0.8, ease: "easeOut", delay: 0.1 },
               y: { duration: 8, repeat: Infinity, ease: "easeInOut" } // Infinite float, slower
             }}
-            className="w-full max-w-[480px] flex flex-col gap-6 relative p-8 md:p-10 rounded-[40px] border border-white/20 dark:border-white/10 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] bg-white/40 dark:bg-[#0a0a0a]/60 backdrop-blur-[40px]"
+            className="w-full max-w-[480px] flex flex-col gap-5 sm:gap-6 relative p-6 sm:p-8 md:p-10 rounded-[32px] md:rounded-[40px] border border-white/20 dark:border-white/10 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] bg-white/40 dark:bg-[#0a0a0a]/60 backdrop-blur-[40px]"
           >
             {/* Animated Glowing Orbs Background (Clipped to Card) */}
             <div className="absolute inset-0 rounded-[40px] overflow-hidden pointer-events-none">
