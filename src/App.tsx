@@ -6,6 +6,7 @@ import ResultDashboard from './components/ResultDashboard';
 import AnalyzingScreen from './components/AnalyzingScreen';
 import { ThemeToggle } from './components/ThemeToggle';
 import { getResultTier, type AssessmentCategory } from './data/assessmentData';
+import { db, collection, addDoc, serverTimestamp } from './lib/firebase';
 
 export type ViewState = 'landing' | 'assessment' | 'analyzing' | 'result';
 export interface UserInfo {
@@ -102,20 +103,22 @@ function App() {
     window.history.pushState({}, '', window.location.pathname);
   };
 
-  // Backend integration (Google Sheets Webhook)
-  const saveAssessmentData = (data: any) => {
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw7F7dd1zGWacLdJni9aKGdjoGHS2m6bGwySHAJHFLWEZ-igPmofWBnFOZp9egaOEEc/exec';
-    
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors', // Important for avoiding CORS preflight on simple Google Apps Script setups
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    })
-    .then(() => console.log('Data successfully dispatched to Google Sheets'))
-    .catch(error => console.error('Error saving data:', error));
+  // Backend integration (Firebase Firestore)
+  const saveAssessmentData = async (data: any) => {
+    try {
+      // Check for eventId in URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const eventId = urlParams.get('event') || 'default-event';
+
+      await addDoc(collection(db, 'submissions'), {
+        ...data,
+        eventId: eventId,
+        timestamp: serverTimestamp()
+      });
+      console.log('Data successfully saved to Firebase Firestore');
+    } catch (error) {
+      console.error('Error saving data to Firebase:', error);
+    }
   };
 
   return (

@@ -14,6 +14,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [role, setRole] = useState('');
+  const [pdpaConsent, setPdpaConsent] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
 
@@ -45,7 +46,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
     }
   };
 
-  const isFormValid = name.trim().length > 0 && company.trim().length > 0 && role.trim().length > 0;
+  const isFormValid = name.trim().length > 0 && company.trim().length > 0 && role.trim().length > 0 && pdpaConsent;
 
   return (
     <div className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center bg-transparent overflow-hidden">
@@ -210,6 +211,21 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               Scan Now <ArrowRight size={14} className={isFormValid ? "text-white" : "text-[#e5e7eb]"} />
             </button>
           </div>
+          
+          {/* PDPA Consent Checkbox */}
+          <div className="mt-4 flex items-start gap-3 w-full max-w-[800px] px-2 md:px-6">
+            <input 
+              type="checkbox" 
+              id="pdpaConsent" 
+              checked={pdpaConsent}
+              onChange={(e) => setPdpaConsent(e.target.checked)}
+              className="mt-1 w-4 h-4 rounded border-zinc-300 dark:border-zinc-600 text-[#00e5ff] focus:ring-[#00e5ff] focus:ring-offset-0 bg-transparent cursor-pointer"
+            />
+            <label htmlFor="pdpaConsent" className="text-[12px] md:text-[13px] text-zinc-500 dark:text-zinc-400 leading-relaxed cursor-pointer font-medium select-none">
+              ข้าพเจ้ายินยอมให้ MFEC เก็บรวบรวมข้อมูลเพื่อใช้ในการติดต่อกลับและนำเสนอโซลูชัน ตามนโยบายความเป็นส่วนตัวของบริษัท
+            </label>
+          </div>
+
         </form>
       </motion.div>
     </div>
