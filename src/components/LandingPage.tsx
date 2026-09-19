@@ -133,6 +133,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                     bgColor="#ffffff"
                     fgColor="#000000"
                     qrStyle="dots"
+                    ecLevel="H"
                     eyeRadius={10}
                     logoImage={mfecPixel}
                     logoWidth={80}
