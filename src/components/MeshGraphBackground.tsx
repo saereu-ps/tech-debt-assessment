@@ -80,7 +80,7 @@ const MeshGraphBackground: React.FC = () => {
       }
     }
 
-    // Neural Synapse Flashes
+    // Neural Synapse Flashes - ULTRA THIN & SUBTLE
     class SynapseFlash {
       activeNodes: Map<number, number>; // nodeId -> intensity (0 to 1)
       age: number;
@@ -91,25 +91,24 @@ const MeshGraphBackground: React.FC = () => {
         this.activeNodes = new Map();
         this.activeNodes.set(startNode, 1.0);
         this.age = 0;
-        this.maxAge = 60 + Math.random() * 60; // Exists for 60-120 frames
-        // Mix between Cyber Cyan and Deep Magenta
+        this.maxAge = 40 + Math.random() * 40; // Shorter lifespan
         this.color = Math.random() > 0.5 ? '0, 229, 255' : '168, 85, 247'; 
       }
       
       update() {
         this.age++;
         
-        // Spread logic (Deep Learning propagation simulation)
-        // Spread rapidly in the first 15 frames
-        if (this.age % 4 === 0 && this.age < 20) {
+        // Spread logic - Less aggressive spread
+        if (this.age % 4 === 0 && this.age < 16) {
           const newNodes = new Map<number, number>();
           this.activeNodes.forEach((intensity, nodeId) => {
-            if (intensity > 0.4) { 
+            if (intensity > 0.5) { 
               const nbrs = neighbors[nodeId];
               nbrs.forEach(n => {
                 if (!this.activeNodes.has(n)) {
-                  if (Math.random() > 0.4) {
-                    newNodes.set(n, 1.0);
+                  // Only 30% chance to spread (was 60%)
+                  if (Math.random() > 0.7) {
+                    newNodes.set(n, 0.8); // Start slightly dimmer
                   }
                 }
               });
@@ -118,9 +117,9 @@ const MeshGraphBackground: React.FC = () => {
           newNodes.forEach((intensity, nodeId) => this.activeNodes.set(nodeId, intensity));
         }
         
-        // Fade logic
+        // Fade logic - Fades faster
         this.activeNodes.forEach((intensity, nodeId) => {
-          this.activeNodes.set(nodeId, intensity * 0.91); // Exponential decay
+          this.activeNodes.set(nodeId, intensity * 0.88); 
         });
       }
     }
@@ -185,7 +184,7 @@ const MeshGraphBackground: React.FC = () => {
         p.py = p.y * p.scale;
       }
 
-      // Draw Base Edges (Faint Background Net)
+      // Draw Base Edges
       ctx.lineWidth = 0.5;
       for (let i = 0; i < edges.length; i++) {
         const [p1Idx, p2Idx] = edges[i];
@@ -215,7 +214,7 @@ const MeshGraphBackground: React.FC = () => {
           
           if (normalizedZ > 0.25) { 
             let alpha = Math.max(0.1, Math.min(0.7, normalizedZ * normalizedZ));
-            let radius = Math.max(0.4, p.scale * 1.0); 
+            let radius = Math.max(0.3, p.scale * 0.8); 
             
             ctx.beginPath();
             ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
@@ -226,7 +225,8 @@ const MeshGraphBackground: React.FC = () => {
       }
 
       // Process and Draw Neural Synapse Flashes
-      if (Math.random() < 0.06) { // 6% chance per frame to spawn a flash
+      // Reduced probability from 6% to 2% (much less frequent)
+      if (Math.random() < 0.02) { 
         flashes.push(new SynapseFlash(Math.floor(Math.random() * numPoints)));
       }
       
@@ -244,7 +244,7 @@ const MeshGraphBackground: React.FC = () => {
           if (p1.scale <= 0) return;
           
           neighbors[n1].forEach(n2 => {
-            if (n2 > n1 && flash.activeNodes.has(n2)) { // Avoid double drawing
+            if (n2 > n1 && flash.activeNodes.has(n2)) { 
               const intensity2 = flash.activeNodes.get(n2)!;
               const p2 = points[n2];
               
@@ -254,44 +254,49 @@ const MeshGraphBackground: React.FC = () => {
                 
                 if (normalizedZ > 0.15) {
                   const edgeIntensity = (intensity1 + intensity2) / 2;
-                  const alpha = Math.min(1, edgeIntensity * (normalizedZ + 0.3));
+                  // Reduced max opacity for the flash edges (max 0.4 instead of 1)
+                  const alpha = Math.min(0.4, edgeIntensity * (normalizedZ + 0.2));
                   
                   ctx.beginPath();
                   ctx.strokeStyle = `rgba(${flash.color}, ${alpha})`;
-                  ctx.lineWidth = Math.max(1, p1.scale * 2 * edgeIntensity); // Thicker lines for active synapses
+                  // Reduced thickness (max 0.8 instead of 2.0)
+                  ctx.lineWidth = Math.max(0.5, p1.scale * 0.8 * edgeIntensity);
                   
-                  // Intense Glow Effect
-                  ctx.shadowBlur = 10 * edgeIntensity;
+                  // Reduced shadow blur
+                  ctx.shadowBlur = 3 * edgeIntensity;
                   ctx.shadowColor = `rgba(${flash.color}, ${alpha})`;
                   
                   ctx.moveTo(p1.px, p1.py);
                   ctx.lineTo(p2.px, p2.py);
                   ctx.stroke();
-                  ctx.shadowBlur = 0; // Reset
+                  ctx.shadowBlur = 0; 
                 }
               }
             }
           });
         });
         
-        // Draw Flash Nodes (Brighter)
+        // Draw Flash Nodes
         flash.activeNodes.forEach((intensity, n) => {
           if (intensity < 0.05) return;
           const p = points[n];
           if (p.scale > 0) {
             const normalizedZ = (p.z + sphereRadius) / (sphereRadius * 2);
             if (normalizedZ > 0.15) {
-              const alpha = Math.min(1, intensity * (normalizedZ + 0.3));
-              const rad = Math.max(1, p.scale * (1.5 + intensity * 2));
+              // Reduced max opacity (max 0.6 instead of 1)
+              const alpha = Math.min(0.6, intensity * (normalizedZ + 0.2));
+              // Reduced size expansion
+              const rad = Math.max(0.5, p.scale * (0.8 + intensity * 0.5));
               
               ctx.beginPath();
-              ctx.fillStyle = '#ffffff';
+              ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
               ctx.arc(p.px, p.py, rad, 0, Math.PI * 2);
               ctx.fill();
               
               ctx.beginPath();
-              ctx.fillStyle = `rgba(${flash.color}, ${alpha * 0.8})`;
-              ctx.arc(p.px, p.py, rad * 3.5, 0, Math.PI * 2);
+              // Reduced aura size
+              ctx.fillStyle = `rgba(${flash.color}, ${alpha * 0.5})`;
+              ctx.arc(p.px, p.py, rad * 1.5, 0, Math.PI * 2);
               ctx.fill();
             }
           }
