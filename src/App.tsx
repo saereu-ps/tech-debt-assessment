@@ -6,7 +6,6 @@ import ResultDashboard from './components/ResultDashboard';
 import AnalyzingScreen from './components/AnalyzingScreen';
 import { ThemeToggle } from './components/ThemeToggle';
 import { getResultTier, type AssessmentCategory } from './data/assessmentData';
-import { db, collection, addDoc, serverTimestamp } from './lib/firebase';
 
 export type ViewState = 'landing' | 'assessment' | 'analyzing' | 'result';
 export interface UserInfo {
@@ -17,33 +16,32 @@ export interface UserInfo {
 }
 
 function App() {
-  const [view, setView] = useState<'landing' | 'assessment' | 'analyzing' | 'result'>('landing');
-  const [scores, setScores] = useState<number[]>([]);
+  const [view, setView] = useState<ViewState>('landing');
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+  const [scores, setScores] = useState<number[]>([]);
   const [isSharedReport, setIsSharedReport] = useState(false);
 
+  // Check URL for shared report data
   useEffect(() => {
-    // Check URL for encoded data
-    const searchParams = new URLSearchParams(window.location.search);
-    const encodedData = searchParams.get('d');
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedData = urlParams.get('d');
     
     if (encodedData) {
       try {
-        let cleanData = encodedData.replace(/ /g, "+");
-        // Fix for old double-encoded QR codes
-        while (cleanData.includes('%')) {
-          try {
-            cleanData = decodeURIComponent(cleanData);
-          } catch(e) { break; }
+        const decodedString = atob(encodedData);
+        if (!decodedString.startsWith('{') || !decodedString.endsWith('}')) {
+          throw new Error("Invalid payload format");
         }
-        const decoded = JSON.parse(decodeURIComponent(atob(cleanData)));
+
+        const decoded = JSON.parse(decodedString);
         
-        // Strict validation to prevent crashes from tampered or malicious payloads
+        // Strict runtime type validation
         if (
-          decoded && 
           Array.isArray(decoded.s) && 
+          decoded.s.length === 5 && 
           decoded.s.every((n: any) => typeof n === 'number') &&
-          typeof decoded.n === 'string'
+          typeof decoded.n === 'string' &&
+          decoded.n.length > 0
         ) {
           setScores(decoded.s);
           setUserInfo({ 
@@ -103,22 +101,20 @@ function App() {
     window.history.pushState({}, '', window.location.pathname);
   };
 
-  // Backend integration (Firebase Firestore)
-  const saveAssessmentData = async (data: any) => {
-    try {
-      // Check for eventId in URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const eventId = urlParams.get('event') || 'default-event';
-
-      await addDoc(collection(db, 'submissions'), {
-        ...data,
-        eventId: eventId,
-        timestamp: serverTimestamp()
-      });
-      console.log('Data successfully saved to Firebase Firestore');
-    } catch (error) {
-      console.error('Error saving data to Firebase:', error);
-    }
+  // Backend integration (Google Sheets Webhook)
+  const saveAssessmentData = (data: any) => {
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw7F7dd1zGWacLdJni9aKGdjoGHS2m6bGwySHAJHFLWEZ-igPmofWBnFOZp9egaOEEc/exec';
+    
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors', // Important for avoiding CORS preflight on simple Google Apps Script setups
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+    .then(() => console.log('Data successfully dispatched to Google Sheets'))
+    .catch(error => console.error('Error saving data:', error));
   };
 
   return (
