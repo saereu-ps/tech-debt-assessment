@@ -80,19 +80,19 @@ const MeshGraphBackground: React.FC = () => {
       }
     }
 
-    // Neural Synapse Flashes - ULTRA THIN & SUBTLE
+    // Neural Synapse Flashes
     class SynapseFlash {
       activeNodes: Map<number, number>; 
       age: number;
       maxAge: number;
-      color: string;
+      type: 'primary' | 'secondary';
       
       constructor(startNode: number) {
         this.activeNodes = new Map();
         this.activeNodes.set(startNode, 1.0);
         this.age = 0;
         this.maxAge = 40 + Math.random() * 40; 
-        this.color = Math.random() > 0.5 ? '0, 229, 255' : '168, 85, 247'; 
+        this.type = Math.random() > 0.5 ? 'primary' : 'secondary'; 
       }
       
       update() {
@@ -126,6 +126,8 @@ const MeshGraphBackground: React.FC = () => {
     const fov = 1100;
 
     const render = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      
       time += 0.0015; 
       
       mouseX += (targetMouseX - mouseX) * 0.05;
@@ -134,14 +136,33 @@ const MeshGraphBackground: React.FC = () => {
       const parallaxX = (mouseX - width / 2) * 0.04;
       const parallaxY = (mouseY - height / 2) * 0.04;
 
-      // Dark background
-      ctx.fillStyle = '#020308';
+      // Theme Colors
+      const bgColor = isDark ? '#020308' : '#f8fafc';
+      const baseEdgeColor = isDark ? '0, 229, 255' : '148, 163, 184'; // Cyan vs Slate-400
+      const baseNodeColor = isDark ? '255, 255, 255' : '71, 85, 105'; // White vs Slate-600
+      
+      const sunCore = isDark ? 'rgba(255, 255, 255, 0.6)' : 'rgba(255, 255, 255, 0.8)';
+      const sunAura = isDark ? 'rgba(0, 229, 255, 0.3)' : 'rgba(14, 165, 233, 0.15)'; // Cyan vs Sky-500
+      const sunFade = isDark ? 'rgba(168, 85, 247, 0.1)' : 'rgba(168, 85, 247, 0.05)';
+      
+      const coreBreath = isDark ? '0, 229, 255' : '14, 165, 233'; // Cyan vs Sky-500
+      
+      const getFlashColor = (type: 'primary' | 'secondary') => {
+        if (isDark) {
+          return type === 'primary' ? '0, 229, 255' : '168, 85, 247'; // Cyan & Purple
+        } else {
+          return type === 'primary' ? '2, 132, 199' : '147, 51, 234'; // Sky-600 & Purple-600
+        }
+      };
+
+      // Draw background
+      ctx.fillStyle = bgColor;
       ctx.fillRect(0, 0, width, height);
       
       ctx.save();
       
-      // EFFECT: Deep Space Sunrise (Background Sun)
-      const sunX = width * 0.85; // Top Right
+      // EFFECT: Deep Space Sunrise
+      const sunX = width * 0.85; 
       const sunY = height * 0.15;
       const bgSunRadius = Math.min(width, height) * 0.15;
       
@@ -149,11 +170,9 @@ const MeshGraphBackground: React.FC = () => {
       const bgCoronaRadius = bgSunRadius * 4 * bgSunPulse;
       
       const bgSunGradient = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, bgCoronaRadius);
-      // Hot white core
-      bgSunGradient.addColorStop(0, 'rgba(255, 255, 255, 0.6)');
-      // Cyan glow transitioning into purple
-      bgSunGradient.addColorStop(0.15, 'rgba(0, 229, 255, 0.3)');
-      bgSunGradient.addColorStop(0.4, 'rgba(168, 85, 247, 0.1)');
+      bgSunGradient.addColorStop(0, sunCore);
+      bgSunGradient.addColorStop(0.15, sunAura);
+      bgSunGradient.addColorStop(0.4, sunFade);
       bgSunGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
       
       ctx.fillStyle = bgSunGradient;
@@ -166,10 +185,10 @@ const MeshGraphBackground: React.FC = () => {
       
       ctx.translate(centerX + parallaxX, centerY + parallaxY);
       
-      // Restore Subtle Breathing Core (instead of central sun)
+      // Breathing Core
       const breath = Math.sin(time * 15) * 0.5 + 0.5; 
       const coreGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, sphereRadius * 0.8);
-      coreGradient.addColorStop(0, `rgba(0, 229, 255, ${0.03 + breath * 0.03})`); 
+      coreGradient.addColorStop(0, `rgba(${coreBreath}, ${0.03 + breath * 0.03})`); 
       coreGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = coreGradient;
       ctx.fillRect(-sphereRadius, -sphereRadius, sphereRadius * 2, sphereRadius * 2);
@@ -211,11 +230,11 @@ const MeshGraphBackground: React.FC = () => {
         if (p1.scale > 0 && p2.scale > 0) {
           const avgZ = (p1.z + p2.z) / 2;
           const normalizedZ = (avgZ + sphereRadius) / (sphereRadius * 2); 
-          const alpha = Math.max(0.01, Math.min(0.25, normalizedZ * normalizedZ * 0.4));
+          const alpha = Math.max(0.01, Math.min(isDark ? 0.25 : 0.4, normalizedZ * normalizedZ * (isDark ? 0.4 : 0.8)));
           
           if (alpha > 0.02) { 
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`;
+            ctx.strokeStyle = `rgba(${baseEdgeColor}, ${alpha})`;
             ctx.moveTo(p1.px, p1.py);
             ctx.lineTo(p2.px, p2.py);
             ctx.stroke();
@@ -230,11 +249,11 @@ const MeshGraphBackground: React.FC = () => {
           const normalizedZ = (p.z + sphereRadius) / (sphereRadius * 2);
           
           if (normalizedZ > 0.25) { 
-            let alpha = Math.max(0.1, Math.min(0.7, normalizedZ * normalizedZ));
+            let alpha = Math.max(0.1, Math.min(isDark ? 0.7 : 0.8, normalizedZ * normalizedZ));
             let radius = Math.max(0.3, p.scale * 0.8); 
             
             ctx.beginPath();
-            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+            ctx.fillStyle = `rgba(${baseNodeColor}, ${alpha})`;
             ctx.arc(p.px, p.py, radius, 0, Math.PI * 2);
             ctx.fill();
           }
@@ -252,6 +271,7 @@ const MeshGraphBackground: React.FC = () => {
         flash.update();
         
         ctx.lineCap = 'round';
+        const flashColor = getFlashColor(flash.type);
         
         // Draw Flash Edges
         flash.activeNodes.forEach((intensity1, n1) => {
@@ -270,14 +290,14 @@ const MeshGraphBackground: React.FC = () => {
                 
                 if (normalizedZ > 0.15) {
                   const edgeIntensity = (intensity1 + intensity2) / 2;
-                  const alpha = Math.min(0.4, edgeIntensity * (normalizedZ + 0.2));
+                  const alpha = Math.min(isDark ? 0.4 : 0.6, edgeIntensity * (normalizedZ + 0.2));
                   
                   ctx.beginPath();
-                  ctx.strokeStyle = `rgba(${flash.color}, ${alpha})`;
+                  ctx.strokeStyle = `rgba(${flashColor}, ${alpha})`;
                   ctx.lineWidth = Math.max(0.5, p1.scale * 0.8 * edgeIntensity);
                   
                   ctx.shadowBlur = 3 * edgeIntensity;
-                  ctx.shadowColor = `rgba(${flash.color}, ${alpha})`;
+                  ctx.shadowColor = `rgba(${flashColor}, ${alpha})`;
                   
                   ctx.moveTo(p1.px, p1.py);
                   ctx.lineTo(p2.px, p2.py);
@@ -296,16 +316,17 @@ const MeshGraphBackground: React.FC = () => {
           if (p.scale > 0) {
             const normalizedZ = (p.z + sphereRadius) / (sphereRadius * 2);
             if (normalizedZ > 0.15) {
-              const alpha = Math.min(0.6, intensity * (normalizedZ + 0.2));
+              const alpha = Math.min(isDark ? 0.6 : 0.8, intensity * (normalizedZ + 0.2));
               const rad = Math.max(0.5, p.scale * (0.8 + intensity * 0.5));
+              const nodeCoreColor = isDark ? '255, 255, 255' : flashColor;
               
               ctx.beginPath();
-              ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+              ctx.fillStyle = `rgba(${nodeCoreColor}, ${alpha})`;
               ctx.arc(p.px, p.py, rad, 0, Math.PI * 2);
               ctx.fill();
               
               ctx.beginPath();
-              ctx.fillStyle = `rgba(${flash.color}, ${alpha * 0.5})`;
+              ctx.fillStyle = `rgba(${flashColor}, ${alpha * 0.5})`;
               ctx.arc(p.px, p.py, rad * 1.5, 0, Math.PI * 2);
               ctx.fill();
             }
@@ -327,9 +348,9 @@ const MeshGraphBackground: React.FC = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-auto bg-[#020308]">
-      <div className="absolute top-[-30%] left-[-20%] w-[80vw] h-[80vw] bg-[#00e5ff]/3 blur-[180px] rounded-full mix-blend-screen pointer-events-none" />
-      <div className="absolute bottom-[-30%] right-[-20%] w-[70vw] h-[70vw] bg-[#a855f7]/3 blur-[180px] rounded-full mix-blend-screen pointer-events-none" />
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-auto bg-slate-50 dark:bg-[#020308] transition-colors duration-500">
+      <div className="absolute top-[-30%] left-[-20%] w-[80vw] h-[80vw] bg-cyan-500/10 dark:bg-[#00e5ff]/3 blur-[120px] dark:blur-[180px] rounded-full mix-blend-multiply dark:mix-blend-screen pointer-events-none transition-colors duration-500" />
+      <div className="absolute bottom-[-30%] right-[-20%] w-[70vw] h-[70vw] bg-purple-500/10 dark:bg-[#a855f7]/3 blur-[120px] dark:blur-[180px] rounded-full mix-blend-multiply dark:mix-blend-screen pointer-events-none transition-colors duration-500" />
       <canvas ref={canvasRef} className="absolute inset-0 z-0 w-full h-full opacity-90" />
     </div>
   );
