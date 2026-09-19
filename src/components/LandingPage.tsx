@@ -110,8 +110,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             <div className="absolute inset-0 rounded-[40px] border border-white/30 pointer-events-none mix-blend-overlay"></div>
 
             <div className="relative z-10 text-center mb-2">
-              <h2 className="text-[28px] md:text-[32px] font-bold text-zinc-900 dark:text-white tracking-tight">Start Assessment</h2>
-              <p className="text-[14px] text-zinc-700 dark:text-zinc-300 mt-2 font-medium">Complete this short form to begin.</p>
+              <h2 className="text-[28px] md:text-[32px] font-bold text-zinc-900 dark:text-white tracking-tight">Let's Get Started</h2>
+              <p className="text-[14px] text-zinc-700 dark:text-zinc-300 mt-2 font-medium">Just a few details to see your results.</p>
             </div>
 
             <div className="flex flex-col gap-4 relative z-10">
@@ -208,7 +208,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                 />
               </div>
               <label htmlFor="pdpaConsent" className="text-[13px] md:text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed cursor-pointer font-medium select-none">
-                ข้าพเจ้ายินยอมให้ MFEC เก็บรวบรวมข้อมูลเพื่อนำเสนอโซลูชัน ตาม <a href="#" className="text-zinc-900 dark:text-white font-bold hover:underline underline-offset-4 decoration-[#00e5ff] transition-all hover:text-[#00e5ff]">นโยบายความเป็นส่วนตัว</a>
+                ยินดีให้ MFEC ดูแลข้อมูลนี้ เพื่อวิเคราะห์และนำเสนอโซลูชันที่เหมาะกับคุณ (อ่านรายละเอียดได้ใน <a href="#" className="text-zinc-900 dark:text-white font-bold hover:underline underline-offset-4 decoration-[#00e5ff] transition-all hover:text-[#00e5ff]">นโยบายความเป็นส่วนตัว</a>)
               </label>
             </motion.div>
 
@@ -226,7 +226,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                   : 'bg-zinc-900/10 dark:bg-white/10 text-zinc-500 dark:text-white/30 cursor-not-allowed backdrop-blur-md'}
               `}
             >
-              <span>Submit Application</span>
+              <span>Reveal My Tech Debt</span>
               {isFormValid && (
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               )}
