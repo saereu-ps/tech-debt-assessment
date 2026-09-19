@@ -4,6 +4,7 @@ import { ArrowRight, UserCircle2, ChevronDown, Mail, Building2, Briefcase, Spark
 import { QRCode } from 'react-qrcode-logo';
 import MeshGraphBackground from './MeshGraphBackground';
 import type { UserInfo } from '../App';
+import mfecLogo from '../assets/mfec-logo.png';
 import mfecPixel from '../assets/mfec-pixel.svg';
 
 interface LandingPageProps {
