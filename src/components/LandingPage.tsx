@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, UserCircle2, ChevronDown, Mail, Building2, Briefcase, Sparkles, Check, Timer, QrCode, X, Smartphone } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
