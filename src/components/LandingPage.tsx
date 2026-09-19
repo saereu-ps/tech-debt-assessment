@@ -58,7 +58,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
       {/* Logo Component */}
       <div className="absolute top-6 left-6 md:top-8 md:left-8 z-50">
-        <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-auto dark:filter dark:brightness-0 dark:invert" style={{ filter: 'var(--logo-filter)' }} />
+        <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-auto dark:invert dark:brightness-0 opacity-90 dark:opacity-100" />
       </div>
 
       <div className="w-full max-w-[1400px] z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative mt-16 md:mt-0">
@@ -98,7 +98,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             {/* Subtle inner top highlight */}
             <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-white/50 dark:via-[#00e5ff]/50 to-transparent"></div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            <div className="flex flex-col gap-5">
               
               {/* Name Input */}
               <div className="group relative">
