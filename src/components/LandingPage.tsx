@@ -15,14 +15,33 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
-  const [role, setRole] = useState('');
+  
+  // Initialize role from URL hash if present
+  const initialRole = typeof window !== 'undefined' && window.location.hash 
+    ? decodeURIComponent(window.location.hash.substring(1)) 
+    : '';
+  const [role, setRole] = useState(initialRole);
+  
   const [pdpaConsent, setPdpaConsent] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showQRModal, setShowQRModal] = useState(false);
   const [isQRReady, setIsQRReady] = useState(false);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
   
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  // Construct URL for the QR code, embedding the selected role
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin + window.location.pathname : '';
+  const qrUrl = role ? `${baseUrl}#${encodeURIComponent(role)}` : baseUrl;
+
+  // Update browser URL when role changes
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (role) {
+        window.history.replaceState(null, '', `#${encodeURIComponent(role)}`);
+      } else {
+        window.history.replaceState(null, '', window.location.pathname);
+      }
+    }
+  }, [role]);
 
   React.useEffect(() => {
     // Tell the background to pause/resume without triggering a React re-render of the massive blur filters
@@ -128,7 +147,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               <div className="bg-white p-4 rounded-2xl shadow-sm border border-zinc-200 w-[232px] h-[232px] flex items-center justify-center">
                 {isQRReady ? (
                   <QRCode 
-                    value={currentUrl} 
+                    value={qrUrl} 
                     size={200}
                     bgColor="#ffffff"
                     fgColor="#000000"
