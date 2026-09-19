@@ -39,6 +39,7 @@ const MeshGraphBackground: React.FC = () => {
     
     const points: { origX: number, origY: number, origZ: number, x: number, y: number, z: number, px: number, py: number, scale: number }[] = [];
     const edges: [number, number][] = [];
+    const neighbors: number[][] = Array.from({length: numPoints}, () => []);
 
     // Generate points
     const phi = Math.PI * (3 - Math.sqrt(5)); 
@@ -57,7 +58,7 @@ const MeshGraphBackground: React.FC = () => {
       });
     }
 
-    // Pre-calculate edges
+    // Pre-calculate edges and neighbors
     const connectionDist = sphereRadius * 0.22;
     const connectionDistSq = connectionDist * connectionDist;
     
@@ -72,23 +73,59 @@ const MeshGraphBackground: React.FC = () => {
         
         if (dx * dx + dy * dy + dz * dz < connectionDistSq) {
           edges.push([i, j]);
+          neighbors[i].push(j);
+          neighbors[j].push(i);
           connections++;
         }
       }
     }
 
-    // Satellites Configuration (Data Comets)
-    const numSatellites = 3; 
-    const satellites = Array.from({ length: numSatellites }, (_, i) => ({
-      angle: (Math.PI * 2 / numSatellites) * i, 
-      orbitRadius: sphereRadius * 1.35 + Math.random() * 40, 
-      speed: 0.005 + Math.random() * 0.003, 
-      size: 2.5 + Math.random() * 1.5,
-      tiltZ: (Math.random() - 0.5) * sphereRadius * 0.6, 
-      tiltY: (Math.random() - 0.5) * sphereRadius * 0.4,
-      color: i % 2 === 0 ? '0, 229, 255' : '168, 85, 247' 
-    }));
+    // Neural Synapse Flashes
+    class SynapseFlash {
+      activeNodes: Map<number, number>; // nodeId -> intensity (0 to 1)
+      age: number;
+      maxAge: number;
+      color: string;
+      
+      constructor(startNode: number) {
+        this.activeNodes = new Map();
+        this.activeNodes.set(startNode, 1.0);
+        this.age = 0;
+        this.maxAge = 60 + Math.random() * 60; // Exists for 60-120 frames
+        // Mix between Cyber Cyan and Deep Magenta
+        this.color = Math.random() > 0.5 ? '0, 229, 255' : '168, 85, 247'; 
+      }
+      
+      update() {
+        this.age++;
+        
+        // Spread logic (Deep Learning propagation simulation)
+        // Spread rapidly in the first 15 frames
+        if (this.age % 4 === 0 && this.age < 20) {
+          const newNodes = new Map<number, number>();
+          this.activeNodes.forEach((intensity, nodeId) => {
+            if (intensity > 0.4) { 
+              const nbrs = neighbors[nodeId];
+              nbrs.forEach(n => {
+                if (!this.activeNodes.has(n)) {
+                  if (Math.random() > 0.4) {
+                    newNodes.set(n, 1.0);
+                  }
+                }
+              });
+            }
+          });
+          newNodes.forEach((intensity, nodeId) => this.activeNodes.set(nodeId, intensity));
+        }
+        
+        // Fade logic
+        this.activeNodes.forEach((intensity, nodeId) => {
+          this.activeNodes.set(nodeId, intensity * 0.91); // Exponential decay
+        });
+      }
+    }
 
+    let flashes: SynapseFlash[] = [];
     let time = 0;
     const fov = 1100;
 
@@ -101,6 +138,7 @@ const MeshGraphBackground: React.FC = () => {
       const parallaxX = (mouseX - width / 2) * 0.04;
       const parallaxY = (mouseY - height / 2) * 0.04;
 
+      // Dark background
       ctx.fillStyle = '#020308';
       ctx.fillRect(0, 0, width, height);
       
@@ -110,14 +148,13 @@ const MeshGraphBackground: React.FC = () => {
       const centerX = isDesktop ? width * 0.38 : width / 2;
       const centerY = height / 2;
       
+      ctx.translate(centerX + parallaxX, centerY + parallaxY);
+      
       // Breathing Core
       const breath = Math.sin(time * 15) * 0.5 + 0.5; 
       const coreGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, sphereRadius * 0.8);
       coreGradient.addColorStop(0, `rgba(0, 229, 255, ${0.03 + breath * 0.03})`); 
       coreGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      
-      ctx.translate(centerX + parallaxX, centerY + parallaxY);
-      
       ctx.fillStyle = coreGradient;
       ctx.fillRect(-sphereRadius, -sphereRadius, sphereRadius * 2, sphereRadius * 2);
 
@@ -148,7 +185,7 @@ const MeshGraphBackground: React.FC = () => {
         p.py = p.y * p.scale;
       }
 
-      // Draw Edges
+      // Draw Base Edges (Faint Background Net)
       ctx.lineWidth = 0.5;
       for (let i = 0; i < edges.length; i++) {
         const [p1Idx, p2Idx] = edges[i];
@@ -158,9 +195,9 @@ const MeshGraphBackground: React.FC = () => {
         if (p1.scale > 0 && p2.scale > 0) {
           const avgZ = (p1.z + p2.z) / 2;
           const normalizedZ = (avgZ + sphereRadius) / (sphereRadius * 2); 
-          const alpha = Math.max(0.01, Math.min(0.35, normalizedZ * normalizedZ * 0.5));
+          const alpha = Math.max(0.01, Math.min(0.25, normalizedZ * normalizedZ * 0.4));
           
-          if (alpha > 0.03) { 
+          if (alpha > 0.02) { 
             ctx.beginPath();
             ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`;
             ctx.moveTo(p1.px, p1.py);
@@ -170,113 +207,95 @@ const MeshGraphBackground: React.FC = () => {
         }
       }
 
-      // Draw Nodes
+      // Draw Base Nodes
       for (let i = 0; i < numPoints; i++) {
         const p = points[i];
         if (p.scale > 0) {
           const normalizedZ = (p.z + sphereRadius) / (sphereRadius * 2);
           
           if (normalizedZ > 0.25) { 
-            let alpha = Math.max(0.1, Math.min(0.9, normalizedZ * normalizedZ));
+            let alpha = Math.max(0.1, Math.min(0.7, normalizedZ * normalizedZ));
             let radius = Math.max(0.4, p.scale * 1.0); 
             
             ctx.beginPath();
             ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
             ctx.arc(p.px, p.py, radius, 0, Math.PI * 2);
             ctx.fill();
-            
-            if (normalizedZ > 0.85) {
-              ctx.beginPath();
-              ctx.fillStyle = `rgba(0, 229, 255, 0.15)`;
-              ctx.arc(p.px, p.py, radius * 6, 0, Math.PI * 2);
-              ctx.fill();
-            }
           }
         }
       }
 
-      // Draw Satellites (Data Comets with Trails)
-      ctx.lineCap = 'round';
-      satellites.forEach(sat => {
-        sat.angle += sat.speed;
+      // Process and Draw Neural Synapse Flashes
+      if (Math.random() < 0.06) { // 6% chance per frame to spawn a flash
+        flashes.push(new SynapseFlash(Math.floor(Math.random() * numPoints)));
+      }
+      
+      flashes = flashes.filter(f => f.age < f.maxAge);
+      
+      flashes.forEach(flash => {
+        flash.update();
         
-        const trailSteps = 30; // Length of the trail
-        const trailSpread = 1.2; // How far back the history goes multiplier
-        const trailPositions = [];
-
-        // Calculate 3D path history for the trail
-        for (let i = 0; i < trailSteps; i++) {
-          const histAngle = sat.angle - (sat.speed * trailSpread * i);
+        ctx.lineCap = 'round';
+        
+        // Draw Flash Edges
+        flash.activeNodes.forEach((intensity1, n1) => {
+          if (intensity1 < 0.05) return;
+          const p1 = points[n1];
+          if (p1.scale <= 0) return;
           
-          let sx = Math.cos(histAngle) * sat.orbitRadius;
-          let sy = sat.tiltY * Math.cos(histAngle);
-          let sz = Math.sin(histAngle) * sat.orbitRadius + sat.tiltZ;
-          
-          let rx = sx * cosY - sz * sinY;
-          let rz = sx * sinY + sz * cosY;
-          let ry = sy * cosX - rz * sinX;
-          rz = sy * sinX + rz * cosX;
-          
-          const zDepth = rz + fov;
-          if (zDepth > 0) {
-            trailPositions.push({
-              px: rx * (fov / zDepth),
-              py: ry * (fov / zDepth),
-              rz: rz,
-              scale: fov / zDepth
-            });
-          }
-        }
-
-        // Draw Trail Segments
-        for (let i = 0; i < trailPositions.length - 1; i++) {
-          const curr = trailPositions[i];
-          const next = trailPositions[i + 1];
-          
-          const normalizedZ = (curr.rz + sphereRadius) / (sphereRadius * 2.5);
-          const depthAlpha = Math.max(0.02, Math.min(1, (normalizedZ + 0.2) * 1.2));
-          const trailFade = Math.pow(1 - (i / trailSteps), 2); // Exponential fade looks better
-          
-          const alpha = depthAlpha * trailFade;
-          
-          if (alpha > 0.01) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(${sat.color}, ${alpha})`;
-            ctx.lineWidth = Math.max(0.5, sat.size * curr.scale * trailFade * 1.5);
-            ctx.moveTo(curr.px, curr.py);
-            ctx.lineTo(next.px, next.py);
-            ctx.stroke();
-          }
-        }
-
-        // Draw Comet Head
-        if (trailPositions.length > 0) {
-          const head = trailPositions[0];
-          const normalizedZ = (head.rz + sphereRadius) / (sphereRadius * 2.5);
-          const alpha = Math.max(0.05, Math.min(1, (normalizedZ + 0.2) * 1.2));
-          
-          if (alpha > 0.05) {
-            const rad = Math.max(0.5, sat.size * head.scale);
-            
-            ctx.beginPath();
-            ctx.fillStyle = '#ffffff';
-            ctx.arc(head.px, head.py, rad * 0.8, 0, Math.PI * 2);
-            ctx.fill();
-            
-            ctx.beginPath();
-            ctx.fillStyle = `rgba(${sat.color}, ${alpha * 0.9})`;
-            ctx.arc(head.px, head.py, rad * 2.5, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Extra glow for front-facing comets
-            if (alpha > 0.5) {
+          neighbors[n1].forEach(n2 => {
+            if (n2 > n1 && flash.activeNodes.has(n2)) { // Avoid double drawing
+              const intensity2 = flash.activeNodes.get(n2)!;
+              const p2 = points[n2];
+              
+              if (p2.scale > 0) {
+                const avgZ = (p1.z + p2.z) / 2;
+                const normalizedZ = (avgZ + sphereRadius) / (sphereRadius * 2);
+                
+                if (normalizedZ > 0.15) {
+                  const edgeIntensity = (intensity1 + intensity2) / 2;
+                  const alpha = Math.min(1, edgeIntensity * (normalizedZ + 0.3));
+                  
+                  ctx.beginPath();
+                  ctx.strokeStyle = `rgba(${flash.color}, ${alpha})`;
+                  ctx.lineWidth = Math.max(1, p1.scale * 2 * edgeIntensity); // Thicker lines for active synapses
+                  
+                  // Intense Glow Effect
+                  ctx.shadowBlur = 10 * edgeIntensity;
+                  ctx.shadowColor = `rgba(${flash.color}, ${alpha})`;
+                  
+                  ctx.moveTo(p1.px, p1.py);
+                  ctx.lineTo(p2.px, p2.py);
+                  ctx.stroke();
+                  ctx.shadowBlur = 0; // Reset
+                }
+              }
+            }
+          });
+        });
+        
+        // Draw Flash Nodes (Brighter)
+        flash.activeNodes.forEach((intensity, n) => {
+          if (intensity < 0.05) return;
+          const p = points[n];
+          if (p.scale > 0) {
+            const normalizedZ = (p.z + sphereRadius) / (sphereRadius * 2);
+            if (normalizedZ > 0.15) {
+              const alpha = Math.min(1, intensity * (normalizedZ + 0.3));
+              const rad = Math.max(1, p.scale * (1.5 + intensity * 2));
+              
               ctx.beginPath();
-              ctx.fillStyle = `rgba(${sat.color}, ${alpha * 0.2})`;
-              ctx.arc(head.px, head.py, rad * 8, 0, Math.PI * 2);
+              ctx.fillStyle = '#ffffff';
+              ctx.arc(p.px, p.py, rad, 0, Math.PI * 2);
+              ctx.fill();
+              
+              ctx.beginPath();
+              ctx.fillStyle = `rgba(${flash.color}, ${alpha * 0.8})`;
+              ctx.arc(p.px, p.py, rad * 3.5, 0, Math.PI * 2);
               ctx.fill();
             }
           }
-        }
+        });
       });
 
       ctx.restore();
