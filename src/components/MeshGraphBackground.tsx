@@ -91,14 +91,13 @@ const MeshGraphBackground: React.FC = () => {
         this.activeNodes = new Map();
         this.activeNodes.set(startNode, 1.0);
         this.age = 0;
-        this.maxAge = 40 + Math.random() * 40; // Shorter lifespan
+        this.maxAge = 40 + Math.random() * 40; 
         this.color = Math.random() > 0.5 ? '0, 229, 255' : '168, 85, 247'; 
       }
       
       update() {
         this.age++;
         
-        // Spread logic - Less aggressive spread
         if (this.age % 4 === 0 && this.age < 16) {
           const newNodes = new Map<number, number>();
           this.activeNodes.forEach((intensity, nodeId) => {
@@ -106,9 +105,8 @@ const MeshGraphBackground: React.FC = () => {
               const nbrs = neighbors[nodeId];
               nbrs.forEach(n => {
                 if (!this.activeNodes.has(n)) {
-                  // Only 30% chance to spread (was 60%)
                   if (Math.random() > 0.7) {
-                    newNodes.set(n, 0.8); // Start slightly dimmer
+                    newNodes.set(n, 0.8); 
                   }
                 }
               });
@@ -117,7 +115,6 @@ const MeshGraphBackground: React.FC = () => {
           newNodes.forEach((intensity, nodeId) => this.activeNodes.set(nodeId, intensity));
         }
         
-        // Fade logic - Fades faster
         this.activeNodes.forEach((intensity, nodeId) => {
           this.activeNodes.set(nodeId, intensity * 0.88); 
         });
@@ -149,13 +146,23 @@ const MeshGraphBackground: React.FC = () => {
       
       ctx.translate(centerX + parallaxX, centerY + parallaxY);
       
-      // Breathing Core
-      const breath = Math.sin(time * 15) * 0.5 + 0.5; 
-      const coreGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, sphereRadius * 0.8);
-      coreGradient.addColorStop(0, `rgba(0, 229, 255, ${0.03 + breath * 0.03})`); 
-      coreGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = coreGradient;
-      ctx.fillRect(-sphereRadius, -sphereRadius, sphereRadius * 2, sphereRadius * 2);
+      // EFFECT: Plasma Core Sun (Dyson Sphere Core)
+      const sunRadius = sphereRadius * 0.28; 
+      const coronaPulse = Math.sin(time * 12) * 0.05 + 1.0; 
+      const coronaRadius = sunRadius * 2.2 * coronaPulse;
+      
+      const sunGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, coronaRadius);
+      // Bright pure white center
+      sunGradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+      // Intense cyan edge of the physical star
+      sunGradient.addColorStop(sunRadius / coronaRadius, 'rgba(0, 229, 255, 0.9)');
+      // Fading corona aura
+      sunGradient.addColorStop(1, 'rgba(0, 229, 255, 0)');
+      
+      ctx.fillStyle = sunGradient;
+      ctx.beginPath();
+      ctx.arc(0, 0, coronaRadius, 0, Math.PI * 2);
+      ctx.fill();
 
       const rotX = time * 0.4 + (mouseY / height - 0.5) * 0.1;
       const rotY = time + (mouseX / width - 0.5) * 0.1;
@@ -225,7 +232,6 @@ const MeshGraphBackground: React.FC = () => {
       }
 
       // Process and Draw Neural Synapse Flashes
-      // Reduced probability from 6% to 2% (much less frequent)
       if (Math.random() < 0.02) { 
         flashes.push(new SynapseFlash(Math.floor(Math.random() * numPoints)));
       }
@@ -254,15 +260,12 @@ const MeshGraphBackground: React.FC = () => {
                 
                 if (normalizedZ > 0.15) {
                   const edgeIntensity = (intensity1 + intensity2) / 2;
-                  // Reduced max opacity for the flash edges (max 0.4 instead of 1)
                   const alpha = Math.min(0.4, edgeIntensity * (normalizedZ + 0.2));
                   
                   ctx.beginPath();
                   ctx.strokeStyle = `rgba(${flash.color}, ${alpha})`;
-                  // Reduced thickness (max 0.8 instead of 2.0)
                   ctx.lineWidth = Math.max(0.5, p1.scale * 0.8 * edgeIntensity);
                   
-                  // Reduced shadow blur
                   ctx.shadowBlur = 3 * edgeIntensity;
                   ctx.shadowColor = `rgba(${flash.color}, ${alpha})`;
                   
@@ -283,9 +286,7 @@ const MeshGraphBackground: React.FC = () => {
           if (p.scale > 0) {
             const normalizedZ = (p.z + sphereRadius) / (sphereRadius * 2);
             if (normalizedZ > 0.15) {
-              // Reduced max opacity (max 0.6 instead of 1)
               const alpha = Math.min(0.6, intensity * (normalizedZ + 0.2));
-              // Reduced size expansion
               const rad = Math.max(0.5, p.scale * (0.8 + intensity * 0.5));
               
               ctx.beginPath();
@@ -294,7 +295,6 @@ const MeshGraphBackground: React.FC = () => {
               ctx.fill();
               
               ctx.beginPath();
-              // Reduced aura size
               ctx.fillStyle = `rgba(${flash.color}, ${alpha * 0.5})`;
               ctx.arc(p.px, p.py, rad * 1.5, 0, Math.PI * 2);
               ctx.fill();
