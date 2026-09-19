@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, UserCircle2, ChevronDown, Mail, Building2, Briefcase, Sparkles, Check, Timer, QrCode, X } from 'lucide-react';
-import { QRCodeCanvas } from 'qrcode.react';
+import { QRCodeSVG } from 'qrcode.react';
 import MeshGraphBackground from './MeshGraphBackground';
 import type { UserInfo } from '../App';
 import mfecLogo from '../assets/mfec-logo.png';
+import aiDino from '../assets/ai-dino.jpg';
 
 interface LandingPageProps {
   onStart: (data: UserInfo) => void;
@@ -126,13 +127,21 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               
               <div className="bg-white p-4 rounded-2xl shadow-sm border border-zinc-200 w-[232px] h-[232px] flex items-center justify-center">
                 {isQRReady ? (
-                  <QRCodeCanvas 
+                  <QRCodeSVG 
                     value={currentUrl} 
                     size={200}
                     bgColor="#ffffff"
-                    fgColor="#000000"
-                    level="Q"
+                    fgColor="#0055ff"
+                    level="H"
                     includeMargin={false}
+                    imageSettings={{
+                      src: aiDino,
+                      x: undefined,
+                      y: undefined,
+                      height: 48,
+                      width: 48,
+                      excavate: true,
+                    }}
                   />
                 ) : (
                   <div className="w-8 h-8 border-4 border-zinc-100 border-t-[#0077ff] rounded-full animate-spin" />
