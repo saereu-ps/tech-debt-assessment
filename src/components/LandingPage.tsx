@@ -79,8 +79,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             </h1>
           </div>
 
-          <p className="text-[16px] md:text-[18px] font-medium max-w-[500px] mx-auto lg:mx-0 leading-relaxed tracking-wide mt-4 text-transparent bg-clip-text bg-gradient-to-r from-zinc-400 via-zinc-200 to-zinc-400 dark:from-zinc-300 dark:via-white dark:to-zinc-400">
-            Evaluate your infrastructure maturity, discover hidden vulnerabilities, and prepare your organization for the AI era <span className="text-zinc-900 dark:text-white font-bold border-b border-[#00e5ff]/50 pb-0.5">in less than 5 minutes.</span>
+          <p className="text-[16px] md:text-[18px] font-medium max-w-[500px] mx-auto lg:mx-0 leading-relaxed tracking-wide mt-4 text-zinc-600 dark:text-zinc-300">
+            Evaluate your infrastructure maturity, discover hidden vulnerabilities, and prepare your organization for the AI era <span className="text-zinc-900 dark:text-white font-bold border-b-2 border-[#00e5ff]/50 pb-0.5">in less than 5 minutes.</span>
           </p>
         </motion.div>
 
@@ -96,24 +96,22 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
           <form 
             onSubmit={handleSubmit}
-            className="w-full flex flex-col gap-6 relative p-8 md:p-10 rounded-[32px] md:rounded-[40px] border border-white/40 dark:border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_80px_rgba(0,0,0,0.4)] bg-white/40 dark:bg-[#03060c]/60 backdrop-blur-3xl overflow-hidden"
+            className="w-full flex flex-col gap-6 relative p-8 md:p-10 rounded-[32px] md:rounded-[40px] border border-white/40 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.1)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)] bg-white/20 dark:bg-black/20 backdrop-blur-[60px] overflow-hidden"
           >
             {/* Subtle inner top highlight */}
-            <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-white/50 dark:via-white/20 to-transparent"></div>
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/50 dark:via-white/20 to-transparent"></div>
 
             <div className="flex flex-col gap-5 relative z-10">
               
               {/* Name Input */}
               <div className="group relative w-full">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-xl blur opacity-0 group-focus-within:opacity-30 transition-opacity duration-500 pointer-events-none"></div>
-                <div className="relative flex items-center h-[56px] w-full rounded-xl bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-sm border border-zinc-200 dark:border-white/10 transition-all duration-300 group-focus-within:border-[#00e5ff]/50 shadow-sm overflow-hidden">
-                  <div className="flex items-center justify-center w-14 h-full border-r border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 group-focus-within:bg-[#00e5ff]/10 transition-colors">
-                    <UserCircle2 className="w-5 h-5 text-zinc-400 dark:text-zinc-500 group-focus-within:text-[#00e5ff] transition-colors" />
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-2xl blur-md opacity-0 group-focus-within:opacity-40 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="relative flex items-center h-[60px] w-full rounded-2xl bg-white/[0.05] dark:bg-white/[0.03] border border-zinc-200 dark:border-white/10 transition-all duration-300 group-hover:bg-white/[0.1] group-focus-within:bg-white/[0.15] dark:group-focus-within:bg-white/[0.1] group-focus-within:border-[#00e5ff]/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
+                  <UserCircle2 className="absolute left-4 w-5 h-5 text-zinc-500 dark:text-zinc-400 group-focus-within:text-[#00e5ff] transition-colors" />
                   <input
                     type="text"
                     id="nameInput"
-                    className="w-full h-full bg-transparent border-none outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 px-4 focus:ring-0"
+                    className="w-full h-full bg-transparent border-none outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-500 pl-12 pr-4 focus:ring-0 rounded-2xl"
                     placeholder="Full Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -124,15 +122,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
               {/* Email Input */}
               <div className="group relative w-full">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-xl blur opacity-0 group-focus-within:opacity-30 transition-opacity duration-500 pointer-events-none"></div>
-                <div className="relative flex items-center h-[56px] w-full rounded-xl bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-sm border border-zinc-200 dark:border-white/10 transition-all duration-300 group-focus-within:border-[#00e5ff]/50 shadow-sm overflow-hidden">
-                  <div className="flex items-center justify-center w-14 h-full border-r border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 group-focus-within:bg-[#00e5ff]/10 transition-colors">
-                    <Mail className="w-5 h-5 text-zinc-400 dark:text-zinc-500 group-focus-within:text-[#00e5ff] transition-colors" />
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-2xl blur-md opacity-0 group-focus-within:opacity-40 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="relative flex items-center h-[60px] w-full rounded-2xl bg-white/[0.05] dark:bg-white/[0.03] border border-zinc-200 dark:border-white/10 transition-all duration-300 group-hover:bg-white/[0.1] group-focus-within:bg-white/[0.15] dark:group-focus-within:bg-white/[0.1] group-focus-within:border-[#00e5ff]/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
+                  <Mail className="absolute left-4 w-5 h-5 text-zinc-500 dark:text-zinc-400 group-focus-within:text-[#00e5ff] transition-colors" />
                   <input
                     type="email"
                     id="emailInput"
-                    className="w-full h-full bg-transparent border-none outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 px-4 focus:ring-0"
+                    className="w-full h-full bg-transparent border-none outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-500 pl-12 pr-4 focus:ring-0 rounded-2xl"
                     placeholder="Work Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -143,15 +139,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
               {/* Organization Input */}
               <div className="group relative w-full">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-xl blur opacity-0 group-focus-within:opacity-30 transition-opacity duration-500 pointer-events-none"></div>
-                <div className="relative flex items-center h-[56px] w-full rounded-xl bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-sm border border-zinc-200 dark:border-white/10 transition-all duration-300 group-focus-within:border-[#00e5ff]/50 shadow-sm overflow-hidden">
-                  <div className="flex items-center justify-center w-14 h-full border-r border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 group-focus-within:bg-[#00e5ff]/10 transition-colors">
-                    <Building2 className="w-5 h-5 text-zinc-400 dark:text-zinc-500 group-focus-within:text-[#00e5ff] transition-colors" />
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-2xl blur-md opacity-0 group-focus-within:opacity-40 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="relative flex items-center h-[60px] w-full rounded-2xl bg-white/[0.05] dark:bg-white/[0.03] border border-zinc-200 dark:border-white/10 transition-all duration-300 group-hover:bg-white/[0.1] group-focus-within:bg-white/[0.15] dark:group-focus-within:bg-white/[0.1] group-focus-within:border-[#00e5ff]/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
+                  <Building2 className="absolute left-4 w-5 h-5 text-zinc-500 dark:text-zinc-400 group-focus-within:text-[#00e5ff] transition-colors" />
                   <input
                     type="text"
                     id="companyInput"
-                    className="w-full h-full bg-transparent border-none outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 px-4 focus:ring-0"
+                    className="w-full h-full bg-transparent border-none outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-500 pl-12 pr-4 focus:ring-0 rounded-2xl"
                     placeholder="Company Name"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
@@ -162,23 +156,21 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
               {/* Role Dropdown */}
               <div className="group relative w-full">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-xl blur opacity-0 group-focus-within:opacity-30 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-2xl blur-md opacity-0 group-focus-within:opacity-40 transition-opacity duration-500 pointer-events-none"></div>
                 <div 
                   ref={dropdownRef}
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="relative flex items-center h-[56px] w-full rounded-xl bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-sm border border-zinc-200 dark:border-white/10 transition-all duration-300 group-hover:border-zinc-300 dark:group-hover:border-white/20 shadow-sm overflow-hidden cursor-pointer"
-                  style={{ borderColor: isDropdownOpen ? 'rgba(0, 229, 255, 0.5)' : undefined }}
+                  className="relative flex items-center h-[60px] w-full rounded-2xl bg-white/[0.05] dark:bg-white/[0.03] border border-zinc-200 dark:border-white/10 transition-all duration-300 group-hover:bg-white/[0.1] cursor-pointer shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
+                  style={{ borderColor: isDropdownOpen ? 'rgba(0, 229, 255, 0.5)' : undefined, backgroundColor: isDropdownOpen ? 'rgba(255, 255, 255, 0.1)' : undefined }}
                 >
-                  <div className={`flex items-center justify-center w-14 h-full border-r border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 transition-colors ${isDropdownOpen ? 'bg-[#00e5ff]/10' : ''}`}>
-                    <Briefcase className={`w-5 h-5 transition-colors ${isDropdownOpen ? 'text-[#00e5ff]' : 'text-zinc-400 dark:text-zinc-500'}`} />
-                  </div>
+                  <Briefcase className={`absolute left-4 w-5 h-5 transition-colors ${isDropdownOpen ? 'text-[#00e5ff]' : 'text-zinc-500 dark:text-zinc-400'}`} />
                   
-                  <span className={`w-full px-4 text-[15px] font-medium truncate ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-400 dark:text-zinc-600'}`}>
+                  <span className={`w-full pl-12 pr-4 text-[15px] font-medium truncate ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-500 dark:text-zinc-500'}`}>
                     {role || "Select Role"}
                   </span>
                   
-                  <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }} className="pr-4">
-                    <ChevronDown className="w-5 h-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
+                  <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }} className="absolute right-4">
+                    <ChevronDown className="w-5 h-5 text-zinc-500 dark:text-zinc-500 shrink-0" />
                   </motion.div>
                 </div>
 
@@ -231,18 +223,18 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               type="submit"
               disabled={!isFormValid}
               className={`
-                group relative w-full h-[56px] rounded-xl font-bold text-[15px] tracking-wide flex items-center justify-center gap-3 transition-all duration-300 overflow-hidden mt-4
+                group relative w-full h-[64px] rounded-2xl font-black text-[16px] tracking-wide flex items-center justify-center gap-3 transition-all duration-500 overflow-hidden mt-2
                 ${isFormValid 
-                  ? 'bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 shadow-lg hover:scale-[1.02] active:scale-95' 
-                  : 'bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 text-zinc-400 dark:text-zinc-600 cursor-not-allowed'}
+                  ? 'bg-gradient-to-r from-[#00e5ff] to-[#0077ff] text-white shadow-[0_0_30px_rgba(0,229,255,0.4)] hover:shadow-[0_0_50px_rgba(0,229,255,0.6)] hover:scale-[1.02] active:scale-95' 
+                  : 'bg-zinc-200/50 dark:bg-white/[0.05] dark:border dark:border-white/10 text-zinc-400 dark:text-white/40 cursor-not-allowed'}
               `}
             >
               {isFormValid && (
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 dark:via-black/10 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
               )}
-              <Sparkles className={`w-5 h-5 ${isFormValid ? "text-white dark:text-black" : "text-zinc-400 dark:text-zinc-600"} transition-all duration-300`} />
+              <Sparkles className={`w-5 h-5 ${isFormValid ? "text-white" : "text-zinc-400 dark:text-white/40"} transition-all duration-300`} />
               <span>START ASSESSMENT</span>
-              <ArrowRight className={`w-5 h-5 ${isFormValid ? "text-white dark:text-black translate-x-0 group-hover:translate-x-1" : "text-zinc-400 dark:text-zinc-600"} transition-all duration-300`} />
+              <ArrowRight className={`w-5 h-5 ${isFormValid ? "text-white translate-x-0 group-hover:translate-x-1" : "text-zinc-400 dark:text-white/40"} transition-all duration-300`} />
             </button>
           </form>
         </motion.div>
