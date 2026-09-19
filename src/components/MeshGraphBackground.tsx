@@ -1,16 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 
-interface MeshGraphBackgroundProps {
-  isPaused?: boolean;
-}
-
-const MeshGraphBackground: React.FC<MeshGraphBackgroundProps> = ({ isPaused = false }) => {
+const MeshGraphBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const isPausedRef = useRef(isPaused);
+  const isPausedRef = useRef(false);
 
   useEffect(() => {
-    isPausedRef.current = isPaused;
-  }, [isPaused]);
+    const handlePause = (e: any) => {
+      isPausedRef.current = e.detail;
+    };
+    window.addEventListener('pause-canvas', handlePause);
+    return () => window.removeEventListener('pause-canvas', handlePause);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;

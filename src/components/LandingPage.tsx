@@ -24,6 +24,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   React.useEffect(() => {
+    // Tell the background to pause/resume without triggering a React re-render of the massive blur filters
+    window.dispatchEvent(new CustomEvent('pause-canvas', { detail: showQRModal }));
+    
     if (showQRModal) {
       const timer = setTimeout(() => setIsQRReady(true), 200);
       return () => clearTimeout(timer);
@@ -67,7 +70,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
       
       {/* Dynamic Network Background spanning full screen to support Spatial Glassmorphism */}
       <div className="absolute inset-0 z-0">
-        <MeshGraphBackground isPaused={showQRModal} />
+        <MeshGraphBackground />
         {/* Extra vibrant gradient overlay to enhance glass blur */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#00e5ff]/10 via-transparent to-[#0077ff]/20 mix-blend-screen pointer-events-none"></div>
       </div>
