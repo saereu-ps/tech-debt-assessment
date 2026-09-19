@@ -33,14 +33,14 @@ const MeshGraphBackground: React.FC = () => {
     window.addEventListener('resize', resize);
     resize();
 
-    // Sphere configuration - Premium Density
+    // Sphere configuration
     const numPoints = 550;
     const sphereRadius = Math.min(width, height) * 0.48;
     
     const points: { origX: number, origY: number, origZ: number, x: number, y: number, z: number, px: number, py: number, scale: number }[] = [];
     const edges: [number, number][] = [];
 
-    // Generate points using Fibonacci Sphere algorithm
+    // Generate points
     const phi = Math.PI * (3 - Math.sqrt(5)); 
     for (let i = 0; i < numPoints; i++) {
       const y = 1 - (i / (numPoints - 1)) * 2;
@@ -77,23 +77,23 @@ const MeshGraphBackground: React.FC = () => {
       }
     }
 
-    // Satellites Configuration (ดาวบริวาร)
-    const numSatellites = 3; // Keep it clean and minimal
+    // Satellites Configuration (Data Comets)
+    const numSatellites = 3; 
     const satellites = Array.from({ length: numSatellites }, (_, i) => ({
       angle: (Math.PI * 2 / numSatellites) * i, 
       orbitRadius: sphereRadius * 1.35 + Math.random() * 40, 
-      speed: 0.005 + Math.random() * 0.003, // Smooth, slow orbit
+      speed: 0.005 + Math.random() * 0.003, 
       size: 2.5 + Math.random() * 1.5,
-      tiltZ: (Math.random() - 0.5) * sphereRadius * 0.6, // Slight orbital tilt
+      tiltZ: (Math.random() - 0.5) * sphereRadius * 0.6, 
       tiltY: (Math.random() - 0.5) * sphereRadius * 0.4,
-      color: i % 2 === 0 ? '0, 229, 255' : '168, 85, 247' // Cyan or Magenta RGB
+      color: i % 2 === 0 ? '0, 229, 255' : '168, 85, 247' 
     }));
 
     let time = 0;
     const fov = 1100;
 
     const render = () => {
-      time += 0.0015; // Glacially slow rotation
+      time += 0.0015; 
       
       mouseX += (targetMouseX - mouseX) * 0.05;
       mouseY += (targetMouseY - mouseY) * 0.05;
@@ -101,7 +101,6 @@ const MeshGraphBackground: React.FC = () => {
       const parallaxX = (mouseX - width / 2) * 0.04;
       const parallaxY = (mouseY - height / 2) * 0.04;
 
-      // Absolute premium dark background
       ctx.fillStyle = '#020308';
       ctx.fillRect(0, 0, width, height);
       
@@ -111,15 +110,14 @@ const MeshGraphBackground: React.FC = () => {
       const centerX = isDesktop ? width * 0.38 : width / 2;
       const centerY = height / 2;
       
-      // EFFECT: Breathing Core
-      const breath = Math.sin(time * 15) * 0.5 + 0.5; // 0 to 1
+      // Breathing Core
+      const breath = Math.sin(time * 15) * 0.5 + 0.5; 
       const coreGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, sphereRadius * 0.8);
       coreGradient.addColorStop(0, `rgba(0, 229, 255, ${0.03 + breath * 0.03})`); 
       coreGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
       
       ctx.translate(centerX + parallaxX, centerY + parallaxY);
       
-      // Draw breathing core
       ctx.fillStyle = coreGradient;
       ctx.fillRect(-sphereRadius, -sphereRadius, sphereRadius * 2, sphereRadius * 2);
 
@@ -131,7 +129,7 @@ const MeshGraphBackground: React.FC = () => {
       const cosY = Math.cos(rotY);
       const sinY = Math.sin(rotY);
 
-      // 3. Rotate and Project Points
+      // Rotate and Project Points
       for (let i = 0; i < numPoints; i++) {
         const p = points[i];
         
@@ -150,7 +148,7 @@ const MeshGraphBackground: React.FC = () => {
         p.py = p.y * p.scale;
       }
 
-      // 4. Draw Edges
+      // Draw Edges
       ctx.lineWidth = 0.5;
       for (let i = 0; i < edges.length; i++) {
         const [p1Idx, p2Idx] = edges[i];
@@ -172,7 +170,7 @@ const MeshGraphBackground: React.FC = () => {
         }
       }
 
-      // 5. Draw Nodes
+      // Draw Nodes
       for (let i = 0; i < numPoints; i++) {
         const p = points[i];
         if (p.scale > 0) {
@@ -187,7 +185,6 @@ const MeshGraphBackground: React.FC = () => {
             ctx.arc(p.px, p.py, radius, 0, Math.PI * 2);
             ctx.fill();
             
-            // Soft glow for front nodes
             if (normalizedZ > 0.85) {
               ctx.beginPath();
               ctx.fillStyle = `rgba(0, 229, 255, 0.15)`;
@@ -198,51 +195,84 @@ const MeshGraphBackground: React.FC = () => {
         }
       }
 
-      // 6. Draw Satellites
+      // Draw Satellites (Data Comets with Trails)
+      ctx.lineCap = 'round';
       satellites.forEach(sat => {
         sat.angle += sat.speed;
         
-        // Base orbit position (tilted)
-        let sx = Math.cos(sat.angle) * sat.orbitRadius;
-        let sy = sat.tiltY * Math.cos(sat.angle);
-        let sz = Math.sin(sat.angle) * sat.orbitRadius + sat.tiltZ;
-        
-        // Apply global scene rotation to satellites so they stay locked with the parallax/perspective
-        let rx = sx * cosY - sz * sinY;
-        let rz = sx * sinY + sz * cosY;
-        let ry = sy * cosX - rz * sinX;
-        rz = sy * sinX + rz * cosX;
-        
-        const zDepth = rz + fov;
-        if (zDepth > 0) {
-          const scale = fov / zDepth;
-          const px = rx * scale;
-          const py = ry * scale;
+        const trailSteps = 30; // Length of the trail
+        const trailSpread = 1.2; // How far back the history goes multiplier
+        const trailPositions = [];
+
+        // Calculate 3D path history for the trail
+        for (let i = 0; i < trailSteps; i++) {
+          const histAngle = sat.angle - (sat.speed * trailSpread * i);
           
-          // Fade based on Z depth (satellites go behind the globe)
-          const normalizedZ = (rz + sphereRadius) / (sphereRadius * 2.5); // Slightly larger denominator because orbit is larger
-          const alpha = Math.max(0.05, Math.min(1, (normalizedZ + 0.2) * 1.2)); // +0.2 so it doesn't disappear completely too fast
+          let sx = Math.cos(histAngle) * sat.orbitRadius;
+          let sy = sat.tiltY * Math.cos(histAngle);
+          let sz = Math.sin(histAngle) * sat.orbitRadius + sat.tiltZ;
+          
+          let rx = sx * cosY - sz * sinY;
+          let rz = sx * sinY + sz * cosY;
+          let ry = sy * cosX - rz * sinX;
+          rz = sy * sinX + rz * cosX;
+          
+          const zDepth = rz + fov;
+          if (zDepth > 0) {
+            trailPositions.push({
+              px: rx * (fov / zDepth),
+              py: ry * (fov / zDepth),
+              rz: rz,
+              scale: fov / zDepth
+            });
+          }
+        }
+
+        // Draw Trail Segments
+        for (let i = 0; i < trailPositions.length - 1; i++) {
+          const curr = trailPositions[i];
+          const next = trailPositions[i + 1];
+          
+          const normalizedZ = (curr.rz + sphereRadius) / (sphereRadius * 2.5);
+          const depthAlpha = Math.max(0.02, Math.min(1, (normalizedZ + 0.2) * 1.2));
+          const trailFade = Math.pow(1 - (i / trailSteps), 2); // Exponential fade looks better
+          
+          const alpha = depthAlpha * trailFade;
+          
+          if (alpha > 0.01) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(${sat.color}, ${alpha})`;
+            ctx.lineWidth = Math.max(0.5, sat.size * curr.scale * trailFade * 1.5);
+            ctx.moveTo(curr.px, curr.py);
+            ctx.lineTo(next.px, next.py);
+            ctx.stroke();
+          }
+        }
+
+        // Draw Comet Head
+        if (trailPositions.length > 0) {
+          const head = trailPositions[0];
+          const normalizedZ = (head.rz + sphereRadius) / (sphereRadius * 2.5);
+          const alpha = Math.max(0.05, Math.min(1, (normalizedZ + 0.2) * 1.2));
           
           if (alpha > 0.05) {
-            const rad = Math.max(0.5, sat.size * scale);
+            const rad = Math.max(0.5, sat.size * head.scale);
             
-            // Core
             ctx.beginPath();
-            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-            ctx.arc(px, py, rad, 0, Math.PI * 2);
+            ctx.fillStyle = '#ffffff';
+            ctx.arc(head.px, head.py, rad * 0.8, 0, Math.PI * 2);
             ctx.fill();
             
-            // Bright Aura
             ctx.beginPath();
-            ctx.fillStyle = `rgba(${sat.color}, ${alpha * 0.5})`;
-            ctx.arc(px, py, rad * 4, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${sat.color}, ${alpha * 0.9})`;
+            ctx.arc(head.px, head.py, rad * 2.5, 0, Math.PI * 2);
             ctx.fill();
 
-            // Large Soft Glow
-            if (alpha > 0.4) {
+            // Extra glow for front-facing comets
+            if (alpha > 0.5) {
               ctx.beginPath();
-              ctx.fillStyle = `rgba(${sat.color}, ${alpha * 0.15})`;
-              ctx.arc(px, py, rad * 12, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(${sat.color}, ${alpha * 0.2})`;
+              ctx.arc(head.px, head.py, rad * 8, 0, Math.PI * 2);
               ctx.fill();
             }
           }
