@@ -49,155 +49,170 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const isFormValid = name.trim().length > 0 && company.trim().length > 0 && role.trim().length > 0 && pdpaConsent;
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-[100dvh] w-full font-sans bg-white dark:bg-[#13131a] transition-colors duration-500">
+    <div className="relative min-h-[100dvh] w-full flex items-center justify-center p-6 md:p-12 font-sans overflow-hidden bg-white dark:bg-[#050810] transition-colors duration-500">
       
-      {/* Left Panel: Graphic & Copy */}
-      <div className="relative w-full lg:w-1/2 min-h-[30vh] lg:min-h-[100dvh] flex flex-col justify-between p-8 lg:p-16 overflow-hidden bg-gradient-to-br from-[#0a0f25] to-[#0d1430]">
-        {/* Dynamic Network Background */}
-        <div className="absolute inset-0 z-0 opacity-80 mix-blend-screen">
-          <MeshGraphBackground />
-        </div>
-        
-        {/* Logo */}
-        <div className="relative z-10">
-          <img src={mfecLogo} alt="MFEC Logo" className="h-8 md:h-10 w-auto invert brightness-0" />
-        </div>
-
-        {/* Copy */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative z-10 mt-20 lg:mt-0"
-        >
-          <h1 className="text-[32px] sm:text-[40px] lg:text-[56px] font-semibold text-white leading-[1.1] tracking-tight">
-            Discover your true <br /> Tech Debt.
-          </h1>
-          <p className="text-[15px] lg:text-[18px] text-zinc-400 mt-4 max-w-[400px] leading-relaxed">
-            Evaluate infrastructure maturity and prepare your organization for the AI era in less than 5 minutes.
-          </p>
-        </motion.div>
+      {/* Dynamic Network Background spanning full screen to support Spatial Glassmorphism */}
+      <div className="absolute inset-0 z-0">
+        <MeshGraphBackground />
+        {/* Extra vibrant gradient overlay to enhance glass blur */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#00e5ff]/10 via-transparent to-[#0077ff]/20 mix-blend-screen pointer-events-none"></div>
       </div>
 
-      {/* Right Panel: Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-16 bg-white dark:bg-[#16161e]">
+      {/* Logo Component */}
+      <div className="absolute top-6 left-6 md:top-8 md:left-8 z-50">
+        <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-auto dark:invert dark:brightness-0 opacity-90 dark:opacity-100" />
+      </div>
+
+      <div className="w-full max-w-[1400px] z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative mt-16 md:mt-0">
+        
+        {/* Left Side: Typography & Value Prop */}
         <motion.div 
-          initial={{ opacity: 0, x: 20 }}
+          initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="w-full max-w-[440px]"
+          transition={{ duration: 0.8, ease: "easeOut", type: "spring", bounce: 0.4 }}
+          className="flex flex-col gap-6 text-center lg:text-left pt-10 lg:pt-0"
         >
-          <h2 className="text-[28px] md:text-[32px] font-semibold text-zinc-900 dark:text-white mb-2 tracking-tight">Start Assessment</h2>
-          <p className="text-[14px] text-zinc-500 dark:text-zinc-400 mb-8">
-            Complete this short form to begin the evaluation.
+          <div className="flex flex-col w-full relative z-10">
+            <h1 className="text-[40px] sm:text-[48px] md:text-[56px] xl:text-[72px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] tracking-tight">
+              What's your true
+            </h1>
+            <h1 className="text-[48px] sm:text-[56px] md:text-[64px] xl:text-[80px] font-extrabold animate-shine leading-[1.05] tracking-tight mt-1" style={{ filter: 'var(--title-drop-shadow)' }}>
+              Tech Debt?
+            </h1>
+          </div>
+
+          <p className="text-[16px] md:text-[18px] font-medium max-w-[500px] mx-auto lg:mx-0 leading-relaxed tracking-wide mt-4 text-zinc-600 dark:text-zinc-300">
+            Evaluate your infrastructure maturity, discover hidden vulnerabilities, and prepare your organization for the AI era <span className="text-zinc-900 dark:text-white font-bold border-b-2 border-[#00e5ff]/50 pb-0.5">in less than 5 minutes.</span>
           </p>
+        </motion.div>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            
-            {/* Name Input */}
-            <div className="w-full">
-              <input
-                type="text"
-                id="nameInput"
-                className="w-full h-11 px-4 rounded-lg bg-zinc-100 dark:bg-[#20202b] border border-transparent focus:border-[#0077ff] dark:focus:border-[#00e5ff]/50 outline-none text-[14px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 transition-colors shadow-sm"
-                placeholder="Full Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
+        {/* Right Side: VisionOS Form */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.1, type: "spring", bounce: 0.4 }}
+          className="w-full relative flex justify-center lg:justify-end"
+        >
+          {/* Spatial Glass Card */}
+          <form 
+            onSubmit={handleSubmit}
+            className="w-full max-w-[500px] flex flex-col gap-6 relative p-8 md:p-10 rounded-[40px] border border-white/20 dark:border-white/10 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] bg-white/40 dark:bg-white/5 backdrop-blur-[40px] overflow-hidden"
+          >
+            {/* Subtle inner highlight for the 3D glass effect */}
+            <div className="absolute inset-0 rounded-[40px] border border-white/30 pointer-events-none mix-blend-overlay"></div>
+
+            <div className="relative z-10 text-center mb-2">
+              <h2 className="text-[28px] md:text-[32px] font-bold text-zinc-900 dark:text-white tracking-tight">Start Assessment</h2>
+              <p className="text-[14px] text-zinc-700 dark:text-zinc-300 mt-2 font-medium">Complete this short form to begin.</p>
             </div>
 
-            {/* Email Input */}
-            <div className="w-full">
-              <input
-                type="email"
-                id="emailInput"
-                className="w-full h-11 px-4 rounded-lg bg-zinc-100 dark:bg-[#20202b] border border-transparent focus:border-[#0077ff] dark:focus:border-[#00e5ff]/50 outline-none text-[14px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 transition-colors shadow-sm"
-                placeholder="Work Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-
-            {/* Organization Input */}
-            <div className="w-full">
-              <input
-                type="text"
-                id="companyInput"
-                className="w-full h-11 px-4 rounded-lg bg-zinc-100 dark:bg-[#20202b] border border-transparent focus:border-[#0077ff] dark:focus:border-[#00e5ff]/50 outline-none text-[14px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 transition-colors shadow-sm"
-                placeholder="Company Name"
-                value={company}
-                onChange={(e) => setCompany(e.target.value)}
-                required
-              />
-            </div>
-
-            {/* Role Dropdown */}
-            <div className="relative group w-full">
-              <div 
-                ref={dropdownRef}
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="relative flex items-center h-11 w-full px-4 rounded-lg bg-zinc-100 dark:bg-[#20202b] border border-transparent transition-colors cursor-pointer shadow-sm"
-                style={{ borderColor: isDropdownOpen ? 'rgba(0, 229, 255, 0.5)' : undefined }}
-              >
-                <span className={`w-full text-[14px] font-medium truncate ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-500'}`}>
-                  {role || "Select Role"}
-                </span>
-                <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }} className="absolute right-4">
-                  <ChevronDown className="w-4 h-4 text-zinc-500 shrink-0" />
-                </motion.div>
+            <div className="flex flex-col gap-4 relative z-10">
+              
+              {/* Name Input */}
+              <div className="w-full">
+                <input
+                  type="text"
+                  id="nameInput"
+                  className="w-full h-[52px] px-5 rounded-2xl bg-white/50 dark:bg-black/20 border border-white/40 dark:border-white/10 focus:border-[#00e5ff] dark:focus:border-[#00e5ff] focus:bg-white/60 dark:focus:bg-black/40 outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-400 transition-all duration-300 shadow-inner"
+                  placeholder="Full Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
               </div>
 
-              {/* Dropdown Menu */}
-              <AnimatePresence>
-                {isDropdownOpen && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: -5, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -5, scale: 0.98 }}
-                    transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="absolute top-[48px] left-0 w-full bg-white dark:bg-[#20202b] border border-zinc-200 dark:border-zinc-700/50 rounded-lg overflow-hidden shadow-xl z-50 max-h-[200px] overflow-y-auto"
-                  >
-                    {roles.map((r) => (
-                      <div 
-                        key={r}
-                        onClick={() => setRole(r)}
-                        className="px-4 py-3 text-[13px] font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/5 transition-colors cursor-pointer"
-                      >
-                        {r}
-                      </div>
-                    ))}
+              {/* Email Input */}
+              <div className="w-full">
+                <input
+                  type="email"
+                  id="emailInput"
+                  className="w-full h-[52px] px-5 rounded-2xl bg-white/50 dark:bg-black/20 border border-white/40 dark:border-white/10 focus:border-[#00e5ff] dark:focus:border-[#00e5ff] focus:bg-white/60 dark:focus:bg-black/40 outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-400 transition-all duration-300 shadow-inner"
+                  placeholder="Work Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+
+              {/* Organization Input */}
+              <div className="w-full">
+                <input
+                  type="text"
+                  id="companyInput"
+                  className="w-full h-[52px] px-5 rounded-2xl bg-white/50 dark:bg-black/20 border border-white/40 dark:border-white/10 focus:border-[#00e5ff] dark:focus:border-[#00e5ff] focus:bg-white/60 dark:focus:bg-black/40 outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-zinc-400 transition-all duration-300 shadow-inner"
+                  placeholder="Company Name"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  required
+                />
+              </div>
+
+              {/* Role Dropdown */}
+              <div className="relative group w-full">
+                <div 
+                  ref={dropdownRef}
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="relative flex items-center h-[52px] w-full px-5 rounded-2xl bg-white/50 dark:bg-black/20 border border-white/40 dark:border-white/10 transition-all duration-300 cursor-pointer shadow-inner"
+                  style={{ borderColor: isDropdownOpen ? '#00e5ff' : undefined, backgroundColor: isDropdownOpen ? 'rgba(0,0,0,0.4)' : undefined }}
+                >
+                  <span className={`w-full text-[15px] font-medium truncate ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-500 dark:text-zinc-400'}`}>
+                    {role || "Select Role"}
+                  </span>
+                  <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }} className="absolute right-5">
+                    <ChevronDown className="w-5 h-5 text-zinc-500 dark:text-zinc-400 shrink-0" />
                   </motion.div>
-                )}
-              </AnimatePresence>
+                </div>
+
+                {/* Dropdown Menu */}
+                <AnimatePresence>
+                  {isDropdownOpen && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="absolute top-[60px] left-0 w-full bg-white/80 dark:bg-[#111]/80 backdrop-blur-3xl border border-white/40 dark:border-white/10 rounded-2xl overflow-hidden shadow-2xl z-50 max-h-[220px] overflow-y-auto"
+                    >
+                      {roles.map((r) => (
+                        <div 
+                          key={r}
+                          onClick={() => setRole(r)}
+                          className="px-5 py-3.5 text-[14px] font-medium text-zinc-700 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer"
+                        >
+                          {r}
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
 
             {/* PDPA Consent Checkbox */}
-            <div className="flex items-start gap-3 mt-2">
-              <div className="relative flex items-center justify-center mt-0.5">
+            <div className="flex items-start gap-3 mt-4 relative z-10">
+              <div className="relative flex items-center justify-center mt-1">
                 <input 
                   type="checkbox" 
                   id="pdpaConsent" 
                   checked={pdpaConsent}
                   onChange={(e) => setPdpaConsent(e.target.checked)}
-                  className="peer w-4 h-4 rounded border border-zinc-300 dark:border-zinc-600 text-[#0077ff] dark:text-[#00e5ff] focus:ring-0 focus:ring-offset-0 bg-transparent cursor-pointer transition-all duration-200 checked:border-[#0077ff] dark:checked:border-[#00e5ff] checked:bg-[#0077ff] dark:checked:bg-[#00e5ff]"
+                  className="peer w-5 h-5 rounded-[6px] border-2 border-zinc-400/50 dark:border-white/30 text-[#0077ff] dark:text-[#00e5ff] focus:ring-0 focus:ring-offset-0 bg-white/50 dark:bg-black/20 cursor-pointer transition-all duration-300 checked:border-[#0077ff] dark:checked:border-[#00e5ff] checked:bg-[#0077ff] dark:checked:bg-[#00e5ff] backdrop-blur-md"
                 />
               </div>
-              <label htmlFor="pdpaConsent" className="text-[13px] text-zinc-600 dark:text-zinc-400 leading-relaxed cursor-pointer font-medium select-none">
-                ข้าพเจ้ายินยอมให้ MFEC เก็บรวบรวมข้อมูลเพื่อใช้ในการติดต่อกลับและนำเสนอโซลูชัน ตาม <a href="#" className="text-[#0077ff] dark:text-[#00e5ff] hover:underline underline-offset-4">นโยบายความเป็นส่วนตัวของบริษัท</a>
+              <label htmlFor="pdpaConsent" className="text-[13px] md:text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed cursor-pointer font-medium select-none">
+                ข้าพเจ้ายินยอมให้ MFEC เก็บรวบรวมข้อมูลเพื่อนำเสนอโซลูชัน ตาม <a href="#" className="text-zinc-900 dark:text-white font-bold hover:underline underline-offset-4 decoration-[#00e5ff]">นโยบายความเป็นส่วนตัว</a>
               </label>
             </div>
 
-            {/* Submit Button */}
+            {/* Pill Submit Button */}
             <button 
               type="submit"
               disabled={!isFormValid}
               className={`
-                w-full h-11 rounded-lg font-semibold text-[14px] flex items-center justify-center gap-2 transition-all duration-300 mt-4 shadow-sm
+                w-full h-[56px] rounded-full font-bold text-[16px] flex items-center justify-center gap-2 transition-all duration-300 mt-4 relative z-10 overflow-hidden
                 ${isFormValid 
-                  ? 'bg-gradient-to-r from-[#0077ff] to-[#0055ff] dark:from-[#00e5ff]/90 dark:to-[#0077ff]/90 text-white hover:opacity-90' 
-                  : 'bg-zinc-200 dark:bg-[#20202b]/50 text-zinc-400 dark:text-zinc-600 cursor-not-allowed'}
+                  ? 'bg-zinc-900 dark:bg-white text-white dark:text-black hover:scale-[1.02] active:scale-[0.98] shadow-[0_10px_20px_-10px_rgba(0,0,0,0.5)] dark:shadow-[0_10px_20px_-10px_rgba(255,255,255,0.5)]' 
+                  : 'bg-zinc-900/10 dark:bg-white/10 text-zinc-500 dark:text-white/30 cursor-not-allowed backdrop-blur-md'}
               `}
             >
               <span>Submit Application</span>
