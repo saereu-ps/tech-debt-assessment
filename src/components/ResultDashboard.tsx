@@ -180,12 +180,12 @@ const ResultDashboard: React.FC<ResultDashboardProps> = ({ userInfo, scores, onR
                   initial={{ opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
-                  className="text-[120px] md:text-[160px] lg:text-[200px] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-zinc-800 via-zinc-900 to-zinc-600 dark:from-white dark:via-zinc-200 dark:to-zinc-500 font-[var(--font-display)]"
+                  className="text-[96px] sm:text-[120px] md:text-[160px] lg:text-[200px] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-zinc-800 via-zinc-900 to-zinc-600 dark:from-white dark:via-zinc-200 dark:to-zinc-500 font-[var(--font-display)]"
                   style={{ filter: theme === 'dark' ? `drop-shadow(0 20px 40px rgba(0,0,0,0.5))` : 'none' }}
                 >
                   {displayTotalScore}
                 </motion.span>
-                <span className="text-[32px] md:text-[48px] lg:text-[64px] font-bold text-transparent bg-clip-text bg-gradient-to-br from-zinc-500 to-zinc-400 dark:from-white/60 dark:to-white/20 ml-1 md:ml-2 font-[var(--font-display)] pb-4 md:pb-8">/25</span>
+                <span className="text-[24px] sm:text-[32px] md:text-[48px] lg:text-[64px] font-bold text-transparent bg-clip-text bg-gradient-to-br from-zinc-500 to-zinc-400 dark:from-white/60 dark:to-white/20 ml-1 md:ml-2 font-[var(--font-display)] pb-3 md:pb-8">/25</span>
               </div>
             </motion.div>
 

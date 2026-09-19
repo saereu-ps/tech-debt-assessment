@@ -243,8 +243,8 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                   <div className="w-1.5 h-1.5 rounded-full bg-[#00e5ff] shadow-[0_0_10px_#00e5ff] animate-pulse" />
                   Metric 0{currentIndex + 1}
                 </span>
-                <h2 className="text-[44px] font-bold tracking-tight text-zinc-900 dark:text-white leading-[1.15] drop-shadow-md">{currentMetric.title}</h2>
-                <p className="text-zinc-500 dark:text-zinc-400 text-[16px] font-medium tracking-wide mt-3 leading-relaxed">{currentMetric.description}</p>
+                <h2 className="text-[28px] sm:text-[36px] md:text-[44px] font-bold tracking-tight text-zinc-900 dark:text-white leading-[1.15] drop-shadow-md">{currentMetric.title}</h2>
+                <p className="text-zinc-500 dark:text-zinc-400 text-[14px] sm:text-[16px] font-medium tracking-wide mt-2 sm:mt-3 leading-relaxed">{currentMetric.description}</p>
               </motion.div>
 
               {/* High-End Interactive Options */}
@@ -285,16 +285,16 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                       </div>
                       
                       {/* Content */}
-                      <div className="flex flex-col gap-1.5 pt-0.5 relative z-10">
-                        <p className="text-[11px] sm:text-[12px] md:text-[14px] xl:text-[16px] leading-relaxed tracking-wide">
+                      <div className="flex flex-col gap-1 sm:gap-1.5 pt-0.5 relative z-10">
+                        <p className="text-[13px] sm:text-[14px] xl:text-[16px] leading-relaxed tracking-wide flex flex-col sm:block">
                           <span className={`font-semibold transition-colors duration-300 ${isSelected ? 'text-zinc-900 dark:text-white' : 'text-zinc-700 dark:text-zinc-200 group-hover:text-zinc-900 dark:group-hover:text-white'}`}>
                             {choice.label}
                           </span> 
-                          <span className={`font-medium ml-2 transition-colors duration-300 ${isSelected ? 'text-zinc-600 dark:text-zinc-300' : 'text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-500 dark:group-hover:text-zinc-400'}`}>
+                          <span className={`font-medium sm:ml-2 mt-0.5 sm:mt-0 transition-colors duration-300 ${isSelected ? 'text-zinc-600 dark:text-zinc-300' : 'text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-500 dark:group-hover:text-zinc-400'}`}>
                             {choice.description}
                           </span>
                         </p>
-                        <p className={`text-[11px] md:text-[12px] xl:text-[14px] font-medium tracking-wide transition-colors duration-300 ${isSelected ? 'text-[#00b8d4] dark:text-[#00e5ff]/90' : 'text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-500 dark:group-hover:text-zinc-500'}`}>
+                        <p className={`text-[12px] xl:text-[14px] font-medium tracking-wide transition-colors duration-300 ${isSelected ? 'text-[#00b8d4] dark:text-[#00e5ff]/90' : 'text-zinc-400 dark:text-zinc-600 group-hover:text-zinc-500 dark:group-hover:text-zinc-500'}`}>
                           {choice.thaiDescription}
                         </p>
                       </div>
@@ -326,7 +326,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleSkip}
-                className="px-8 py-3.5 rounded-full text-[12px] font-bold flex items-center gap-2 tracking-[0.2em] transition-all duration-300 group bg-black/5 dark:bg-white/[0.03] hover:bg-black/10 dark:hover:bg-white/[0.08] border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/30 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.02)]"
+                className="px-4 sm:px-6 md:px-8 py-3.5 rounded-full text-[11px] sm:text-[12px] font-bold flex items-center gap-1.5 sm:gap-2 tracking-[0.2em] transition-all duration-300 group bg-black/5 dark:bg-white/[0.03] hover:bg-black/10 dark:hover:bg-white/[0.08] border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/30 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.02)]"
               >
                 SKIP <FastForward size={14} strokeWidth={2} className="group-hover:translate-x-1 transition-transform" />
               </motion.button>
@@ -338,7 +338,7 @@ const AssessmentStepper: React.FC<AssessmentStepperProps> = ({ onComplete }) => 
                 onClick={handleNext}
                 disabled={scores[currentIndex] === 0}
                 className={`
-                  px-8 py-3.5 rounded-full text-[12px] font-bold flex items-center gap-3 tracking-[0.2em] transition-all duration-300 group backdrop-blur-md relative overflow-hidden
+                  px-5 sm:px-6 md:px-8 py-3.5 rounded-full text-[11px] sm:text-[12px] font-bold flex items-center gap-1.5 sm:gap-3 tracking-[0.1em] sm:tracking-[0.2em] transition-all duration-300 group backdrop-blur-md relative overflow-hidden
                   ${scores[currentIndex] !== 0 
                     ? 'bg-cyan-50 dark:bg-[#00e5ff]/10 hover:bg-cyan-100 dark:hover:bg-[#00e5ff]/20 border border-cyan-300 dark:border-[#00e5ff]/50 hover:border-cyan-400 dark:hover:border-[#00e5ff] text-[#008b9e] dark:text-white shadow-sm dark:shadow-[0_0_30px_rgba(0,229,255,0.2)]' 
                     : 'bg-black/5 dark:bg-white/[0.02] border border-black/5 dark:border-white/5 text-zinc-400 dark:text-zinc-600 cursor-not-allowed'}
