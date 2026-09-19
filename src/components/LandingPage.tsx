@@ -15,12 +15,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
-  
-  // Initialize role from URL hash if present
-  const initialRole = typeof window !== 'undefined' && window.location.hash 
-    ? decodeURIComponent(window.location.hash.substring(1)) 
-    : '';
-  const [role, setRole] = useState(initialRole);
+  const [role, setRole] = useState('');
   
   const [pdpaConsent, setPdpaConsent] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -28,20 +23,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const [isQRReady, setIsQRReady] = useState(false);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
   
-  // Construct URL for the QR code, embedding the selected role
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin + window.location.pathname : '';
-  const qrUrl = role ? `${baseUrl}#${encodeURIComponent(role)}` : baseUrl;
-
-  // Update browser URL when role changes
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (role) {
-        window.history.replaceState(null, '', `#${encodeURIComponent(role)}`);
-      } else {
-        window.history.replaceState(null, '', window.location.pathname);
-      }
-    }
-  }, [role]);
+  // Use the exact current URL so if the recruiter adds #JobName, the QR code includes it
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   React.useEffect(() => {
     // Tell the background to pause/resume without triggering a React re-render of the massive blur filters
@@ -147,7 +130,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               <div className="bg-white p-4 rounded-2xl shadow-sm border border-zinc-200 w-[232px] h-[232px] flex items-center justify-center">
                 {isQRReady ? (
                   <QRCode 
-                    value={qrUrl} 
+                    value={currentUrl} 
                     size={200}
                     bgColor="#ffffff"
                     fgColor="#000000"
