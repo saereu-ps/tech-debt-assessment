@@ -79,8 +79,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             </h1>
           </div>
 
-          <p className="text-zinc-500 dark:text-zinc-300 text-[15px] md:text-[18px] font-medium max-w-[500px] mx-auto lg:mx-0 leading-relaxed tracking-wide mt-2">
-            Evaluate your infrastructure maturity, discover hidden vulnerabilities, and prepare your organization for the AI era <span className="text-zinc-900 dark:text-white font-bold border-b-2 border-[#00e5ff]/50 pb-0.5">in less than 5 minutes.</span>
+          <p className="text-[16px] md:text-[18px] font-medium max-w-[500px] mx-auto lg:mx-0 leading-relaxed tracking-wide mt-4 text-transparent bg-clip-text bg-gradient-to-r from-zinc-400 via-zinc-200 to-zinc-400 dark:from-zinc-300 dark:via-white dark:to-zinc-400">
+            Evaluate your infrastructure maturity, discover hidden vulnerabilities, and prepare your organization for the AI era <span className="text-zinc-900 dark:text-white font-bold border-b border-[#00e5ff]/50 pb-0.5">in less than 5 minutes.</span>
           </p>
         </motion.div>
 
@@ -105,82 +105,79 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               
               {/* Name Input */}
               <div className="group relative w-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-2xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-500"></div>
-                <input
-                  type="text"
-                  id="nameInput"
-                  className="block px-4 pb-2.5 pt-6 w-full text-[15px] font-semibold text-zinc-900 dark:text-white bg-white/60 dark:bg-white/[0.03] rounded-2xl border border-white/50 dark:border-white/10 appearance-none focus:outline-none focus:ring-0 focus:border-[#00e5ff] peer transition-all duration-300 shadow-inner dark:shadow-none hover:bg-white/80 dark:hover:bg-white/[0.06] focus:bg-white dark:focus:bg-white/[0.1] h-[64px]"
-                  placeholder=" "
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
-                <label
-                  htmlFor="nameInput"
-                  className="absolute text-[15px] font-medium text-zinc-400 dark:text-zinc-500 duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 flex items-center gap-2 pointer-events-none peer-focus:text-[#00e5ff]"
-                >
-                  <UserCircle2 className="w-5 h-5" /> Full Name
-                </label>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-xl blur opacity-0 group-focus-within:opacity-30 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="relative flex items-center h-[56px] w-full rounded-xl bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-sm border border-zinc-200 dark:border-white/10 transition-all duration-300 group-focus-within:border-[#00e5ff]/50 shadow-sm overflow-hidden">
+                  <div className="flex items-center justify-center w-14 h-full border-r border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 group-focus-within:bg-[#00e5ff]/10 transition-colors">
+                    <UserCircle2 className="w-5 h-5 text-zinc-400 dark:text-zinc-500 group-focus-within:text-[#00e5ff] transition-colors" />
+                  </div>
+                  <input
+                    type="text"
+                    id="nameInput"
+                    className="w-full h-full bg-transparent border-none outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 px-4 focus:ring-0"
+                    placeholder="Full Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                  />
+                </div>
               </div>
 
               {/* Email Input */}
               <div className="group relative w-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-2xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-500"></div>
-                <input
-                  type="email"
-                  id="emailInput"
-                  className="block px-4 pb-2.5 pt-6 w-full text-[15px] font-semibold text-zinc-900 dark:text-white bg-white/60 dark:bg-white/[0.03] rounded-2xl border border-white/50 dark:border-white/10 appearance-none focus:outline-none focus:ring-0 focus:border-[#00e5ff] peer transition-all duration-300 shadow-inner dark:shadow-none hover:bg-white/80 dark:hover:bg-white/[0.06] focus:bg-white dark:focus:bg-white/[0.1] h-[64px]"
-                  placeholder=" "
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <label
-                  htmlFor="emailInput"
-                  className="absolute text-[15px] font-medium text-zinc-400 dark:text-zinc-500 duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 flex items-center gap-2 pointer-events-none peer-focus:text-[#00e5ff]"
-                >
-                  <Mail className="w-5 h-5" /> Work Email
-                </label>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-xl blur opacity-0 group-focus-within:opacity-30 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="relative flex items-center h-[56px] w-full rounded-xl bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-sm border border-zinc-200 dark:border-white/10 transition-all duration-300 group-focus-within:border-[#00e5ff]/50 shadow-sm overflow-hidden">
+                  <div className="flex items-center justify-center w-14 h-full border-r border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 group-focus-within:bg-[#00e5ff]/10 transition-colors">
+                    <Mail className="w-5 h-5 text-zinc-400 dark:text-zinc-500 group-focus-within:text-[#00e5ff] transition-colors" />
+                  </div>
+                  <input
+                    type="email"
+                    id="emailInput"
+                    className="w-full h-full bg-transparent border-none outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 px-4 focus:ring-0"
+                    placeholder="Work Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
               </div>
 
               {/* Organization Input */}
               <div className="group relative w-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-2xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-500"></div>
-                <input
-                  type="text"
-                  id="companyInput"
-                  className="block px-4 pb-2.5 pt-6 w-full text-[15px] font-semibold text-zinc-900 dark:text-white bg-white/60 dark:bg-white/[0.03] rounded-2xl border border-white/50 dark:border-white/10 appearance-none focus:outline-none focus:ring-0 focus:border-[#00e5ff] peer transition-all duration-300 shadow-inner dark:shadow-none hover:bg-white/80 dark:hover:bg-white/[0.06] focus:bg-white dark:focus:bg-white/[0.1] h-[64px]"
-                  placeholder=" "
-                  value={company}
-                  onChange={(e) => setCompany(e.target.value)}
-                  required
-                />
-                <label
-                  htmlFor="companyInput"
-                  className="absolute text-[15px] font-medium text-zinc-400 dark:text-zinc-500 duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 flex items-center gap-2 pointer-events-none peer-focus:text-[#00e5ff]"
-                >
-                  <Building2 className="w-5 h-5" /> Company Name
-                </label>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-xl blur opacity-0 group-focus-within:opacity-30 transition-opacity duration-500 pointer-events-none"></div>
+                <div className="relative flex items-center h-[56px] w-full rounded-xl bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-sm border border-zinc-200 dark:border-white/10 transition-all duration-300 group-focus-within:border-[#00e5ff]/50 shadow-sm overflow-hidden">
+                  <div className="flex items-center justify-center w-14 h-full border-r border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 group-focus-within:bg-[#00e5ff]/10 transition-colors">
+                    <Building2 className="w-5 h-5 text-zinc-400 dark:text-zinc-500 group-focus-within:text-[#00e5ff] transition-colors" />
+                  </div>
+                  <input
+                    type="text"
+                    id="companyInput"
+                    className="w-full h-full bg-transparent border-none outline-none text-[15px] font-medium text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-600 px-4 focus:ring-0"
+                    placeholder="Company Name"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                    required
+                  />
+                </div>
               </div>
 
               {/* Role Dropdown */}
               <div className="group relative w-full">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-2xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-500"></div>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-xl blur opacity-0 group-focus-within:opacity-30 transition-opacity duration-500 pointer-events-none"></div>
                 <div 
                   ref={dropdownRef}
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="relative flex items-center px-4 pb-2.5 pt-6 w-full rounded-2xl bg-white/60 dark:bg-white/[0.03] border border-white/50 dark:border-white/10 backdrop-blur-md transition-all duration-300 group-hover:bg-white/80 dark:group-hover:bg-white/[0.06] cursor-pointer shadow-inner dark:shadow-none h-[64px]"
-                  style={{ borderColor: isDropdownOpen ? 'rgba(0, 229, 255, 0.5)' : undefined, backgroundColor: isDropdownOpen ? 'rgba(255, 255, 255, 0.1)' : undefined }}
+                  className="relative flex items-center h-[56px] w-full rounded-xl bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-sm border border-zinc-200 dark:border-white/10 transition-all duration-300 group-hover:border-zinc-300 dark:group-hover:border-white/20 shadow-sm overflow-hidden cursor-pointer"
+                  style={{ borderColor: isDropdownOpen ? 'rgba(0, 229, 255, 0.5)' : undefined }}
                 >
-                  <div className={`absolute text-[15px] font-medium transition-all duration-300 origin-[0] left-4 flex items-center gap-2 pointer-events-none ${role || isDropdownOpen ? 'transform -translate-y-3 scale-75 top-4 text-[#00e5ff]' : 'transform translate-y-0 scale-100 top-[20px] text-zinc-400 dark:text-zinc-500'}`}>
-                    <Briefcase className="w-5 h-5" /> Select Role
+                  <div className={`flex items-center justify-center w-14 h-full border-r border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 transition-colors ${isDropdownOpen ? 'bg-[#00e5ff]/10' : ''}`}>
+                    <Briefcase className={`w-5 h-5 transition-colors ${isDropdownOpen ? 'text-[#00e5ff]' : 'text-zinc-400 dark:text-zinc-500'}`} />
                   </div>
                   
-                  <span className={`w-full text-[15px] font-semibold truncate ${role ? 'text-zinc-900 dark:text-white opacity-100' : 'opacity-0'}`}>
+                  <span className={`w-full px-4 text-[15px] font-medium truncate ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-400 dark:text-zinc-600'}`}>
                     {role || "Select Role"}
                   </span>
                   
-                  <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }} className="absolute right-4 top-[20px]">
+                  <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }} className="pr-4">
                     <ChevronDown className="w-5 h-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
                   </motion.div>
                 </div>
@@ -234,22 +231,18 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               type="submit"
               disabled={!isFormValid}
               className={`
-                group relative w-full h-[64px] rounded-2xl font-black text-[16px] tracking-wide flex items-center justify-center gap-3 transition-all duration-500 overflow-hidden mt-2
+                group relative w-full h-[56px] rounded-xl font-bold text-[15px] tracking-wide flex items-center justify-center gap-3 transition-all duration-300 overflow-hidden mt-4
                 ${isFormValid 
-                  ? 'bg-gradient-to-r from-[#00e5ff] to-[#0077ff] text-white shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:shadow-[0_0_40px_rgba(0,229,255,0.6)] hover:scale-[1.02] active:scale-95' 
-                  : 'bg-white/5 dark:bg-white/[0.02] border border-zinc-200 dark:border-white/5 text-zinc-400 dark:text-white/20 cursor-not-allowed'}
+                  ? 'bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 shadow-lg hover:scale-[1.02] active:scale-95' 
+                  : 'bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 text-zinc-400 dark:text-zinc-600 cursor-not-allowed'}
               `}
             >
-              {/* Disabled state diagonal shine */}
-              {!isFormValid && (
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.05] to-transparent animate-[shimmer_3s_infinite]"></div>
-              )}
               {isFormValid && (
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 dark:via-black/10 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
               )}
-              <Sparkles className={`w-5 h-5 ${isFormValid ? "text-white" : "text-zinc-400 dark:text-white/20"} transition-all duration-500`} />
+              <Sparkles className={`w-5 h-5 ${isFormValid ? "text-white dark:text-black" : "text-zinc-400 dark:text-zinc-600"} transition-all duration-300`} />
               <span>START ASSESSMENT</span>
-              <ArrowRight className={`w-5 h-5 ${isFormValid ? "text-white translate-x-0 group-hover:translate-x-1" : "text-zinc-400 dark:text-white/20"} transition-all duration-500`} />
+              <ArrowRight className={`w-5 h-5 ${isFormValid ? "text-white dark:text-black translate-x-0 group-hover:translate-x-1" : "text-zinc-400 dark:text-zinc-600"} transition-all duration-300`} />
             </button>
           </form>
         </motion.div>
