@@ -98,24 +98,18 @@ function App() {
     setIsSharedReport(false);
     setView('landing');
     
-    // Clear URL data payload (?d=) but preserve the event ID (?event=)
-    const urlParams = new URLSearchParams(window.location.search);
-    const eventId = urlParams.get('event');
-    
-    if (eventId) {
-      window.history.pushState({}, '', `${window.location.pathname}?event=${eventId}`);
-    } else {
-      window.history.pushState({}, '', window.location.pathname);
-    }
+    // Clear URL data payload (?d=) but preserve the event hash (#eventName)
+    const hash = window.location.hash;
+    window.history.pushState({}, '', `${window.location.pathname}${hash}`);
   };
 
   // Backend integration (Google Sheets Webhook)
   const saveAssessmentData = (data: any) => {
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw7F7dd1zGWacLdJni9aKGdjoGHS2m6bGwySHAJHFLWEZ-igPmofWBnFOZp9egaOEEc/exec';
     
-    // Check for eventId in URL, fallback to 'Default Event'
-    const urlParams = new URLSearchParams(window.location.search);
-    const eventId = urlParams.get('event') || 'Default Event';
+    // Check for eventId in URL hash (e.g. #DevSecOpsDay), fallback to 'Default Event'
+    const hash = window.location.hash;
+    const eventId = hash ? decodeURIComponent(hash.substring(1)) : 'Default Event';
     
     const payload = {
       ...data,
