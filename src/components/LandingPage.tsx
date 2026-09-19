@@ -85,9 +85,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             <p className="text-[16px] md:text-[18px] font-medium leading-relaxed tracking-wide text-zinc-600 dark:text-zinc-300">
               Evaluate your infrastructure maturity, discover hidden vulnerabilities, and prepare your organization for the AI era.
             </p>
-            <div className="flex items-center gap-2.5 w-fit px-4 py-2 rounded-full bg-gradient-to-r from-[#00e5ff]/10 to-[#0077ff]/10 border border-[#00e5ff]/30 shadow-[0_0_20px_rgba(0,229,255,0.15)] text-[#00e5ff] dark:text-[#00e5ff] backdrop-blur-md mx-auto lg:mx-0 transition-transform hover:scale-105">
-              <Timer className="w-4 h-4 md:w-5 md:h-5" />
-              <span className="text-[14px] md:text-[15px] font-bold tracking-wide">Takes less than 5 minutes</span>
+            <div className="flex items-center gap-2.5 w-fit p-1 pr-4 rounded-full border border-zinc-200 dark:border-white/10 bg-white/50 dark:bg-white/5 backdrop-blur-md mx-auto lg:mx-0 shadow-sm transition-all hover:bg-white/60 dark:hover:bg-white/10">
+              <div className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-[#00e5ff]/20 to-[#0077ff]/20 border border-[#00e5ff]/30 shadow-inner">
+                <Timer className="w-3.5 h-3.5 text-[#0077ff] dark:text-[#00e5ff]" />
+              </div>
+              <span className="text-[13px] md:text-[14px] font-medium text-zinc-700 dark:text-zinc-300 tracking-wide">Takes less than 5 minutes</span>
             </div>
           </div>
         </motion.div>
