@@ -63,7 +63,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-auto dark:invert dark:brightness-0 opacity-90 dark:opacity-100" />
       </div>
 
-      <div className="w-full max-w-[1400px] z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative mt-16 md:mt-0">
+      <div className="w-full max-w-[1100px] z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative mt-16 md:mt-0">
         
         {/* Left Side: Typography & Value Prop */}
         <motion.div 
@@ -76,7 +76,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             <h1 className="text-[40px] sm:text-[48px] md:text-[56px] xl:text-[72px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] tracking-tight">
               What's your true
             </h1>
-            <h1 className="text-[48px] sm:text-[56px] md:text-[64px] xl:text-[80px] font-extrabold animate-shine leading-[1.05] tracking-tight mt-1" style={{ filter: 'var(--title-drop-shadow)' }}>
+            <h1 className="text-[48px] sm:text-[56px] md:text-[64px] xl:text-[80px] font-extrabold bg-gradient-to-r from-[#00e5ff] to-[#0077ff] text-transparent bg-clip-text leading-[1.05] tracking-tight mt-1 drop-shadow-sm">
               Tech Debt?
             </h1>
           </div>
@@ -87,16 +87,24 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         </motion.div>
 
         {/* Right Side: VisionOS Form */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.1, type: "spring", bounce: 0.4 }}
-          className="w-full relative flex justify-center lg:justify-end"
-        >
-          {/* Spatial Glass Card */}
-          <form 
+        <div className="w-full relative flex justify-center lg:justify-end perspective-1000">
+          {/* Spatial Glass Card with Floating Animation */}
+          <motion.form 
             onSubmit={handleSubmit}
-            className="w-full max-w-[500px] flex flex-col gap-6 relative p-8 md:p-10 rounded-[40px] border border-white/20 dark:border-white/10 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] bg-white/40 dark:bg-white/5 backdrop-blur-[40px] overflow-hidden"
+            initial={{ opacity: 0, scale: 0.95, rotateX: 5 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1, 
+              rotateX: 0,
+              y: [-8, 8, -8] // Floating effect
+            }}
+            transition={{ 
+              opacity: { duration: 0.8, ease: "easeOut", delay: 0.1 },
+              scale: { duration: 0.8, ease: "easeOut", delay: 0.1, type: "spring", bounce: 0.4 },
+              rotateX: { duration: 0.8, ease: "easeOut", delay: 0.1 },
+              y: { duration: 6, repeat: Infinity, ease: "easeInOut" } // Infinite float
+            }}
+            className="w-full max-w-[480px] flex flex-col gap-6 relative p-8 md:p-10 rounded-[40px] border border-white/20 dark:border-white/10 shadow-[0_40px_80px_-20px_rgba(0,229,255,0.15)] bg-white/40 dark:bg-white/5 backdrop-blur-[40px] overflow-hidden"
           >
             {/* Subtle inner highlight for the 3D glass effect */}
             <div className="absolute inset-0 rounded-[40px] border border-white/30 pointer-events-none mix-blend-overlay"></div>
@@ -109,7 +117,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             <div className="flex flex-col gap-4 relative z-10">
               
               {/* Name Input */}
-              <div className="w-full">
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.5 }} className="w-full">
                 <input
                   type="text"
                   id="nameInput"
@@ -119,10 +127,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                   onChange={(e) => setName(e.target.value)}
                   required
                 />
-              </div>
+              </motion.div>
 
               {/* Email Input */}
-              <div className="w-full">
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4, duration: 0.5 }} className="w-full">
                 <input
                   type="email"
                   id="emailInput"
@@ -132,10 +140,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-              </div>
+              </motion.div>
 
               {/* Organization Input */}
-              <div className="w-full">
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5, duration: 0.5 }} className="w-full">
                 <input
                   type="text"
                   id="companyInput"
@@ -145,14 +153,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                   onChange={(e) => setCompany(e.target.value)}
                   required
                 />
-              </div>
+              </motion.div>
 
               {/* Role Dropdown */}
-              <div className="relative group w-full">
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.6, duration: 0.5 }} className="relative group w-full">
                 <div 
                   ref={dropdownRef}
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="relative flex items-center h-[52px] w-full px-5 rounded-2xl bg-white/50 dark:bg-black/20 border border-white/40 dark:border-white/10 transition-all duration-300 cursor-pointer shadow-inner"
+                  className="relative flex items-center h-[52px] w-full px-5 rounded-2xl bg-white/50 dark:bg-black/20 border border-white/40 dark:border-white/10 transition-all duration-300 cursor-pointer shadow-inner hover:border-white/30"
                   style={{ borderColor: isDropdownOpen ? '#00e5ff' : undefined, backgroundColor: isDropdownOpen ? 'rgba(0,0,0,0.4)' : undefined }}
                 >
                   <span className={`w-full text-[15px] font-medium truncate ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-500 dark:text-zinc-400'}`}>
@@ -185,11 +193,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             </div>
 
             {/* PDPA Consent Checkbox */}
-            <div className="flex items-start gap-3 mt-4 relative z-10">
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7, duration: 0.5 }} className="flex items-start gap-3 mt-4 relative z-10">
               <div className="relative flex items-center justify-center mt-1">
                 <input 
                   type="checkbox" 
@@ -200,25 +208,31 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                 />
               </div>
               <label htmlFor="pdpaConsent" className="text-[13px] md:text-[14px] text-zinc-700 dark:text-zinc-300 leading-relaxed cursor-pointer font-medium select-none">
-                ข้าพเจ้ายินยอมให้ MFEC เก็บรวบรวมข้อมูลเพื่อนำเสนอโซลูชัน ตาม <a href="#" className="text-zinc-900 dark:text-white font-bold hover:underline underline-offset-4 decoration-[#00e5ff]">นโยบายความเป็นส่วนตัว</a>
+                ข้าพเจ้ายินยอมให้ MFEC เก็บรวบรวมข้อมูลเพื่อนำเสนอโซลูชัน ตาม <a href="#" className="text-zinc-900 dark:text-white font-bold hover:underline underline-offset-4 decoration-[#00e5ff] transition-all hover:text-[#00e5ff]">นโยบายความเป็นส่วนตัว</a>
               </label>
-            </div>
+            </motion.div>
 
             {/* Pill Submit Button */}
-            <button 
+            <motion.button 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ delay: 0.8, duration: 0.5, type: "spring" }}
               type="submit"
               disabled={!isFormValid}
               className={`
-                w-full h-[56px] rounded-full font-bold text-[16px] flex items-center justify-center gap-2 transition-all duration-300 mt-4 relative z-10 overflow-hidden
+                w-full h-[56px] rounded-full font-bold text-[16px] flex items-center justify-center gap-2 transition-all duration-300 mt-4 relative z-10 overflow-hidden group
                 ${isFormValid 
-                  ? 'bg-zinc-900 dark:bg-white text-white dark:text-black hover:scale-[1.02] active:scale-[0.98] shadow-[0_10px_20px_-10px_rgba(0,0,0,0.5)] dark:shadow-[0_10px_20px_-10px_rgba(255,255,255,0.5)]' 
+                  ? 'bg-zinc-900 dark:bg-white text-white dark:text-black hover:scale-[1.02] active:scale-[0.98] shadow-[0_10px_30px_-10px_rgba(0,229,255,0.6)] animate-pulse hover:animate-none' 
                   : 'bg-zinc-900/10 dark:bg-white/10 text-zinc-500 dark:text-white/30 cursor-not-allowed backdrop-blur-md'}
               `}
             >
               <span>Submit Application</span>
-            </button>
-          </form>
-        </motion.div>
+              {isFormValid && (
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              )}
+            </motion.button>
+          </motion.form>
+        </div>
       </div>
     </div>
   );
