@@ -112,19 +112,21 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               rotateX: { duration: 0.8, ease: "easeOut", delay: 0.1 },
               y: { duration: 8, repeat: Infinity, ease: "easeInOut" } // Infinite float, slower
             }}
-            className="w-full max-w-[480px] flex flex-col gap-6 relative p-8 md:p-10 rounded-[40px] border border-white/20 dark:border-white/10 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] bg-white/40 dark:bg-[#0a0a0a]/60 backdrop-blur-[40px] overflow-hidden"
+            className="w-full max-w-[480px] flex flex-col gap-6 relative p-8 md:p-10 rounded-[40px] border border-white/20 dark:border-white/10 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.3)] bg-white/40 dark:bg-[#0a0a0a]/60 backdrop-blur-[40px]"
           >
-            {/* Animated Glowing Orbs Background */}
-            <motion.div 
-              animate={{ scale: [1, 1.2, 1], x: [0, 50, 0], y: [0, 30, 0] }} 
-              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-10 -right-10 w-48 h-48 bg-[#00e5ff] rounded-full mix-blend-screen filter blur-[80px] opacity-30 dark:opacity-20 pointer-events-none"
-            />
-            <motion.div 
-              animate={{ scale: [1, 1.5, 1], x: [0, -40, 0], y: [0, -50, 0] }} 
-              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-              className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#0077ff] rounded-full mix-blend-screen filter blur-[80px] opacity-30 dark:opacity-20 pointer-events-none"
-            />
+            {/* Animated Glowing Orbs Background (Clipped to Card) */}
+            <div className="absolute inset-0 rounded-[40px] overflow-hidden pointer-events-none">
+              <motion.div 
+                animate={{ scale: [1, 1.2, 1], x: [0, 50, 0], y: [0, 30, 0] }} 
+                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-10 -right-10 w-48 h-48 bg-[#00e5ff] rounded-full mix-blend-screen filter blur-[80px] opacity-30 dark:opacity-20"
+              />
+              <motion.div 
+                animate={{ scale: [1, 1.5, 1], x: [0, -40, 0], y: [0, -50, 0] }} 
+                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#0077ff] rounded-full mix-blend-screen filter blur-[80px] opacity-30 dark:opacity-20"
+              />
+            </div>
 
             {/* Subtle inner highlight for the 3D glass effect */}
             <div className="absolute inset-0 rounded-[40px] border border-white/30 pointer-events-none mix-blend-overlay"></div>
