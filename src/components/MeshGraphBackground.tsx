@@ -82,7 +82,7 @@ const MeshGraphBackground: React.FC = () => {
 
     // Neural Synapse Flashes - ULTRA THIN & SUBTLE
     class SynapseFlash {
-      activeNodes: Map<number, number>; // nodeId -> intensity (0 to 1)
+      activeNodes: Map<number, number>; 
       age: number;
       maxAge: number;
       color: string;
@@ -140,29 +140,39 @@ const MeshGraphBackground: React.FC = () => {
       
       ctx.save();
       
+      // EFFECT: Deep Space Sunrise (Background Sun)
+      const sunX = width * 0.85; // Top Right
+      const sunY = height * 0.15;
+      const bgSunRadius = Math.min(width, height) * 0.15;
+      
+      const bgSunPulse = Math.sin(time * 5) * 0.02 + 1.0;
+      const bgCoronaRadius = bgSunRadius * 4 * bgSunPulse;
+      
+      const bgSunGradient = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, bgCoronaRadius);
+      // Hot white core
+      bgSunGradient.addColorStop(0, 'rgba(255, 255, 255, 0.6)');
+      // Cyan glow transitioning into purple
+      bgSunGradient.addColorStop(0.15, 'rgba(0, 229, 255, 0.3)');
+      bgSunGradient.addColorStop(0.4, 'rgba(168, 85, 247, 0.1)');
+      bgSunGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      
+      ctx.fillStyle = bgSunGradient;
+      ctx.fillRect(0, 0, width, height);
+
+      // Translate for the Globe
       const isDesktop = width > 1024;
       const centerX = isDesktop ? width * 0.38 : width / 2;
       const centerY = height / 2;
       
       ctx.translate(centerX + parallaxX, centerY + parallaxY);
       
-      // EFFECT: Plasma Core Sun (Dyson Sphere Core)
-      const sunRadius = sphereRadius * 0.28; 
-      const coronaPulse = Math.sin(time * 12) * 0.05 + 1.0; 
-      const coronaRadius = sunRadius * 2.2 * coronaPulse;
-      
-      const sunGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, coronaRadius);
-      // Bright pure white center
-      sunGradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-      // Intense cyan edge of the physical star
-      sunGradient.addColorStop(sunRadius / coronaRadius, 'rgba(0, 229, 255, 0.9)');
-      // Fading corona aura
-      sunGradient.addColorStop(1, 'rgba(0, 229, 255, 0)');
-      
-      ctx.fillStyle = sunGradient;
-      ctx.beginPath();
-      ctx.arc(0, 0, coronaRadius, 0, Math.PI * 2);
-      ctx.fill();
+      // Restore Subtle Breathing Core (instead of central sun)
+      const breath = Math.sin(time * 15) * 0.5 + 0.5; 
+      const coreGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, sphereRadius * 0.8);
+      coreGradient.addColorStop(0, `rgba(0, 229, 255, ${0.03 + breath * 0.03})`); 
+      coreGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = coreGradient;
+      ctx.fillRect(-sphereRadius, -sphereRadius, sphereRadius * 2, sphereRadius * 2);
 
       const rotX = time * 0.4 + (mouseY / height - 0.5) * 0.1;
       const rotY = time + (mouseX / width - 0.5) * 0.1;
