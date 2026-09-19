@@ -105,15 +105,24 @@ function App() {
   const saveAssessmentData = (data: any) => {
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw7F7dd1zGWacLdJni9aKGdjoGHS2m6bGwySHAJHFLWEZ-igPmofWBnFOZp9egaOEEc/exec';
     
+    // Check for eventId in URL, fallback to 'Default Event'
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventId = urlParams.get('event') || 'Default Event';
+    
+    const payload = {
+      ...data,
+      eventId: eventId
+    };
+    
     fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors', // Important for avoiding CORS preflight on simple Google Apps Script setups
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(payload)
     })
-    .then(() => console.log('Data successfully dispatched to Google Sheets'))
+    .then(() => console.log('Data successfully dispatched to Google Sheets with eventId:', eventId))
     .catch(error => console.error('Error saving data:', error));
   };
 
