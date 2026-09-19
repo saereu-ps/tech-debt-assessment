@@ -134,7 +134,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               <p className="text-[14px] text-zinc-600 dark:text-zinc-300 mt-2 font-medium">Just a few details to see your results.</p>
             </div>
 
-            <div className="flex flex-col gap-4 relative z-10">
+            <div className="flex flex-col gap-4 relative z-30">
               
               {/* Name Input */}
               <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.5 }} className="w-full relative group">
