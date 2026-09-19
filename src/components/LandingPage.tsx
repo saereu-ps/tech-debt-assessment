@@ -79,8 +79,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             </h1>
           </div>
 
-          <p className="text-zinc-500 dark:text-[#8b93a5] text-[15px] md:text-[17px] font-medium max-w-[500px] mx-auto lg:mx-0 leading-relaxed tracking-wide mt-2">
-            Evaluate your infrastructure maturity, discover hidden vulnerabilities, and prepare your organization for the AI era in less than 5 minutes.
+          <p className="text-zinc-500 dark:text-zinc-300 text-[15px] md:text-[18px] font-medium max-w-[500px] mx-auto lg:mx-0 leading-relaxed tracking-wide mt-2">
+            Evaluate your infrastructure maturity, discover hidden vulnerabilities, and prepare your organization for the AI era <span className="text-zinc-900 dark:text-white font-bold border-b-2 border-[#00e5ff]/50 pb-0.5">in less than 5 minutes.</span>
           </p>
         </motion.div>
 
@@ -104,67 +104,83 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             <div className="flex flex-col gap-5 relative z-10">
               
               {/* Name Input */}
-              <div className="group relative">
+              <div className="group relative w-full">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-2xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-500"></div>
-                <div className="relative flex items-center h-[60px] rounded-2xl bg-white/60 dark:bg-white/[0.03] border border-white/50 dark:border-white/10 px-4 backdrop-blur-md transition-all duration-300 group-hover:bg-white/80 dark:group-hover:bg-white/[0.06] group-focus-within:bg-white dark:group-focus-within:bg-white/[0.1] group-focus-within:border-[#00e5ff]/50 shadow-inner dark:shadow-none">
-                  <UserCircle2 className="w-5 h-5 text-zinc-400 dark:text-zinc-500 group-focus-within:text-[#00e5ff] transition-colors shrink-0" />
-                  <input 
-                    type="text" 
-                    placeholder="Full Name" 
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full h-full bg-transparent border-none outline-none text-[15px] font-semibold text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 px-4 focus:ring-0"
-                    required
-                  />
-                </div>
+                <input
+                  type="text"
+                  id="nameInput"
+                  className="block px-4 pb-2.5 pt-6 w-full text-[15px] font-semibold text-zinc-900 dark:text-white bg-white/60 dark:bg-white/[0.03] rounded-2xl border border-white/50 dark:border-white/10 appearance-none focus:outline-none focus:ring-0 focus:border-[#00e5ff] peer transition-all duration-300 shadow-inner dark:shadow-none hover:bg-white/80 dark:hover:bg-white/[0.06] focus:bg-white dark:focus:bg-white/[0.1] h-[64px]"
+                  placeholder=" "
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+                <label
+                  htmlFor="nameInput"
+                  className="absolute text-[15px] font-medium text-zinc-400 dark:text-zinc-500 duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 flex items-center gap-2 pointer-events-none peer-focus:text-[#00e5ff]"
+                >
+                  <UserCircle2 className="w-5 h-5" /> Full Name
+                </label>
               </div>
 
               {/* Email Input */}
-              <div className="group relative">
+              <div className="group relative w-full">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-2xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-500"></div>
-                <div className="relative flex items-center h-[60px] rounded-2xl bg-white/60 dark:bg-white/[0.03] border border-white/50 dark:border-white/10 px-4 backdrop-blur-md transition-all duration-300 group-hover:bg-white/80 dark:group-hover:bg-white/[0.06] group-focus-within:bg-white dark:group-focus-within:bg-white/[0.1] group-focus-within:border-[#00e5ff]/50 shadow-inner dark:shadow-none">
-                  <Mail className="w-5 h-5 text-zinc-400 dark:text-zinc-500 group-focus-within:text-[#00e5ff] transition-colors shrink-0" />
-                  <input 
-                    type="email" 
-                    placeholder="Work Email" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full h-full bg-transparent border-none outline-none text-[15px] font-semibold text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 px-4 focus:ring-0"
-                    required
-                  />
-                </div>
+                <input
+                  type="email"
+                  id="emailInput"
+                  className="block px-4 pb-2.5 pt-6 w-full text-[15px] font-semibold text-zinc-900 dark:text-white bg-white/60 dark:bg-white/[0.03] rounded-2xl border border-white/50 dark:border-white/10 appearance-none focus:outline-none focus:ring-0 focus:border-[#00e5ff] peer transition-all duration-300 shadow-inner dark:shadow-none hover:bg-white/80 dark:hover:bg-white/[0.06] focus:bg-white dark:focus:bg-white/[0.1] h-[64px]"
+                  placeholder=" "
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <label
+                  htmlFor="emailInput"
+                  className="absolute text-[15px] font-medium text-zinc-400 dark:text-zinc-500 duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 flex items-center gap-2 pointer-events-none peer-focus:text-[#00e5ff]"
+                >
+                  <Mail className="w-5 h-5" /> Work Email
+                </label>
               </div>
 
               {/* Organization Input */}
-              <div className="group relative">
+              <div className="group relative w-full">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-2xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-500"></div>
-                <div className="relative flex items-center h-[60px] rounded-2xl bg-white/60 dark:bg-white/[0.03] border border-white/50 dark:border-white/10 px-4 backdrop-blur-md transition-all duration-300 group-hover:bg-white/80 dark:group-hover:bg-white/[0.06] group-focus-within:bg-white dark:group-focus-within:bg-white/[0.1] group-focus-within:border-[#00e5ff]/50 shadow-inner dark:shadow-none">
-                  <Building2 className="w-5 h-5 text-zinc-400 dark:text-zinc-500 group-focus-within:text-[#00e5ff] transition-colors shrink-0" />
-                  <input 
-                    type="text" 
-                    placeholder="Company Name" 
-                    value={company}
-                    onChange={(e) => setCompany(e.target.value)}
-                    className="w-full h-full bg-transparent border-none outline-none text-[15px] font-semibold text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 px-4 focus:ring-0"
-                    required
-                  />
-                </div>
+                <input
+                  type="text"
+                  id="companyInput"
+                  className="block px-4 pb-2.5 pt-6 w-full text-[15px] font-semibold text-zinc-900 dark:text-white bg-white/60 dark:bg-white/[0.03] rounded-2xl border border-white/50 dark:border-white/10 appearance-none focus:outline-none focus:ring-0 focus:border-[#00e5ff] peer transition-all duration-300 shadow-inner dark:shadow-none hover:bg-white/80 dark:hover:bg-white/[0.06] focus:bg-white dark:focus:bg-white/[0.1] h-[64px]"
+                  placeholder=" "
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  required
+                />
+                <label
+                  htmlFor="companyInput"
+                  className="absolute text-[15px] font-medium text-zinc-400 dark:text-zinc-500 duration-300 transform -translate-y-3 scale-75 top-4 z-10 origin-[0] left-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-3 flex items-center gap-2 pointer-events-none peer-focus:text-[#00e5ff]"
+                >
+                  <Building2 className="w-5 h-5" /> Company Name
+                </label>
               </div>
 
               {/* Role Dropdown */}
-              <div className="group relative">
+              <div className="group relative w-full">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#00e5ff] to-[#0077ff] rounded-2xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-500"></div>
                 <div 
                   ref={dropdownRef}
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="relative flex items-center h-[60px] rounded-2xl bg-white/60 dark:bg-white/[0.03] border border-white/50 dark:border-white/10 px-4 backdrop-blur-md transition-all duration-300 group-hover:bg-white/80 dark:group-hover:bg-white/[0.06] cursor-pointer shadow-inner dark:shadow-none"
+                  className="relative flex items-center px-4 pb-2.5 pt-6 w-full rounded-2xl bg-white/60 dark:bg-white/[0.03] border border-white/50 dark:border-white/10 backdrop-blur-md transition-all duration-300 group-hover:bg-white/80 dark:group-hover:bg-white/[0.06] cursor-pointer shadow-inner dark:shadow-none h-[64px]"
                   style={{ borderColor: isDropdownOpen ? 'rgba(0, 229, 255, 0.5)' : undefined, backgroundColor: isDropdownOpen ? 'rgba(255, 255, 255, 0.1)' : undefined }}
                 >
-                  <Briefcase className={`w-5 h-5 transition-colors shrink-0 ${isDropdownOpen ? 'text-[#00e5ff]' : 'text-zinc-400 dark:text-zinc-500 group-hover:text-zinc-500 dark:group-hover:text-zinc-400'}`} />
-                  <span className={`w-full px-4 text-[15px] font-semibold truncate ${role ? 'text-zinc-900 dark:text-white' : 'text-zinc-400 dark:text-zinc-500'}`}>
+                  <div className={`absolute text-[15px] font-medium transition-all duration-300 origin-[0] left-4 flex items-center gap-2 pointer-events-none ${role || isDropdownOpen ? 'transform -translate-y-3 scale-75 top-4 text-[#00e5ff]' : 'transform translate-y-0 scale-100 top-[20px] text-zinc-400 dark:text-zinc-500'}`}>
+                    <Briefcase className="w-5 h-5" /> Select Role
+                  </div>
+                  
+                  <span className={`w-full text-[15px] font-semibold truncate ${role ? 'text-zinc-900 dark:text-white opacity-100' : 'opacity-0'}`}>
                     {role || "Select Role"}
                   </span>
-                  <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }}>
+                  
+                  <motion.div animate={{ rotate: isDropdownOpen ? 180 : 0 }} className="absolute right-4 top-[20px]">
                     <ChevronDown className="w-5 h-5 text-zinc-400 dark:text-zinc-500 shrink-0" />
                   </motion.div>
                 </div>
@@ -221,15 +237,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
                 group relative w-full h-[64px] rounded-2xl font-black text-[16px] tracking-wide flex items-center justify-center gap-3 transition-all duration-500 overflow-hidden mt-2
                 ${isFormValid 
                   ? 'bg-gradient-to-r from-[#00e5ff] to-[#0077ff] text-white shadow-[0_0_20px_rgba(0,229,255,0.3)] hover:shadow-[0_0_40px_rgba(0,229,255,0.6)] hover:scale-[1.02] active:scale-95' 
-                  : 'bg-zinc-200/50 dark:bg-white/[0.03] dark:border dark:border-white/5 text-zinc-400 dark:text-white/30 cursor-not-allowed hover:bg-zinc-200/80 dark:hover:bg-white/[0.05] transition-colors'}
+                  : 'bg-white/5 dark:bg-white/[0.02] border border-zinc-200 dark:border-white/5 text-zinc-400 dark:text-white/20 cursor-not-allowed'}
               `}
             >
+              {/* Disabled state diagonal shine */}
+              {!isFormValid && (
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.05] to-transparent animate-[shimmer_3s_infinite]"></div>
+              )}
               {isFormValid && (
                 <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
               )}
-              <Sparkles className={`w-5 h-5 ${isFormValid ? "text-white" : "text-zinc-400 dark:text-white/30"} transition-all duration-500`} />
+              <Sparkles className={`w-5 h-5 ${isFormValid ? "text-white" : "text-zinc-400 dark:text-white/20"} transition-all duration-500`} />
               <span>START ASSESSMENT</span>
-              <ArrowRight className={`w-5 h-5 ${isFormValid ? "text-white translate-x-0 group-hover:translate-x-1" : "text-zinc-400 dark:text-white/30"} transition-all duration-500`} />
+              <ArrowRight className={`w-5 h-5 ${isFormValid ? "text-white translate-x-0 group-hover:translate-x-1" : "text-zinc-400 dark:text-white/20"} transition-all duration-500`} />
             </button>
           </form>
         </motion.div>
