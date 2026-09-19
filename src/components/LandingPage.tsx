@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, UserCircle2, ChevronDown, Mail, Building2, Briefcase, Sparkles, Check } from 'lucide-react';
+import { ArrowRight, UserCircle2, ChevronDown, Mail, Building2, Briefcase, Sparkles, Check, Timer } from 'lucide-react';
 import MeshGraphBackground from './MeshGraphBackground';
 import type { UserInfo } from '../App';
 import mfecLogo from '../assets/mfec-logo.png';
@@ -81,9 +81,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             </h1>
           </div>
 
-          <p className="text-[16px] md:text-[18px] font-medium max-w-[500px] mx-auto lg:mx-0 leading-relaxed tracking-wide mt-4 text-zinc-600 dark:text-zinc-300">
-            Evaluate your infrastructure maturity, discover hidden vulnerabilities, and prepare your organization for the AI era <span className="text-zinc-900 dark:text-white font-bold border-b-2 border-[#00e5ff]/50 pb-0.5">in less than 5 minutes.</span>
-          </p>
+          <div className="flex flex-col gap-5 max-w-[500px] mx-auto lg:mx-0 mt-4 relative z-10 text-center lg:text-left">
+            <p className="text-[16px] md:text-[18px] font-medium leading-relaxed tracking-wide text-zinc-600 dark:text-zinc-300">
+              Evaluate your infrastructure maturity, discover hidden vulnerabilities, and prepare your organization for the AI era.
+            </p>
+            <div className="flex items-center gap-2.5 w-fit px-4 py-2 rounded-full bg-gradient-to-r from-[#00e5ff]/10 to-[#0077ff]/10 border border-[#00e5ff]/30 shadow-[0_0_20px_rgba(0,229,255,0.15)] text-[#00e5ff] dark:text-[#00e5ff] backdrop-blur-md mx-auto lg:mx-0 transition-transform hover:scale-105">
+              <Timer className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="text-[14px] md:text-[15px] font-bold tracking-wide">Takes less than 5 minutes</span>
+            </div>
+          </div>
         </motion.div>
 
         {/* Right Side: VisionOS Form */}
