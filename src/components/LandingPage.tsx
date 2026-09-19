@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, UserCircle2, ChevronDown, Mail, Building2, Briefcase, Sparkles, Check, Timer } from 'lucide-react';
+import { ArrowRight, UserCircle2, ChevronDown, Mail, Building2, Briefcase, Sparkles, Check, Timer, QrCode, X } from 'lucide-react';
+import { QRCodeSVG } from 'qrcode.react';
 import MeshGraphBackground from './MeshGraphBackground';
 import type { UserInfo } from '../App';
 import mfecLogo from '../assets/mfec-logo.png';
@@ -16,7 +17,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const [role, setRole] = useState('');
   const [pdpaConsent, setPdpaConsent] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [showQRModal, setShowQRModal] = useState(false);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
+  
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   React.useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -62,6 +66,65 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
       <div className="absolute top-6 left-6 md:top-8 md:left-8 z-50">
         <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-auto dark:invert dark:brightness-0 opacity-90 dark:opacity-100" />
       </div>
+
+      {/* QR Code Button (Top Right) */}
+      <div className="absolute top-6 right-6 md:top-8 md:right-8 z-50">
+        <button 
+          onClick={() => setShowQRModal(true)}
+          className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/50 dark:bg-black/40 backdrop-blur-md border border-zinc-200 dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-white/10 transition-all shadow-sm group"
+        >
+          <QrCode className="w-5 h-5 group-hover:scale-110 transition-transform" />
+          <span className="text-[14px] font-medium hidden sm:inline">Scan to fill on mobile</span>
+        </button>
+      </div>
+
+      {/* QR Code Modal */}
+      <AnimatePresence>
+        {showQRModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }} 
+              onClick={() => setShowQRModal(false)}
+              className="absolute inset-0 bg-zinc-900/40 dark:bg-black/60 backdrop-blur-sm"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative bg-white dark:bg-[#0a0a0a] p-8 rounded-[32px] border border-zinc-200 dark:border-white/10 shadow-2xl flex flex-col items-center max-w-sm w-full"
+            >
+              <button 
+                onClick={() => setShowQRModal(false)}
+                className="absolute top-4 right-4 p-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors bg-zinc-100 dark:bg-white/5 rounded-full"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              <div className="w-16 h-16 rounded-full bg-blue-50 dark:bg-white/5 flex items-center justify-center mb-5 mt-2">
+                <QrCode className="w-8 h-8 text-[#0077ff] dark:text-[#00e5ff]" />
+              </div>
+              
+              <h3 className="text-2xl font-outfit font-black text-zinc-900 dark:text-white mb-2 tracking-tight">Scan QR Code</h3>
+              <p className="text-zinc-500 dark:text-zinc-400 text-center mb-8 text-[14px] font-medium leading-relaxed">
+                Scan this code with your mobile device's camera to seamlessly continue the assessment on your phone.
+              </p>
+              
+              <div className="bg-white p-4 rounded-2xl shadow-sm border border-zinc-200">
+                <QRCodeSVG 
+                  value={currentUrl} 
+                  size={200}
+                  bgColor="#ffffff"
+                  fgColor="#000000"
+                  level="Q"
+                  includeMargin={false}
+                />
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       <div className="w-full max-w-[1200px] z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center relative mt-16 md:mt-0">
         
