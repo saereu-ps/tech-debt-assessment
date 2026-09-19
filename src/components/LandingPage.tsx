@@ -49,46 +49,43 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const isFormValid = name.trim().length > 0 && company.trim().length > 0 && role.trim().length > 0 && pdpaConsent;
 
   return (
-    <div className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center bg-transparent overflow-hidden">
+    <div className="relative min-h-[100dvh] w-full flex items-center justify-center p-6 md:p-12 font-sans overflow-hidden bg-white dark:bg-[#050810] transition-colors duration-500">
       
-      {/* High-end Math Mesh Graph Background */}
-      <MeshGraphBackground />
-
-      {/* Horizontal Flare shooting from the pill - ALWAYS VISIBLE */}
-      <div className="absolute z-0 pointer-events-none flex items-center justify-center top-[calc(50%+140px)] w-full max-w-[1200px]">
-        <div className="w-[800px] h-[120px] bg-gradient-to-r from-transparent via-[#00e5ff]/5 dark:via-[#00e5ff]/30 to-transparent blur-[40px] transform translate-x-48"></div>
+      {/* Dynamic Network Background */}
+      <div className="absolute inset-0 z-0">
+        <MeshGraphBackground />
       </div>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-        className="relative z-10 flex flex-col items-center justify-center w-full px-4"
-      >
-        {/* Logo and faint glow underneath */}
-        <div className="mb-6 md:mb-10 flex flex-col items-center relative">
-          <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 object-contain dark:filter dark:brightness-0 dark:invert opacity-100 drop-shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
-          <div className="absolute -bottom-4 w-32 h-[20px] bg-[#00e5ff]/5 dark:bg-[#00e5ff]/30 blur-[12px] pointer-events-none"></div>
-        </div>
+      {/* Logo Component */}
+      <div className="absolute top-6 left-6 md:top-8 md:left-8 z-50">
+        <img src={mfecLogo} alt="MFEC Logo" className="h-10 md:h-12 w-auto" style={{ filter: 'var(--logo-filter)' }} />
+      </div>
 
-        {/* Title */}
-        <div className="text-center mb-10 md:mb-12 lg:mb-16 flex flex-col items-center w-full relative z-10">
-          <h1 className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[80px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] drop-shadow-lg">
-            What's your true
-          </h1>
-          <h1 className="text-[36px] sm:text-[48px] md:text-[56px] lg:text-[64px] xl:text-[88px] font-extrabold animate-shine leading-[1.05]" style={{ filter: 'var(--title-drop-shadow)' }}>
-            Tech Debt?
-          </h1>
-          <p className="text-zinc-500 dark:text-[#8b93a5] text-[14px] md:text-[15px] font-medium max-w-[550px] mx-auto mt-4 lg:mt-6 leading-relaxed tracking-wide backdrop-blur-sm bg-black/5 dark:bg-black/10 rounded-lg p-2">
-            Evaluate your infrastructure maturity, discover hidden<br/>vulnerabilities, and prepare for the AI era.
-          </p>
-        </div>
-
-        {/* Premium Form Card */}
-        <div className="w-full max-w-[800px] relative z-20 mt-10 mx-auto">
-          {/* Ambient Glow behind the card */}
-          <div className="absolute inset-0 bg-[#00e5ff] blur-[100px] opacity-10 dark:opacity-20 rounded-full pointer-events-none"></div>
+      <div className="w-full max-w-[1400px] z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center relative mt-16 md:mt-0">
+        
+        {/* Left Side: Typography & Value Prop */}
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex flex-col gap-6 text-center lg:text-left pt-10 lg:pt-0"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00e5ff]/10 border border-[#00e5ff]/30 text-[#00e5ff] text-xs md:text-sm font-bold w-fit mx-auto lg:mx-0 shadow-[0_0_20px_rgba(0,229,255,0.15)]">
+            <Sparkles size={16} /> ENTERPRISE READINESS ASSESSMENT
+          </div>
           
+          <div className="flex flex-col w-full relative z-10">
+            <h1 className="text-[40px] sm:text-[48px] md:text-[56px] xl:text-[72px] font-extrabold text-zinc-900 dark:text-white leading-[1.05] tracking-tight">
+              Modernize your
+            </h1>
+            <h1 className="text-[48px] sm:text-[56px] md:text-[64px] xl:text-[80px] font-extrabold animate-shine leading-[1.05] tracking-tight mt-1" style={{ filter: 'var(--title-drop-shadow)' }}>
+              Infrastructure.
+            </h1>
+          </div>
+
+          <p className="text-zinc-500 dark:text-[#8b93a5] text-[15px] md:text-[17px] font-medium max-w-[500px] mx-auto lg:mx-0 leading-relaxed tracking-wide mt-2">
+            Evaluate your technical debt maturity, uncover hidden bottlenecks, and prepare your organization for the AI era in less than 5 minutes.
+          </p>
           <form 
             onSubmit={handleSubmit}
             className="w-full flex flex-col gap-6 relative p-8 md:p-10 rounded-[32px] md:rounded-[40px] border border-white/40 dark:border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_rgba(0,229,255,0.1)] bg-white/40 dark:bg-[#03060c]/40 backdrop-blur-3xl overflow-hidden"
@@ -227,8 +224,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               <ArrowRight className={`w-5 h-5 ${isFormValid ? "text-white translate-x-0 group-hover:translate-x-1" : "text-zinc-400 dark:text-zinc-600"} transition-all duration-500`} />
             </button>
           </form>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 };
