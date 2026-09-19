@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, UserCircle2, ChevronDown, Mail, Building2, Briefcase, Sparkles, Check, Timer, QrCode, X } from 'lucide-react';
-import { QRCodeSVG } from 'qrcode.react';
+import { QRCodeCanvas } from 'qrcode.react';
 import MeshGraphBackground from './MeshGraphBackground';
 import type { UserInfo } from '../App';
 import mfecLogo from '../assets/mfec-logo.png';
@@ -28,7 +28,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
     window.dispatchEvent(new CustomEvent('pause-canvas', { detail: showQRModal }));
     
     if (showQRModal) {
-      const timer = setTimeout(() => setIsQRReady(true), 200);
+      const timer = setTimeout(() => setIsQRReady(true), 400);
       return () => clearTimeout(timer);
     } else {
       setIsQRReady(false);
@@ -126,7 +126,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
               
               <div className="bg-white p-4 rounded-2xl shadow-sm border border-zinc-200 w-[232px] h-[232px] flex items-center justify-center">
                 {isQRReady ? (
-                  <QRCodeSVG 
+                  <QRCodeCanvas 
                     value={currentUrl} 
                     size={200}
                     bgColor="#ffffff"
